@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "target": "es6",
+    "jsx": "react",
+    "lib": ["dom", "es2019"],
+    "module": "ESNext",
     "moduleResolution": "node",
-    "sourceMap": true,
-    "outDir": "dist"
-  },
-  "lib": ["es2015"]
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "strict": true,
+    "target": "es2018"
+  }
 }
-

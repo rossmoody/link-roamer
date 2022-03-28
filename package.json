@@ -1,6 +1,63 @@
 {
+  "name": "link-grabber",
+  "version": "1.0.0",
+  "description": "A browser extension for gathering, organizing, and inspecting all the links on a web page.",
+  "scripts": {
+    "build": "rollup -c",
+    "release": "cross-env NODE_ENV=production rollup -c",
+    "start": "rollup -c -w"
+  },
+  "keywords": [
+    "chrome-extension",
+    "web-extension",
+    "typescript",
+    "react",
+    "rollup"
+  ],
+  "author": "Ross Moody <@_rossmoody>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rossmoody/link-grabber/issues"
+  },
+  "homepage": "https://github.com/rossmoody/link-grabber#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rossmoody/link-grabber.git"
+  },
+  "dependencies": {
+    "@rollup/plugin-replace": "^3.0.0",
+    "@types/chrome": "^0.0.180",
+    "@types/firefox-webext-browser": "^82.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "prettier": "^2.2.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webextension-polyfill": "^0.7.0"
+  },
   "devDependencies": {
-    "ts-node": "^10.7.0",
-    "typescript": "^4.6.3"
+    "@rollup/plugin-alias": "^3.1.1",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.1",
+    "@rollup/plugin-typescript": "^8.1.0",
+    "@typescript-eslint/eslint-plugin": "^4.10.0",
+    "@typescript-eslint/parser": "^4.10.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.16.0",
+    "eslint-plugin-react": "^7.21.5",
+    "rollup": "^2.56.3",
+    "rollup-plugin-chrome-extension": "^3.6.1",
+    "rollup-plugin-empty-dir": "^1.0.5",
+    "rollup-plugin-zip": "^1.0.3",
+    "tslib": "^2.0.3",
+    "typescript": "^4.6.0"
+  },
+  "prettier": {
+    "semi": false,
+    "tabWidth": 2,
+    "trailingComma": "all",
+    "singleQuote": true,
+    "arrowParens": "always",
+    "proseWrap": "always"
   }
 }
