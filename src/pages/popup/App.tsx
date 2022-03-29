@@ -1,19 +1,20 @@
 import React from 'react'
+import { getActiveTab } from '../../scripts'
 
 const App = () => {
-  const handleClick = () => {
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      chrome.scripting
-        .executeScript({
-          target: { tabId: tabs[0].id ?? 0 },
-          func: () => {
-            const linkElements = Array.from(document.querySelectorAll('a'))
-            const data = linkElements.map((element) => element.href)
-            console.log(data)
-          },
-        })
-        .then()
-    })
+  const handleClick = async () => {
+    const { id: tabId } = await getActiveTab()
+
+    if (tabId) {
+      await chrome.scripting.executeScript({
+        target: { tabId },
+        func: () => {
+          const linkElements = Array.from(document.querySelectorAll('a'))
+          const data = linkElements.map((element) => element.href)
+          console.log(data)
+        },
+      })
+    }
   }
 
   return (
