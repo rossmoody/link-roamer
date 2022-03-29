@@ -1,27 +1,28 @@
-import React from 'react'
-import { getActiveTab } from '../../scripts'
+import * as React from 'react'
+import { executeScript, getActiveTab } from '../../scripts'
+import { gatherHrefs } from '../../scripts/process-links'
 
 const App = () => {
-  const handleClick = async () => {
-    const { id: tabId } = await getActiveTab()
+  const [data, setData] = React.useState([''])
 
-    if (tabId) {
-      await chrome.scripting.executeScript({
-        target: { tabId },
-        func: () => {
-          const linkElements = Array.from(document.querySelectorAll('a'))
-          const data = linkElements.map((element) => element.href)
-          console.log(data)
-        },
-      })
-    }
-  }
+  React.useEffect(() => {
+    (async () => {
+      const { id } = await getActiveTab()
+
+      if (id) {
+        const hrefs = await executeScript(id, gatherHrefs)
+        setData(hrefs)
+      }
+    })()
+  }, [])
 
   return (
     <div>
-      <h1>Link Grabber</h1>
-      <p>If you are seeing this, React is working!</p>
-      <button onClick={handleClick}>Click</button>
+      <ul>
+        {data.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
     </div>
   )
 }

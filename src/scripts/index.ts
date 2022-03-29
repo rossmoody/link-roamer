@@ -1,1 +1,1 @@
-export * from './get-active-tab'
+export * from './chrome-helpers'
