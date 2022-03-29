@@ -1,17 +1,12 @@
 import React from 'react'
 
-const App = (): JSX.Element => {
-  const handleClick = () => {
-    console.log('working')
-  }
-
-  console.log('is this working?')
-
+const App = (props: unknown) => {
+  console.log(props)
+  
   return (
     <div>
       <h1>Link Grabber</h1>
       <p>If you are seeing this, React is working!</p>
-      <button onClick={handleClick}>Find links</button>
     </div>
   )
 }

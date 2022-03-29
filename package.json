@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "A browser extension for gathering, organizing, and inspecting all the links on a web page.",
   "scripts": {
-    "build": "rollup -c",
     "release": "cross-env NODE_ENV=production rollup -c",
     "start": "rollup -c -w"
   },
