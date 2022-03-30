@@ -1,5 +1,5 @@
 {
-  "name": "link-grabber",
+  "name": "link-roamer",
   "version": "1.0.0",
   "description": "A browser extension for gathering, organizing, and inspecting all the links on a web page.",
   "scripts": {
