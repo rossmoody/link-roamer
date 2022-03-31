@@ -1,8 +1,5 @@
 {
   "manifest_version": 3,
-  "background": {
-    "service_worker": "background.ts"
-  },
   "permissions": [
     "activeTab",
     "scripting"
@@ -13,7 +10,7 @@
       "24": "assets/icons/24.png",
       "32": "assets/icons/32.png"
     },
-    "default_popup": "pages/popup/index.html"
+    "default_popup": "pages/index.html"
   },
   "icons": {
     "48": "assets/icons/64.png",
