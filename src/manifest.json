@@ -6,16 +6,16 @@
   ],
   "action": {
     "default_icon": {
-      "16": "assets/icons/16.png",
-      "24": "assets/icons/24.png",
-      "32": "assets/icons/32.png"
+      "16": "public/icons/16.png",
+      "24": "public/icons/24.png",
+      "32": "public/icons/32.png"
     },
-    "default_popup": "pages/index.html"
+    "default_popup": "public/index.html"
   },
   "icons": {
-    "48": "assets/icons/64.png",
-    "64": "assets/icons/64.png",
-    "128": "assets/icons/128.png",
-    "256": "assets/icons/256.png"
+    "48": "public/icons/64.png",
+    "64": "public/icons/64.png",
+    "128": "public/icons/128.png",
+    "256": "public/icons/256.png"
   }
 }

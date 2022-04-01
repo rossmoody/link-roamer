@@ -9,6 +9,7 @@
               <option name="generatedName" value="New Schema" />
               <option name="name" value="Chrome Manifest v3" />
               <option name="relativePathToSchema" value="node_modules/rollup-plugin-chrome-extension/schema/manifest-v3.schema.json" />
+              <option name="schemaVersion" value="JSON Schema version 7" />
               <option name="patterns">
                 <list>
                   <Item>
