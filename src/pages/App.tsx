@@ -2,10 +2,11 @@ import * as React from 'react'
 import * as s from '../scripts'
 import { Link } from '../scripts'
 import Layout from '../components/Layout'
+import LinkList from '../components/LinkList'
 
 const App = () => {
-  const [data, setData] = React.useState<Link[]>([])
-  console.log(data)
+  const [links, setLinks] = React.useState<Link[]>([])
+  console.log(links)
 
   React.useEffect(() => {
     (async () => {
@@ -16,13 +17,17 @@ const App = () => {
           .map(s.createLinks)
           .filter(s.filterFalse)
           .filter(s.filterAllExceptHttp)
-        
-        setData(links)
+
+        setLinks(links)
       }
     })()
   }, [])
 
-  return <Layout data={data} />
+  return (
+    <Layout>
+      <LinkList links={links} />
+    </Layout>
+  )
 }
 
 export default App

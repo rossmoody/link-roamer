@@ -37,3 +37,17 @@ export function filterFalse(item: unknown) {
 export function filterAllExceptHttp(link: Link) {
   return link.protocol.includes('http')
 }
+
+/**
+ * Creates a Record of Links categorized by available domain names
+ */
+export function categorizeByDomain(links: Link[]) {
+  return links.reduce((accum, link: Link) => {
+    const { domain } = link
+    if (!accum[domain]) accum[domain] = []
+    accum[domain].push(link)
+    return accum
+  }, {} as Record<string, Link[]>)
+}
+
+export type CategorizedLinks = ReturnType<typeof categorizeByDomain>

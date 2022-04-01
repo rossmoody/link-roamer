@@ -9,7 +9,6 @@ html,
 body {
     -webkit-text-size-adjust: 100%;
     transition-property: background-color;
-    background-color: var(--color-grey00);
 }
 
 html,

@@ -27,11 +27,11 @@
     "@rollup/plugin-replace": "^3.0.0",
     "@types/chrome": "^0.0.180",
     "@types/firefox-webext-browser": "^82.0.0",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
+    "@types/react": "^17.0.43",
+    "@types/react-dom": "^17.0.14",
     "prettier": "^2.2.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "webextension-polyfill": "^0.7.0"
   },
   "devDependencies": {
