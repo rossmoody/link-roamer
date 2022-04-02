@@ -9,7 +9,7 @@ class Chrome {
         target: { tabId },
         func,
       })
-    )[0].result
+    )[0].result as Type
   }
 
   /**

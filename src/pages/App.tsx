@@ -1,37 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import Link from '../scripts/Link'
-import { Layout, LinkList } from '../components'
-import { ChakraProvider } from '@chakra-ui/react'
-import chrome from '../scripts/Chrome'
-import lp from '../scripts/LinkProcessor'
-import gatherHrefs from '../scripts/gather-hrefs'
+import React from 'react'
+import ThemeProvider from '../providers/ThemeProvider'
+import { Header, Layout, LinkList } from '../components'
+import { LinksProvider } from '../providers/LinksProvider'
 
 const App = () => {
-  const [links, setLinks] = useState<Link[]>([])
-
-  useEffect(() => {
-    (async () => {
-      const { id } = await chrome.getActiveTab()
-
-      if (id) {
-        const links = (await chrome.executeScript<string[]>(id, gatherHrefs))
-          .map(lp.createLinks)
-          .filter(lp.filterFalse)
-          .filter(lp.filterAllExceptHttp)
-
-        setLinks(links)
-      }
-    })()
-  }, [])
-
-  console.log(links, 'link')
-
   return (
-    <ChakraProvider>
-      <Layout>
-        <LinkList links={links} />
-      </Layout>
-    </ChakraProvider>
+    <LinksProvider>
+      <ThemeProvider>
+        <Layout>
+          <Header />
+          <LinkList />
+        </Layout>
+      </ThemeProvider>
+    </LinksProvider>
   )
 }
 

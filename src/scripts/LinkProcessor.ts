@@ -1,25 +1,20 @@
 import Link from './Link'
 
+const FILTER_URL = 'https://www.filterthisurlout-1-2-3-4-5.com'
+
 export class LinkProcessor {
   /**
    * Creates a Link object which extends the URL class.
-   * If it fails, it returns false. This needs to be filtered out later.
-   * TODO: Improve the error handling of this function
+   * If it fails, it returns a fake url with the key 'filtermeout' for
+   * targeting later. URL creation fails pretty often.
    */
   createLinks(href: string) {
     try {
       return new Link(href)
     } catch (e) {
       console.error(e)
-      return false
+      return new Link(FILTER_URL)
     }
-  }
-
-  /**
-   * Filter function helper for removing items that are falsy
-   */
-  filterFalse(item: unknown) {
-    return Boolean(item)
   }
 
   /**
@@ -27,6 +22,13 @@ export class LinkProcessor {
    */
   filterAllExceptHttp(link: Link) {
     return link.protocol.includes('http')
+  }
+
+  /**
+   * Filter the links with 'filtermeout' key
+   */
+  filterKeyString(link: Link) {
+    return !link.href.includes(FILTER_URL)
   }
 
   /**
@@ -39,6 +41,13 @@ export class LinkProcessor {
       accum[domain].push(link)
       return accum
     }, {} as Record<string, Link[]>)
+  }
+
+  /**
+   * Sorts a given set of links by length starting with the shortest first.
+   */
+  sortByHrefLength(linkA: Link, linkB: Link) {
+    return linkA.displayHref.length > linkB.displayHref.length ? 0 : -1
   }
 }
 

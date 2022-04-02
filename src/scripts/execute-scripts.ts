@@ -4,8 +4,15 @@
  * Must be an isolated function declaration because of v3 manifest's strict policies
  * on script injection using executeScript.
  */
-export default function gatherHrefs() {
+export function gatherHrefs() {
   const anchorElements = Array.from(document.querySelectorAll('a'))
   const anchorHrefs = anchorElements.map((element) => element.href)
   return [...new Set(anchorHrefs)]
+}
+
+/**
+ * Gets the target tabs domain name
+ */
+export default function getDomain() {
+  return document.location.host
 }
