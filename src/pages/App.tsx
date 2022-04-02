@@ -1,32 +1,37 @@
-import * as React from 'react'
-import * as s from '../scripts'
-import { Link } from '../scripts'
-import Layout from '../components/Layout'
-import LinkList from '../components/LinkList'
+import React, { useEffect, useState } from 'react'
+import Link from '../scripts/Link'
+import { Layout, LinkList } from '../components'
+import { ChakraProvider } from '@chakra-ui/react'
+import chrome from '../scripts/Chrome'
+import lp from '../scripts/LinkProcessor'
+import gatherHrefs from '../scripts/gather-hrefs'
 
 const App = () => {
-  const [links, setLinks] = React.useState<Link[]>([])
-  console.log(links)
+  const [links, setLinks] = useState<Link[]>([])
 
-  React.useEffect(() => {
+  useEffect(() => {
     (async () => {
-      const { id } = await s.getActiveTab()
+      const { id } = await chrome.getActiveTab()
 
       if (id) {
-        const links = (await s.executeScript(id, s.gatherHrefs))
-          .map(s.createLinks)
-          .filter(s.filterFalse)
-          .filter(s.filterAllExceptHttp)
+        const links = (await chrome.executeScript<string[]>(id, gatherHrefs))
+          .map(lp.createLinks)
+          .filter(lp.filterFalse)
+          .filter(lp.filterAllExceptHttp)
 
         setLinks(links)
       }
     })()
   }, [])
 
+  console.log(links, 'link')
+
   return (
-    <Layout>
-      <LinkList links={links} />
-    </Layout>
+    <ChakraProvider>
+      <Layout>
+        <LinkList links={links} />
+      </Layout>
+    </ChakraProvider>
   )
 }
 
