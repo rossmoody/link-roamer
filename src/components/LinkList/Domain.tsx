@@ -4,6 +4,7 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  Badge,
   Box,
   UnorderedList,
 } from '@chakra-ui/react'
@@ -22,7 +23,7 @@ const Domain = ({ domain, links }: Props) => {
         <AccordionButton>
           <AccordionIcon />
           <Box flex="1" textAlign="left">
-            {domain}
+            {domain} <Badge>{links.length}</Badge>
           </Box>
         </AccordionButton>
       </h2>

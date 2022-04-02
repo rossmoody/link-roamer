@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import lp from '../../scripts/LinkProcessor'
-import { CategorizedLinks } from '../../types'
+import React from 'react'
 import { Accordion } from '@chakra-ui/react'
-import { useLinks } from '../../providers/LinksProvider'
 import Domain from './Domain'
+import { LinkData } from '../../types'
 
-const LinkList = () => {
-  const [data, setData] = useState<CategorizedLinks>({})
-  const { links } = useLinks()
+type Props = {
+  categorizedLinks: LinkData['categorizedLinks']
+}
 
-  useEffect(() => {
-    const categorized = lp.categorizeByDomain(links)
-    setData(categorized)
-  }, [links])
-
+const LinkList = ({ categorizedLinks }: Props) => {
   return (
     <Accordion allowMultiple>
-      {Object.entries(data).map(([domain, links]) => (
+      {Object.entries(categorizedLinks).map(([domain, links]) => (
         <Domain domain={domain} links={links} key={domain} />
       ))}
     </Accordion>

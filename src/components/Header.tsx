@@ -35,7 +35,7 @@ const Header = () => {
     <Box as="header" px={6} py={4}>
       <Heading size="lg">{data.domainName}</Heading>
       <Text>
-        Showing {data.hrefQty} links from {data.domainQty} different domains
+        Found {data.hrefQty} links from {data.domainQty} different domains
       </Text>
     </Box>
   )

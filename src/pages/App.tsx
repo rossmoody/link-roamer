@@ -1,6 +1,6 @@
 import React from 'react'
 import ThemeProvider from '../providers/ThemeProvider'
-import { Header, Layout, LinkList } from '../components'
+import { CategoryTabs, Header, Layout } from '../components'
 import { LinksProvider } from '../providers/LinksProvider'
 
 const App = () => {
@@ -9,7 +9,7 @@ const App = () => {
       <ThemeProvider>
         <Layout>
           <Header />
-          <LinkList />
+          <CategoryTabs />
         </Layout>
       </ThemeProvider>
     </LinksProvider>
