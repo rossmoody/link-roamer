@@ -44,7 +44,7 @@ class Chrome {
     return await chrome.tabs.group(config)
   }
 
-  async updateTabGroup(groupId: number, title = 'Poop') {
+  async updateTabGroup(groupId: number, title: string) {
     const updateProperties: chrome.tabGroups.UpdateProperties = {
       collapsed: true,
       title,
