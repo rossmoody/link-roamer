@@ -1,18 +1,18 @@
 import React from 'react'
 import ThemeProvider from '../providers/ThemeProvider'
 import { CategoryTabs, Header, Layout } from '../components'
-import { LinksProvider } from '../providers/LinksProvider'
+import { DataProvider } from '../providers/DataProvider'
 
 const App = () => {
   return (
-    <LinksProvider>
+    <DataProvider>
       <ThemeProvider>
         <Layout>
           <Header />
           <CategoryTabs />
         </Layout>
       </ThemeProvider>
-    </LinksProvider>
+    </DataProvider>
   )
 }
 

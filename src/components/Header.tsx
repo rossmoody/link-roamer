@@ -2,18 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Box, Heading, Text } from '@chakra-ui/react'
 import chrome from '../scripts/Chrome'
 import getDomain from '../scripts/execute-scripts'
-import lp from '../scripts/LinkProcessor'
-import { useLinks } from '../providers/LinksProvider'
-
-const initialState = {
-  domainName: '',
-  hrefQty: 0,
-  domainQty: 0,
-}
+import { useData } from '../providers/DataProvider'
 
 const Header = () => {
-  const [data, setData] = useState(initialState)
-  const { links } = useLinks()
+  const [domain, setDomain] = useState('')
+  const { data } = useData()
 
   useEffect(() => {
     (async () => {
@@ -21,21 +14,17 @@ const Header = () => {
 
       if (id) {
         const domainName = await chrome.executeScript<string>(id, getDomain)
-
-        setData({
-          domainName,
-          domainQty: Object.keys(lp.categorizeByDomain(links)).length,
-          hrefQty: links.length,
-        })
+        setDomain(domainName)
       }
     })()
-  }, [links])
+  }, [data])
 
   return (
     <Box as="header" px={6} py={4}>
-      <Heading size="lg">{data.domainName}</Heading>
+      <Heading size="lg">{domain}</Heading>
       <Text>
-        Found {data.hrefQty} links from {data.domainQty} different domains
+        Found {data.links.length} links from{' '}
+        {Object.keys(data.categorizedLinks).length} different domains
       </Text>
     </Box>
   )

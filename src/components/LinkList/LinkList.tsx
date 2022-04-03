@@ -7,14 +7,12 @@ type Props = {
   categorizedLinks: LinkData['categorizedLinks']
 }
 
-const LinkList = ({ categorizedLinks }: Props) => {
-  return (
-    <Accordion allowMultiple>
-      {Object.entries(categorizedLinks).map(([domain, links]) => (
-        <Domain domain={domain} links={links} key={domain} />
-      ))}
-    </Accordion>
-  )
-}
+const LinkList = ({ categorizedLinks }: Props) => (
+  <Accordion allowMultiple>
+    {Object.entries(categorizedLinks).map(([domain, links]) => (
+      <Domain domain={domain} links={links} key={domain} />
+    ))}
+  </Accordion>
+)
 
 export default LinkList

@@ -1,4 +1,5 @@
 import Link from './Link'
+import { CategorizedLinks } from '../types'
 
 const FILTER_URL = 'https://www.filterthisurlout-1-2-3-4-5.com'
 
@@ -20,7 +21,7 @@ export class LinkProcessor {
   /**
    * Filter function helper for removing items that don't contain http
    */
-  filterAllExceptHttp(link: Link) {
+  filterHttp(link: Link) {
     return link.protocol.includes('http')
   }
 
@@ -29,6 +30,13 @@ export class LinkProcessor {
    */
   filterKeyString(link: Link) {
     return !link.href.includes(FILTER_URL)
+  }
+
+  /**
+   * Filter links to include only those with fragments
+   */
+  filterOnlyFragments(link: Link) {
+    return Boolean(link.hash)
   }
 
   /**
@@ -48,6 +56,17 @@ export class LinkProcessor {
    */
   sortByHrefLength(linkA: Link, linkB: Link) {
     return linkA.displayHref.length > linkB.displayHref.length ? 0 : -1
+  }
+
+  /**
+   * Returns the amount of links in a given Record of categorized Links.
+   */
+  getCategorizedLinksQty(categorizedLinks: CategorizedLinks) {
+    let counter = 0
+    for (const links of Object.values(categorizedLinks)) {
+      counter += links.length
+    }
+    return counter
   }
 }
 
