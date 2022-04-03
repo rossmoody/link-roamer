@@ -5,8 +5,7 @@ import {
   TagLeftIcon,
   TagProps,
 } from '@chakra-ui/react'
-import { WarningIcon } from './icons/WarningIcon'
-import { AlertIcon } from './icons/AlertIcon'
+import { AlertIcon, WarningIcon } from './icons'
 
 const status = {
   critical: {

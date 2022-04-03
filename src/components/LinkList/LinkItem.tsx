@@ -1,23 +1,27 @@
 import {
+  Button,
+  Center,
   Checkbox,
+  Fade,
   Flex,
   Link as ChakraLink,
   ListItem,
   Text,
   Tooltip,
 } from '@chakra-ui/react'
-import React from 'react'
+import React, { useState } from 'react'
 import Link from '../../scripts/Link'
 import Tag from '../Tag'
 import { useCheckedItems } from '../../providers/CheckedItems'
+import { NewTabIcon } from '../icons/NewTab'
 
 type Props = {
   link: Link
 }
 
 const LinkItem = ({ link }: Props) => {
+  const [hover, setHover] = useState(false)
   const { checkedItems, setCheckedItems } = useCheckedItems()
-  const isHttp = link.protocol === 'http:'
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.checked
@@ -30,8 +34,15 @@ const LinkItem = ({ link }: Props) => {
         )
   }
 
+  const isHttp = link.protocol === 'http:'
+
   return (
-    <ListItem pl={8}>
+    <ListItem
+      pl={8}
+      position="relative"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
       <Flex justifyContent="space-between" alignItems="center">
         <Flex flex={1}>
           <Checkbox
@@ -60,6 +71,24 @@ const LinkItem = ({ link }: Props) => {
           </Tooltip>
         )}
       </Flex>
+      <Fade in={hover}>
+        <Center
+          position="absolute"
+          right={0}
+          top={0}
+          bottom={0}
+          margin="auto"
+          bg="white"
+        >
+          <Button
+            size="xs"
+            variant="outline"
+            leftIcon={<NewTabIcon height="12px" />}
+          >
+            Open in background
+          </Button>
+        </Center>
+      </Fade>
     </ListItem>
   )
 }

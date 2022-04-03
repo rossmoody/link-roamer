@@ -52,7 +52,7 @@ const Domain = ({ domain, links }: Props) => {
           <AccordionIcon mr={2} />
           <Box flex="1" textAlign="left">
             {domain}
-            <Badge>{links.length}</Badge>
+            <Badge ml={1}>{links.length}</Badge>
           </Box>
           {containsHttp && (
             <Tooltip
