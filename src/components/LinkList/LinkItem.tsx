@@ -7,13 +7,13 @@ import {
   Link as ChakraLink,
   ListItem,
   Text,
-  Tooltip,
 } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import Link from '../../scripts/Link'
 import Tag from '../Tag'
 import { useCheckedItems } from '../../providers/CheckedItems'
-import { NewTabIcon } from '../icons/NewTab'
+import { NewTabIcon } from '../icons'
+import c from '../../scripts/Chrome'
 
 type Props = {
   link: Link
@@ -62,14 +62,7 @@ const LinkItem = ({ link }: Props) => {
             </Text>
           </ChakraLink>
         </Flex>
-        {isHttp && (
-          <Tooltip
-            label="This link is HTTP and does not provide an encrypted connection."
-            shouldWrapChildren
-          >
-            <Tag status="critical">Not secure</Tag>
-          </Tooltip>
-        )}
+        {isHttp && <Tag status="critical">Not secure</Tag>}
       </Flex>
       <Fade in={hover}>
         <Center
@@ -84,6 +77,7 @@ const LinkItem = ({ link }: Props) => {
             size="xs"
             variant="outline"
             leftIcon={<NewTabIcon height="12px" />}
+            onClick={() => c.createBackgroundTab(link.href)}
           >
             Open in background
           </Button>

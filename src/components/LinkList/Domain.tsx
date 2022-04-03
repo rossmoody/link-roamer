@@ -58,6 +58,10 @@ const Domain = ({ domain, links }: Props) => {
             <Tooltip
               label="Links within this domain may be broken or not secure"
               shouldWrapChildren
+              placement="auto-end"
+              hasArrow
+              textAlign="center"
+              borderRadius="lg"
             >
               <Tag status="warning">Warning</Tag>
             </Tooltip>

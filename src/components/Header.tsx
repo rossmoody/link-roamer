@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Heading, Text } from '@chakra-ui/react'
-import chrome from '../scripts/Chrome'
+import c from '../scripts/Chrome'
 import getDomain from '../scripts/execute-scripts'
 import { useData } from '../providers/DataProvider'
 
@@ -10,10 +10,10 @@ const Header = () => {
 
   useEffect(() => {
     (async () => {
-      const { id } = await chrome.getActiveTab()
+      const { id } = await c.getActiveTab()
 
       if (id) {
-        const domainName = await chrome.executeScript<string>(id, getDomain)
+        const domainName = await c.executeScript<string>(id, getDomain)
         setDomain(domainName)
       }
     })()
@@ -23,7 +23,7 @@ const Header = () => {
     <Box as="header" px={6} py={4}>
       <Heading size="lg">{domain}</Heading>
       <Text>
-        Found {data.links.length} links from{' '}
+        Found {data.links.length} across{' '}
         {Object.keys(data.categorizedLinks).length} different domains
       </Text>
     </Box>
