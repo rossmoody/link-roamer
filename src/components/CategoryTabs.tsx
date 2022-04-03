@@ -8,17 +8,16 @@ import {
   Tabs,
 } from '@chakra-ui/react'
 import { useData } from '../providers/DataProvider'
-import LinkList from './LinkList/LinkList'
+import Index from './LinkList'
 import lp from '../scripts/LinkProcessor'
-import { CategorizedLinks } from '../types'
 
 const CategoryTabs = () => {
   const { data } = useData()
   const fragmentQty = lp.getCategorizedLinksQty(data.fragmentLinks)
 
   return (
-    <Tabs isLazy>
-      <TabList>
+    <Tabs isLazy size="sm">
+      <TabList px={4}>
         <Tab gap={1}>
           All <Badge>{data.links.length}</Badge>
         </Tab>
@@ -29,17 +28,16 @@ const CategoryTabs = () => {
         )}
       </TabList>
 
-      <TabPanels>
+      <TabPanels pb={28}>
         <TabPanel p={0}>
-          <LinkList categorizedLinks={data.categorizedLinks} />
+          <Index categorizedLinks={data.categorizedLinks} />
         </TabPanel>
         <TabPanel p={0}>
-          <LinkList categorizedLinks={data.fragmentLinks} />
+          <Index categorizedLinks={data.fragmentLinks} />
         </TabPanel>
       </TabPanels>
     </Tabs>
   )
-}
 }
 
 export default CategoryTabs

@@ -1,14 +1,15 @@
 import React from 'react'
 import { createIcon } from '@chakra-ui/react'
 
-export const Hash = createIcon({
+export const HashIcon = createIcon({
   defaultProps: {
     width: '16px',
     height: '16px',
     stroke: 'currentColor',
-    strokeWidth: 2,
+    strokeWidth: '2px',
     strokeLinecap: 'round',
     strokeLinejoin: 'round',
+    fill: 'none',
   },
   viewBox: '0 0 24 24',
   path: (

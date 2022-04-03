@@ -36,7 +36,7 @@ export class LinkProcessor {
    * Filter links to include only those with fragments
    */
   filterOnlyFragments(link: Link) {
-    return Boolean(link.hash)
+    return Boolean(link.href.includes('#'))
   }
 
   /**
@@ -55,7 +55,7 @@ export class LinkProcessor {
    * Sorts a given set of links by length starting with the shortest first.
    */
   sortByHrefLength(linkA: Link, linkB: Link) {
-    return linkA.displayHref.length > linkB.displayHref.length ? 0 : -1
+    return linkA.href.length > linkB.href.length ? 0 : -1
   }
 
   /**
