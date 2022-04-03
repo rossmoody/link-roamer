@@ -1,22 +1,28 @@
 import React from 'react'
 import { useCheckedItems } from '../../providers/CheckedItems'
-import { Flex, SlideFade } from '@chakra-ui/react'
+import { Button, Flex, SlideFade } from '@chakra-ui/react'
 
 const Footer = () => {
   const { checkedItems } = useCheckedItems()
 
+  const checkedItemsQty = checkedItems.length
+
   return (
-    <SlideFade in={checkedItems.length > 0} offsetY="20px">
+    <SlideFade in={checkedItemsQty > 0} offsetY="30px" unmountOnExit>
       <Flex
+        p={4}
         position="absolute"
+        alignItems="center"
         bottom={4}
         left={4}
-        right={4}
-        h={28}
-        bg="blue"
+        right={6}
+        bg="gray.100"
+        boxShadow="lg"
         borderRadius="lg"
       >
-        footer
+        <Button variant="solid" colorScheme="purple" size="sm">
+          Open {checkedItemsQty} new tabs
+        </Button>
       </Flex>
     </SlideFade>
   )
