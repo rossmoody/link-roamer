@@ -1,10 +1,10 @@
 import React from 'react'
 import { Accordion } from '@chakra-ui/react'
 import Domain from './Domain'
-import { LinkData } from '../../types'
+import { CategorizedLinks } from '../../types'
 
 type Props = {
-  categorizedLinks: LinkData['categorizedLinks']
+  categorizedLinks: CategorizedLinks
 }
 
 const LinkList = ({ categorizedLinks }: Props) => (

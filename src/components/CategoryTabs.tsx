@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import {
   Badge,
   Tab,
@@ -11,6 +11,7 @@ import { useData } from '../providers/DataProvider'
 import Index from './LinkList'
 import lp from '../scripts/LinkProcessor'
 import { CategorizedLinks } from '../types'
+import { HashIcon } from './icons'
 
 const CategoryTabs = () => {
   const { data } = useData()
@@ -19,7 +20,11 @@ const CategoryTabs = () => {
     <Tabs isLazy>
       <TabList px={4}>
         <CustomTab links={data.categorizedLinks} title="All" />
-        <CustomTab links={data.fragmentLinks} title="Fragments" />
+        <CustomTab
+          links={data.fragmentLinks}
+          title="Fragments"
+          icon={<HashIcon color="gray.500" />}
+        />
       </TabList>
 
       <TabPanels pb={20}>
@@ -37,14 +42,23 @@ const CategoryTabs = () => {
 type CustomTabProps = {
   links: CategorizedLinks
   title: string
+  icon?: ReactElement
 }
 
-function CustomTab({ links, title }: CustomTabProps) {
+function CustomTab({ links, title, icon }: CustomTabProps) {
   const linksQty = lp.getCategorizedLinksQty(links)
   if (linksQty < 1) return null
 
   return (
-    <Tab gap={1}>
+    <Tab
+      gap={1}
+      _selected={{
+        fontWeight: 'medium',
+        borderBottom: '3px solid',
+        borderColor: 'blurple.500',
+      }}
+    >
+      {icon && icon}
       {title} <Badge>{linksQty}</Badge>
     </Tab>
   )

@@ -6,12 +6,12 @@ import {
   Flex,
   IconButton,
   SlideFade,
-  Tooltip,
 } from '@chakra-ui/react'
 import { BookmarkIcon, ExternalLinkIcon, NewTabIcon } from '../icons'
 import c from '../../scripts/Chrome'
 import TabGroupPopover from './TabGroupPopover'
 import BookmarkPopover from './BookmarkPopover'
+import SelectedQuantity from './SelectedQuantity'
 
 const Index = () => {
   const { checkedItems } = useCheckedItems()
@@ -24,46 +24,41 @@ const Index = () => {
   }
 
   return (
-    <Flex
-      as="footer"
-      position="fixed"
-      bottom={4}
-      left={4}
-      right={4}
-      alignItems="center"
-      justifyContent="center"
-    >
-      <SlideFade in={showFooter} offsetY="20px" unmountOnExit>
+    <Flex as="footer" position="fixed" bottom={2} left={2} right={2}>
+      <SlideFade in={showFooter} offsetY="20px" style={{ flex: 1 }}>
         <Flex
-          py={4}
-          px={6}
+          flex={1}
+          py={3}
+          px={5}
           alignItems="center"
-          justifyContent="center"
+          justifyContent="space-between"
           bg="white"
-          boxShadow="lg"
+          boxShadow="xl"
           borderRadius="lg"
           outline="1px solid"
-          outlineColor="gray.100"
+          outlineColor="gray.200"
         >
+          <SelectedQuantity linkQty={checkedItemsQty} />
           <ButtonGroup>
-            <Tooltip label="Bookmark selected links" shouldWrapChildren>
-              <BookmarkPopover>
-                <IconButton
-                  aria-label="Bookmark the checked links"
-                  icon={<BookmarkIcon />}
-                />
-              </BookmarkPopover>
-            </Tooltip>
+            <BookmarkPopover>
+              <IconButton
+                aria-label="Bookmark the checked links"
+                icon={<BookmarkIcon />}
+              />
+            </BookmarkPopover>
             <Button
               leftIcon={<ExternalLinkIcon />}
               onClick={createNewWindowTabs}
-              isFullWidth
             >
-              Create new window
+              Open in new window
             </Button>
             <TabGroupPopover>
-              <Button isFullWidth leftIcon={<NewTabIcon />}>
-                Create tab group
+              <Button
+                leftIcon={<NewTabIcon />}
+                variant="solid"
+                colorScheme="blurple"
+              >
+                Open in tab group
               </Button>
             </TabGroupPopover>
           </ButtonGroup>
