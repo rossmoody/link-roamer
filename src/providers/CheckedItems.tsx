@@ -1,6 +1,6 @@
 import React from 'react'
 
-interface CheckedItemsContextProps {
+type CheckedItemsContextProps = {
   checkedItems: string[]
   setCheckedItems: React.Dispatch<React.SetStateAction<string[]>>
 }

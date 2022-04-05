@@ -11,12 +11,14 @@ interface DataContextProps {
 
 const DataContext = React.createContext({} as DataContextProps)
 
+const linkData: LinkData = {
+  links: [],
+  categorizedLinks: {},
+  fragmentLinks: {},
+}
+
 export const DataProvider: React.FC = ({ children }) => {
-  const [data, setData] = React.useState<DataContextProps['data']>({
-    links: [],
-    categorizedLinks: {},
-    fragmentLinks: {},
-  })
+  const [data, setData] = React.useState(linkData)
 
   const dataMemo = React.useMemo(
     () => ({
@@ -48,7 +50,7 @@ export const DataProvider: React.FC = ({ children }) => {
   }, [])
 
   console.log(data)
-  
+
   return (
     <DataContext.Provider value={dataMemo}>{children}</DataContext.Provider>
   )

@@ -20,10 +20,12 @@ const Header = () => {
   }, [data])
 
   return (
-    <Box as="header" px={6} py={4}>
-      <Heading size="lg">{domain}</Heading>
-      <Text>
-        Found {data.links.length} across{' '}
+    <Box as="header" p={6}>
+      <Heading size="lg" fontWeight="bold">
+        {domain}
+      </Heading>
+      <Text color="gray.500" fontSize="sm">
+        Found {data.links.length} links across{' '}
         {Object.keys(data.categorizedLinks).length} different domains
       </Text>
     </Box>

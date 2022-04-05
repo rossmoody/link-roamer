@@ -10,25 +10,19 @@ import {
 import { useData } from '../providers/DataProvider'
 import Index from './LinkList'
 import lp from '../scripts/LinkProcessor'
+import { CategorizedLinks } from '../types'
 
 const CategoryTabs = () => {
   const { data } = useData()
-  const fragmentQty = lp.getCategorizedLinksQty(data.fragmentLinks)
 
   return (
-    <Tabs isLazy size="sm">
+    <Tabs isLazy>
       <TabList px={4}>
-        <Tab gap={1}>
-          All <Badge>{data.links.length}</Badge>
-        </Tab>
-        {fragmentQty > 0 && (
-          <Tab gap={1}>
-            Fragments <Badge>{fragmentQty}</Badge>
-          </Tab>
-        )}
+        <CustomTab links={data.categorizedLinks} title="All" />
+        <CustomTab links={data.fragmentLinks} title="Fragments" />
       </TabList>
 
-      <TabPanels pb={28}>
+      <TabPanels pb={20}>
         <TabPanel p={0}>
           <Index categorizedLinks={data.categorizedLinks} />
         </TabPanel>
@@ -37,6 +31,22 @@ const CategoryTabs = () => {
         </TabPanel>
       </TabPanels>
     </Tabs>
+  )
+}
+
+type CustomTabProps = {
+  links: CategorizedLinks
+  title: string
+}
+
+function CustomTab({ links, title }: CustomTabProps) {
+  const linksQty = lp.getCategorizedLinksQty(links)
+  if (linksQty < 1) return null
+
+  return (
+    <Tab gap={1}>
+      {title} <Badge>{linksQty}</Badge>
+    </Tab>
   )
 }
 

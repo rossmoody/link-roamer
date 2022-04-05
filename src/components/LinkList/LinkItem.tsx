@@ -12,7 +12,7 @@ import React, { useState } from 'react'
 import Link from '../../scripts/Link'
 import Tag from '../Tag'
 import { useCheckedItems } from '../../providers/CheckedItems'
-import { NewTabIcon } from '../icons'
+import { ExternalLinkIcon } from '../icons'
 import c from '../../scripts/Chrome'
 
 type Props = {
@@ -38,10 +38,12 @@ const LinkItem = ({ link }: Props) => {
 
   return (
     <ListItem
-      pl={8}
+      pl={7}
       position="relative"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      onFocus={() => setHover(true)}
+      onBlur={() => setHover(false)}
     >
       <Flex justifyContent="space-between" alignItems="center">
         <Flex flex={1}>
@@ -75,8 +77,7 @@ const LinkItem = ({ link }: Props) => {
         >
           <Button
             size="xs"
-            variant="outline"
-            leftIcon={<NewTabIcon height="12px" />}
+            leftIcon={<ExternalLinkIcon height="12px" />}
             onClick={() => c.createBackgroundTab(link.href)}
           >
             Open in background

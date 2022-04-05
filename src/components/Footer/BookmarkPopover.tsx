@@ -2,6 +2,7 @@ import React from 'react'
 import {
   Button,
   ButtonGroup,
+  FormLabel,
   Heading,
   Input,
   Popover,
@@ -12,28 +13,28 @@ import {
   PopoverFooter,
   PopoverHeader,
   PopoverTrigger,
+  Text,
   useDisclosure,
+  VisuallyHidden,
 } from '@chakra-ui/react'
 import c from '../../scripts/Chrome'
 import { useCheckedItems } from '../../providers/CheckedItems'
+import Link from '../../scripts/Link'
 
-const TitlePopover: React.FC = ({ children }) => {
+const BookmarkPopover: React.FC = ({ children }) => {
   const { onOpen, onClose, isOpen } = useDisclosure()
   const { checkedItems } = useCheckedItems()
   const inputRef = React.useRef<HTMLInputElement>(null)
 
-  async function createTabGroup() {
-    const tabIds = await Promise.all(
-      checkedItems.map(async (href) => {
-        const tab = await c.createBackgroundTab(href)
-        return tab.id as number
-      }),
+  async function createBookmark() {
+    const { id } = await c.createBookmarkFolder(
+      inputRef.current?.value ?? 'Link Roamer',
     )
 
-    const title = inputRef.current?.value ?? ''
-    const groupId = await c.createTabGroup(tabIds)
-    await c.updateTabGroup(groupId, title)
-    onClose()
+    checkedItems.forEach((url) => {
+      const prettyUrl = new Link(url).displayHref
+      c.createBookmark(prettyUrl, id, url)
+    })
   }
 
   return (
@@ -47,12 +48,21 @@ const TitlePopover: React.FC = ({ children }) => {
       <PopoverTrigger>{children}</PopoverTrigger>
       <PopoverContent>
         <PopoverHeader pt={4} fontWeight="bold" border="0">
-          <Heading size="sm">Title</Heading>
+          <Heading size="sm">Set a folder title</Heading>
+          <Text fontWeight="normal" color="gray.600" fontSize="sm" mt={1}>
+            This folder will be initially created inside the &quot;Other
+            Bookmarks&quot; directory.
+          </Text>
         </PopoverHeader>
         <PopoverArrow />
         <PopoverCloseButton />
         <PopoverBody>
-          <Input type="text" ref={inputRef} />
+          <VisuallyHidden>
+            <FormLabel htmlFor="bookmark-input">
+              Set a bookmark folder title
+            </FormLabel>
+          </VisuallyHidden>
+          <Input type="text" ref={inputRef} id="bookmark-input" />
         </PopoverBody>
         <PopoverFooter
           border="0"
@@ -65,8 +75,8 @@ const TitlePopover: React.FC = ({ children }) => {
             <Button onClick={onClose}>Cancel</Button>
             <Button
               variant="solid"
-              colorScheme="purple"
-              onClick={createTabGroup}
+              colorScheme="blurple"
+              onClick={createBookmark}
             >
               Create
             </Button>
@@ -77,4 +87,4 @@ const TitlePopover: React.FC = ({ children }) => {
   )
 }
 
-export default TitlePopover
+export default BookmarkPopover

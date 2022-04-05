@@ -44,6 +44,9 @@ class Chrome {
     return await chrome.tabs.group(config)
   }
 
+  /**
+   * Collapses a newly created tab group and sets the given title.
+   */
   async updateTabGroup(groupId: number, title: string) {
     const updateProperties: chrome.tabGroups.UpdateProperties = {
       collapsed: true,
@@ -51,6 +54,30 @@ class Chrome {
     }
 
     return await chrome.tabGroups.update(groupId, updateProperties)
+  }
+
+  /**
+   * Chrome bookmarks are confusing. To create a folder, don't supply a URL.
+   * The title will create the folder name if no URL is supplied. If a URL is supplied
+   * it will be used for the title of the bookmark.
+   */
+  async createBookmarkFolder(title: string) {
+    const config: chrome.bookmarks.BookmarkCreateArg = {
+      title,
+    }
+    return await chrome.bookmarks.create(config)
+  }
+
+  /**
+   * Creates a bookmark and puts it inside the given folder using the parentId.
+   */
+  async createBookmark(title: string, parentId: string, url: string) {
+    const config: chrome.bookmarks.BookmarkCreateArg = {
+      parentId,
+      title,
+      url,
+    }
+    return await chrome.bookmarks.create(config)
   }
 }
 
