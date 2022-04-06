@@ -6,12 +6,12 @@ import {
   Flex,
   IconButton,
   SlideFade,
+  Tag,
 } from '@chakra-ui/react'
 import { BookmarkIcon, ExternalLinkIcon, NewTabIcon } from '../icons'
 import c from '../../scripts/Chrome'
 import TabGroupPopover from './TabGroupPopover'
 import BookmarkPopover from './BookmarkPopover'
-import SelectedQuantity from './SelectedQuantity'
 
 const Index = () => {
   const { checkedItems } = useCheckedItems()
@@ -38,7 +38,9 @@ const Index = () => {
           outline="1px solid"
           outlineColor="gray.200"
         >
-          <SelectedQuantity linkQty={checkedItemsQty} />
+          <Tag size="sm" colorScheme="blurple">
+            {checkedItemsQty} selected
+          </Tag>
           <ButtonGroup>
             <BookmarkPopover>
               <IconButton

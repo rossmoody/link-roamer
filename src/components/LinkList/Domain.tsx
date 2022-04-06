@@ -30,6 +30,7 @@ const Domain = ({ domain, links }: Props) => {
       return setCheckedItems((prevChecked) =>
         prevChecked.filter((item) => !hrefs.includes(item)),
       )
+    
     setCheckedItems((prevChecked) => [...prevChecked, ...hrefs])
   }
 

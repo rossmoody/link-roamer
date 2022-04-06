@@ -50,9 +50,7 @@ const BookmarkPopover: React.FC = ({ children }) => {
     >
       <Tooltip aria-label="tooltip" label="Bookmark selected links">
         <Box>
-          <PopoverTrigger>
-            <PopoverTrigger>{children}</PopoverTrigger>
-          </PopoverTrigger>
+          <PopoverTrigger>{children}</PopoverTrigger>
         </Box>
       </Tooltip>
 
@@ -61,7 +59,7 @@ const BookmarkPopover: React.FC = ({ children }) => {
           <PopoverHeader pt={4} fontWeight="bold" border="0">
             <Heading size="sm">Set a folder title</Heading>
             <Text fontWeight="normal" color="gray.600" fontSize="sm" mt={1}>
-              This folder will be initially created inside the &quot;Other
+              The folder will be created initially inside the &quot;Other
               Bookmarks&quot; directory.
             </Text>
           </PopoverHeader>

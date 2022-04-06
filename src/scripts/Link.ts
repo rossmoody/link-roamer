@@ -1,4 +1,9 @@
+import { LinkStatus } from '../types'
+
 class Link extends URL {
+  requestStatus = 200
+  requestStatusText = ''
+
   constructor(href: string) {
     super(href)
   }
@@ -17,6 +22,14 @@ class Link extends URL {
     const href = this.domain + this.pathname + this.hash
     const lastCharacter = href.charAt(href.length - 1)
     return lastCharacter === '/' ? href.slice(0, -1) : href
+  }
+
+  /**
+   * Sets the response status specs
+   */
+  set status(status: LinkStatus) {
+    this.requestStatus = status.status
+    this.requestStatusText = status.statusText
   }
 }
 

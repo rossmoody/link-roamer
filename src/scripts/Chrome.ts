@@ -1,5 +1,7 @@
 import CreateData = chrome.windows.CreateData
 import GroupOptions = chrome.tabs.GroupOptions
+import { LinkStatus, Message } from '../types'
+import Link from './Link'
 
 class Chrome {
   /**
@@ -40,7 +42,6 @@ class Chrome {
       tabIds,
       createProperties: { windowId },
     }
-
     return await chrome.tabs.group(config)
   }
 
@@ -52,15 +53,9 @@ class Chrome {
       collapsed: true,
       title,
     }
-
     return await chrome.tabGroups.update(groupId, updateProperties)
   }
 
-  /**
-   * Chrome bookmarks are confusing. To create a folder, don't supply a URL.
-   * The title will create the folder name if no URL is supplied. If a URL is supplied
-   * it will be used for the title of the bookmark.
-   */
   async createBookmarkFolder(title: string) {
     const config: chrome.bookmarks.BookmarkCreateArg = {
       title,
@@ -78,6 +73,23 @@ class Chrome {
       url,
     }
     return await chrome.bookmarks.create(config)
+  }
+
+  /**
+   * Sends a message to the background script to process all the given hrefs
+   * to set request statuses on each.
+   */
+  async fetchLinks(links: Link[]): Promise<LinkStatus[]> {
+    const data = JSON.stringify(links.map((link) => link.href))
+
+    const message: Message = {
+      action: 'fetchLinks',
+      data,
+    }
+
+    return new Promise((resolve) => {
+      chrome.runtime.sendMessage(message, resolve)
+    })
   }
 }
 

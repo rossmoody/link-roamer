@@ -19,7 +19,7 @@ export class LinkProcessor {
   }
 
   /**
-   * Filter function helper for removing items that don't contain http
+   * Filters a list of givens links to only include ones with HTTP.
    */
   filterHttp(link: Link) {
     return link.protocol.includes('http')
@@ -33,13 +33,6 @@ export class LinkProcessor {
   }
 
   /**
-   * Filter links to include only those with fragments
-   */
-  filterOnlyFragments(link: Link) {
-    return Boolean(link.href.includes('#'))
-  }
-
-  /**
    * Creates a Record of Links categorized by available domain names
    */
   categorizeByDomain(links: Link[]) {
@@ -49,6 +42,22 @@ export class LinkProcessor {
       accum[domain].push(link)
       return accum
     }, {} as Record<string, Link[]>)
+  }
+
+  /**
+   * Filter links to include only those with fragments
+   */
+  filterFragmentLinks(links: Link[]) {
+    const filtered = links.filter((link) => Boolean(link.href.includes('#')))
+    return this.categorizeByDomain(filtered)
+  }
+
+  /**
+   * Filter links to include only those with a status code of 404
+   */
+  filterBrokenLinks(links: Link[]) {
+    const filtered = links.filter((link) => link.requestStatus === 404)
+    return this.categorizeByDomain(filtered)
   }
 
   /**
@@ -67,6 +76,14 @@ export class LinkProcessor {
       counter += links.length
     }
     return counter
+  }
+
+  containsHttp(links: Link[]) {
+    return links.some((link) => link.protocol === 'http:')
+  }
+
+  containsBroken(links: Link[]) {
+    return links.some((link) => link.requestStatus === 404)
   }
 }
 

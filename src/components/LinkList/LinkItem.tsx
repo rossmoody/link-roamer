@@ -30,11 +30,12 @@ const LinkItem = ({ link }: Props) => {
     checked
       ? setCheckedItems((prevChecked) => [...prevChecked, value])
       : setCheckedItems((prevChecked) =>
-          prevChecked.filter((href) => href !== value),
-        )
+        prevChecked.filter((href) => href !== value),
+      )
   }
 
   const isHttp = link.protocol === 'http:'
+  const isBroken = link.requestStatus === 404
 
   return (
     <ListItem
@@ -65,25 +66,28 @@ const LinkItem = ({ link }: Props) => {
           </ChakraLink>
         </Flex>
         {isHttp && <Tag status="critical">Not secure</Tag>}
+        {isBroken && <Tag status="critical">404</Tag>}
       </Flex>
-      <Fade in={hover}>
-        <Center
-          position="absolute"
-          right={0}
-          top={0}
-          bottom={0}
-          margin="auto"
-          bg="white"
-        >
-          <Button
-            size="xs"
-            leftIcon={<ExternalLinkIcon height="12px" />}
-            onClick={() => c.createBackgroundTab(link.href)}
+      {!isHttp && !isBroken &&
+        <Fade in={hover}>
+          <Center
+            position="absolute"
+            right={0}
+            top={0}
+            bottom={0}
+            margin="auto"
+            bg="white"
           >
-            Open in background
-          </Button>
-        </Center>
-      </Fade>
+            <Button
+              size="xs"
+              leftIcon={<ExternalLinkIcon height="12px" />}
+              onClick={() => c.createBackgroundTab(link.href)}
+            >
+              Open in background
+            </Button>
+          </Center>
+        </Fade>
+      }
     </ListItem>
   )
 }

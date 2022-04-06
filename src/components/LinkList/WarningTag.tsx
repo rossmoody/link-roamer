@@ -2,28 +2,33 @@ import { Tooltip } from '@chakra-ui/react'
 import Tag from '../Tag'
 import React from 'react'
 import Link from '../../scripts/Link'
+import lp from '../../scripts/LinkProcessor'
 
 type Props = {
   links: Link[]
 }
 
 const WarningTag = ({ links }: Props) => {
-  const containsHttp = links.some((link) => link.protocol === 'http:')
+  const containsHttp = lp.containsHttp(links)
+  const containsBroken = lp.containsBroken(links)
 
-  if (!containsHttp) return null
-  
-  return (
-    <Tooltip
-      label="Links within this domain may be broken or not secure"
-      shouldWrapChildren
-      placement="auto-end"
-      hasArrow
-      textAlign="center"
-      borderRadius="lg"
-    >
-      <Tag status="warning">Warning</Tag>
-    </Tooltip>
-  )
+  if (containsHttp || containsBroken) {
+    return (
+      <Tooltip
+        shouldWrapChildren
+        label="Links within this domain are broken or not secure"
+        placement="auto-start"
+        borderRadius="md"
+        fontSize="sm"
+        px={4}
+        py={2}
+      >
+        <Tag status="warning">Warning</Tag>
+      </Tooltip>
+    )
+  }
+
+  return null
 }
 
 export default WarningTag

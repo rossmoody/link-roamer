@@ -7,6 +7,9 @@
     "tabGroups",
     "bookmarks"
   ],
+  "background": {
+    "service_worker": "background.ts"
+  },
   "action": {
     "default_icon": {
       "16": "public/icons/16.png",
@@ -20,5 +23,8 @@
     "64": "public/icons/64.png",
     "128": "public/icons/128.png",
     "256": "public/icons/256.png"
-  }
+  },
+  "host_permissions": [
+    "https://fetch-fav-h57lsidp3a-uc.a.run.app/*"
+  ]
 }
