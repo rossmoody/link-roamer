@@ -12,3 +12,8 @@ export type LinkStatus = {
   url: string
   statusText: string
 }
+
+export type LinkData = {
+  loading: boolean
+  links: Link[]
+}

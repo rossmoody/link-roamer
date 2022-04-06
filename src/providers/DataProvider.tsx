@@ -2,17 +2,17 @@ import React, { useEffect, useMemo, useState } from 'react'
 import c from '../scripts/Chrome'
 import { gatherHrefs } from '../scripts/execute-scripts'
 import lp from '../scripts/LinkProcessor'
-import Link from '../scripts/Link'
+import { LinkData } from '../types'
 
 interface DataContextProps {
-  data: Link[]
-  setData: React.Dispatch<React.SetStateAction<Link[]>>
+  data: LinkData
+  setData: React.Dispatch<React.SetStateAction<LinkData>>
 }
 
 const DataContext = React.createContext({} as DataContextProps)
 
 export const DataProvider: React.FC = ({ children }) => {
-  const [data, setData] = useState<Link[]>([])
+  const [data, setData] = useState<LinkData>({ links: [], loading: true })
 
   const dataMemo = useMemo(
     () => ({
@@ -33,30 +33,30 @@ export const DataProvider: React.FC = ({ children }) => {
           .filter(lp.filterKeyString)
           .sort(lp.sortByHrefLength)
 
-        setData(links)
+        setData({ links, loading: true })
       }
     }
-
+    
     fetchData().catch(console.error)
   }, [])
 
   useEffect(() => {
     const fetchData = async () => {
-      if (data.length > 0) {
-        const result = await c.fetchLinks(data)
+      if (data.links.length > 0) {
+        const result = await c.fetchLinks(data.links)
 
-        const links = data.map((link) => {
+        const links = data.links.map((link) => {
           const status = result.find(({ url }) => url === link.href)
           if (status) link.status = status
           return link
         })
 
-        setData(links)
+        setData({ links, loading: false })
       }
     }
 
     fetchData().catch(console.error)
-  }, [data.length])
+  }, [data.links.length])
 
   return (
     <DataContext.Provider value={dataMemo}>{children}</DataContext.Provider>

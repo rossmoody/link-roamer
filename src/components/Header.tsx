@@ -27,8 +27,9 @@ const Header = () => {
         {domain}
       </Heading>
       <Text color="gray.500" fontSize="sm">
-        Found {data.length} links across{' '}
-        {Object.keys(lp.categorizeByDomain(data)).length} different domains
+        Found {data.links.length} links across{' '}
+        {Object.keys(lp.categorizeByDomain(data.links)).length} different
+        domains
       </Text>
       <FetchLoader />
     </Box>

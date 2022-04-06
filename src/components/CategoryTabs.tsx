@@ -16,9 +16,9 @@ import { BrokenLinkIcon, HashIcon } from './icons'
 const CategoryTabs = () => {
   const { data } = useData()
 
-  const categorized = lp.categorizeByDomain(data)
-  const fragments = lp.filterFragmentLinks(data)
-  const broken = lp.filterBrokenLinks(data)
+  const categorized = lp.categorizeByDomain(data.links)
+  const fragments = lp.filterFragmentLinks(data.links)
+  const broken = lp.filterBrokenLinks(data.links)
 
   return (
     <Tabs isLazy>

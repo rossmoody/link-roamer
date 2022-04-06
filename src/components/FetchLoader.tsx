@@ -1,24 +1,25 @@
-import { Spinner, Tooltip } from '@chakra-ui/react'
+import { Fade, Spinner, Tooltip } from '@chakra-ui/react'
 import React from 'react'
-
-type Result = 'problem' | 'loading' | 'done'
+import { useData } from '../providers/DataProvider'
 
 const FetchLoader = () => {
-  const [state, setState] = React.useState<Result>('loading')
+  const { data } = useData()
 
   return (
-    <Tooltip aria-label="tooltip" label="Looking for broken links">
-      <Spinner
-        pos="absolute"
-        top={4}
-        right={4}
-        thickness="2px"
-        speed="0.5s"
-        emptyColor="gray.200"
-        color="blurple.500"
-        size="sm"
-      />
-    </Tooltip>
+    <Fade in={data.loading}>
+      <Tooltip aria-label="tooltip" label="Checking for broken links">
+        <Spinner
+          pos="absolute"
+          top={6}
+          right={6}
+          thickness="2px"
+          speed="0.5s"
+          emptyColor="gray.200"
+          color="blurple.500"
+          size="sm"
+        />
+      </Tooltip>
+    </Fade>
   )
 }
 
