@@ -30,7 +30,7 @@ const Tag = React.forwardRef(
         size={props.size ?? 'sm'}
         colorScheme={status[props.status].colorScheme}
       >
-        <TagLeftIcon boxSize="12px" as={status[props.status].icon} />
+        <TagLeftIcon boxSize="16px" as={status[props.status].icon} />
         <TagLabel>{props.children}</TagLabel>
       </ChakraTag>
     )
