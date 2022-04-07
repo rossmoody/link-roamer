@@ -8,7 +8,7 @@ import {
   MenuList,
 } from '@chakra-ui/react'
 import { MoreIcon } from '../icons/MoreIcon'
-import { BookmarkIcon } from '../icons'
+import { BookmarkIcon, CodeIcon, SheetIcon } from '../icons'
 import BookmarkModal from './BookmarkModal'
 
 const OverflowActions = () => {
@@ -27,17 +27,17 @@ const OverflowActions = () => {
             Bookmark links
           </MenuItem>
           <MenuDivider />
-          <MenuItem fontSize="sm" icon={<BookmarkIcon />}>
+          <MenuItem fontSize="sm" icon={<CodeIcon />}>
             Export as JSON
           </MenuItem>
-          <MenuItem fontSize="sm" icon={<BookmarkIcon />}>
+          <MenuItem fontSize="sm" icon={<SheetIcon />}>
             Export as CSV
           </MenuItem>
           <MenuDivider />
-          <MenuItem fontSize="sm" icon={<BookmarkIcon />}>
+          <MenuItem fontSize="sm" icon={<CodeIcon />}>
             Copy as JSON
           </MenuItem>
-          <MenuItem fontSize="sm" icon={<BookmarkIcon />}>
+          <MenuItem fontSize="sm" icon={<SheetIcon />}>
             Copy as CSV
           </MenuItem>
         </MenuList>
