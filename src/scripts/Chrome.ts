@@ -91,6 +91,14 @@ class Chrome {
       chrome.runtime.sendMessage(message, resolve)
     })
   }
+
+  async getStorage(key: string) {
+    return await chrome.storage.sync.get(key)
+  }
+
+  async setStorage(key: string, value: string) {
+    return await chrome.storage.sync.set({ items: { key: value } })
+  }
 }
 
 export default new Chrome()

@@ -9,7 +9,8 @@
     "scripting",
     "tabGroups",
     "bookmarks",
-    "declarativeContent"
+    "declarativeContent",
+    "storage"
   ],
   "background": {
     "service_worker": "background.ts"

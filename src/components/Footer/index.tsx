@@ -4,22 +4,22 @@ import {
   Button,
   ButtonGroup,
   Flex,
-  IconButton,
   SlideFade,
   Tag,
   useColorModeValue,
 } from '@chakra-ui/react'
-import { BookmarkIcon, ExternalLinkIcon, NewTabIcon } from '../icons'
+import { ExternalLinkIcon, NewTabIcon } from '../icons'
 import c from '../../scripts/Chrome'
 import TabGroupPopover from './TabGroupPopover'
-import BookmarkPopover from './BookmarkPopover'
+import OverflowActions from './OverflowActions'
 
 const Index = () => {
   const { checkedItems } = useCheckedItems()
-  const bg = useColorModeValue('white', 'gray.800')
-  const border = useColorModeValue('gray.200', 'gray.600')
   const checkedItemsQty = checkedItems.length
   const showFooter = checkedItemsQty > 0
+
+  const bg = useColorModeValue('white', 'gray.800')
+  const border = useColorModeValue('gray.200', 'gray.600')
 
   async function createNewWindowTabs() {
     await c.createTabsInNewWindow(checkedItems)
@@ -43,13 +43,8 @@ const Index = () => {
           <Tag size="sm" colorScheme="blurple">
             {checkedItemsQty} selected
           </Tag>
+          <OverflowActions />
           <ButtonGroup>
-            <BookmarkPopover>
-              <IconButton
-                aria-label="Bookmark the checked links"
-                icon={<BookmarkIcon />}
-              />
-            </BookmarkPopover>
             <Button
               leftIcon={<ExternalLinkIcon />}
               onClick={createNewWindowTabs}

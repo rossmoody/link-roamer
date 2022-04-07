@@ -1,10 +1,12 @@
 import React from 'react'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+import c from '../scripts/Chrome'
+
+const mode = c.getStorage('mode')
 
 const theme = extendTheme({
   config: {
-    initialColorMode: 'dark',
-    useSystemColorMode: true,
+    initialColorMode: mode,
   },
   semanticTokens: {
     colors: {

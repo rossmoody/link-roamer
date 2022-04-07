@@ -1,23 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import {
-  Box,
-  Flex,
-  Heading,
-  IconButton,
-  Stack,
-  Text,
-  useColorMode,
-} from '@chakra-ui/react'
+import { Box, Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import c from '../../scripts/Chrome'
 import getDomain from '../../scripts/execute-scripts'
 import { useData } from '../../providers/DataProvider'
 import lp from '../../scripts/LinkProcessor'
 import FetchLoader from './FetchLoader'
-import { MoonIcon, SunIcon } from '../icons'
+import ThemeToggle from './ThemeToggle'
 
 const Header = () => {
   const [domain, setDomain] = useState('')
-  const { colorMode, toggleColorMode } = useColorMode()
   const { data } = useData()
 
   useEffect(() => {
@@ -48,11 +39,7 @@ const Header = () => {
         </Box>
         <Stack direction="row" spacing={3} alignItems="center">
           <FetchLoader />
-          <IconButton
-            aria-label="Change color mode"
-            icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-            onClick={toggleColorMode}
-          />
+          <ThemeToggle />
         </Stack>
       </Flex>
     </Box>

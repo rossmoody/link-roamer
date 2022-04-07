@@ -1,22 +1,18 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import {
-  Box,
   Button,
   ButtonGroup,
   FormLabel,
   Heading,
   Input,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverFooter,
-  PopoverHeader,
-  PopoverTrigger,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Text,
-  Tooltip,
-  useDisclosure,
   VisuallyHidden,
 } from '@chakra-ui/react'
 import c from '../../scripts/Chrome'
@@ -24,8 +20,13 @@ import { useCheckedItems } from '../../providers/CheckedItems'
 import Link from '../../scripts/Link'
 import ReactFocusLock from 'react-focus-lock'
 
-const BookmarkPopover: React.FC = ({ children }) => {
-  const { onOpen, onClose, isOpen } = useDisclosure()
+type Props = {
+  state: boolean
+  setState: React.Dispatch<React.SetStateAction<boolean>>
+  children: ReactNode
+}
+
+const BookmarkModal = ({ children, state, setState }: Props) => {
   const { checkedItems } = useCheckedItems()
   const inputRef = React.useRef<HTMLInputElement>(null)
 
@@ -41,47 +42,29 @@ const BookmarkPopover: React.FC = ({ children }) => {
   }
 
   return (
-    <Popover
-      placement="top"
-      initialFocusRef={inputRef}
-      isOpen={isOpen}
-      onOpen={onOpen}
-      onClose={onClose}
-    >
-      <Tooltip aria-label="tooltip" label="Bookmark selected links">
-        <Box>
-          <PopoverTrigger>{children}</PopoverTrigger>
-        </Box>
-      </Tooltip>
-
-      <PopoverContent>
-        <ReactFocusLock>
-          <PopoverHeader pt={4} fontWeight="bold" border="0">
+    <Modal isOpen={state} onClose={() => setState(false)}>
+      <ModalOverlay />
+      <ReactFocusLock>
+        <ModalContent>
+          <ModalHeader>
             <Heading size="sm">Set a folder title</Heading>
             <Text fontWeight="normal" color="textMuted" fontSize="sm" mt={1}>
               The folder will be created initially inside the &quot;Other
               Bookmarks&quot; directory.
             </Text>
-          </PopoverHeader>
-          <PopoverArrow />
-          <PopoverCloseButton />
-          <PopoverBody>
+          </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
             <VisuallyHidden>
               <FormLabel htmlFor="bookmark-input">
                 Set a bookmark folder title
               </FormLabel>
             </VisuallyHidden>
             <Input type="text" ref={inputRef} id="bookmark-input" />
-          </PopoverBody>
-          <PopoverFooter
-            border="0"
-            d="flex"
-            alignItems="center"
-            justifyContent="flex-end"
-            pb={4}
-          >
+          </ModalBody>
+          <ModalFooter>
             <ButtonGroup size="sm">
-              <Button onClick={onClose}>Cancel</Button>
+              <Button onClick={() => setState(false)}>Cancel</Button>
               <Button
                 variant="solid"
                 colorScheme="blurple"
@@ -90,11 +73,11 @@ const BookmarkPopover: React.FC = ({ children }) => {
                 Create
               </Button>
             </ButtonGroup>
-          </PopoverFooter>
-        </ReactFocusLock>
-      </PopoverContent>
-    </Popover>
+          </ModalFooter>
+        </ModalContent>
+      </ReactFocusLock>
+    </Modal>
   )
 }
 
-export default BookmarkPopover
+export default BookmarkModal
