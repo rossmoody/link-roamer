@@ -33,10 +33,12 @@ export const DataProvider: React.FC = ({ children }) => {
           .filter(lp.filterKeyString)
           .sort(lp.sortByHrefLength)
 
-        setData({ links, loading: true })
+        links.length > 0
+          ? setData({ links, loading: true })
+          : setData({ links: [], loading: false })
       }
     }
-    
+
     fetchData().catch(console.error)
   }, [])
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Heading, Text } from '@chakra-ui/react'
-import c from '../scripts/Chrome'
-import getDomain from '../scripts/execute-scripts'
-import { useData } from '../providers/DataProvider'
-import lp from '../scripts/LinkProcessor'
+import c from '../../scripts/Chrome'
+import getDomain from '../../scripts/execute-scripts'
+import { useData } from '../../providers/DataProvider'
+import lp from '../../scripts/LinkProcessor'
 import FetchLoader from './FetchLoader'
 
 const Header = () => {
@@ -11,14 +11,16 @@ const Header = () => {
   const { data } = useData()
 
   useEffect(() => {
-    (async () => {
+    const fetchData = async () => {
       const { id } = await c.getActiveTab()
 
       if (id) {
         const domainName = await c.executeScript<string>(id, getDomain)
         setDomain(domainName)
       }
-    })()
+    }
+
+    fetchData().catch(console.error)
   }, [data])
 
   return (
@@ -26,7 +28,7 @@ const Header = () => {
       <Heading size="lg" fontWeight="bold">
         {domain}
       </Heading>
-      <Text color="gray.500" fontSize="sm">
+      <Text color="textMuted" fontSize="sm">
         Found {data.links.length} links across{' '}
         {Object.keys(lp.categorizeByDomain(data.links)).length} different
         domains

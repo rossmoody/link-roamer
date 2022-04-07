@@ -3,7 +3,7 @@ import ThemeProvider from '../providers/ThemeProvider'
 import { CategoryTabs, Header, Layout } from '../components'
 import { DataProvider } from '../providers/DataProvider'
 import { CheckedItemsProvider } from '../providers/CheckedItems'
-import Index from '../components/Footer'
+import Footer from '../components/Footer'
 
 const App = () => {
   return (
@@ -13,7 +13,7 @@ const App = () => {
           <Layout>
             <Header />
             <CategoryTabs />
-            <Index />
+            <Footer />
           </Layout>
         </CheckedItemsProvider>
       </ThemeProvider>

@@ -7,6 +7,7 @@ import {
   IconButton,
   SlideFade,
   Tag,
+  useColorModeValue,
 } from '@chakra-ui/react'
 import { BookmarkIcon, ExternalLinkIcon, NewTabIcon } from '../icons'
 import c from '../../scripts/Chrome'
@@ -15,7 +16,8 @@ import BookmarkPopover from './BookmarkPopover'
 
 const Index = () => {
   const { checkedItems } = useCheckedItems()
-
+  const bg = useColorModeValue('white', 'gray.800')
+  const border = useColorModeValue('gray.200', 'gray.600')
   const checkedItemsQty = checkedItems.length
   const showFooter = checkedItemsQty > 0
 
@@ -32,11 +34,11 @@ const Index = () => {
           px={5}
           alignItems="center"
           justifyContent="space-between"
-          bg="white"
+          bg={bg}
           boxShadow="xl"
           borderRadius="lg"
           outline="1px solid"
-          outlineColor="gray.200"
+          outlineColor={border}
         >
           <Tag size="sm" colorScheme="blurple">
             {checkedItemsQty} selected

@@ -53,7 +53,7 @@ const TabGroupPopover: React.FC = ({ children }) => {
         <ReactFocusLock>
           <PopoverHeader pt={4} fontWeight="bold" border="0">
             <Heading size="sm">Set a tab group title</Heading>
-            <Text fontWeight="normal" color="gray.600" fontSize="sm" mt={1}>
+            <Text fontWeight="normal" color="textMuted" fontSize="sm" mt={1}>
               The title or tab group color can be changed later.
             </Text>
           </PopoverHeader>

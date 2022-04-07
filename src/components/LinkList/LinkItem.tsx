@@ -7,6 +7,7 @@ import {
   Link as ChakraLink,
   ListItem,
   Text,
+  useColorModeValue,
 } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import Link from '../../scripts/Link'
@@ -22,6 +23,7 @@ type Props = {
 const LinkItem = ({ link }: Props) => {
   const [hover, setHover] = useState(false)
   const { checkedItems, setCheckedItems } = useCheckedItems()
+  const bg = useColorModeValue('white', 'gray.800')
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.checked
@@ -30,8 +32,8 @@ const LinkItem = ({ link }: Props) => {
     checked
       ? setCheckedItems((prevChecked) => [...prevChecked, value])
       : setCheckedItems((prevChecked) =>
-        prevChecked.filter((href) => href !== value),
-      )
+          prevChecked.filter((href) => href !== value),
+        )
   }
 
   const isHttp = link.protocol === 'http:'
@@ -68,7 +70,7 @@ const LinkItem = ({ link }: Props) => {
         {isHttp && <Tag status="critical">Not secure</Tag>}
         {isBroken && <Tag status="critical">404</Tag>}
       </Flex>
-      {!isHttp && !isBroken &&
+      {!isHttp && !isBroken && (
         <Fade in={hover}>
           <Center
             position="absolute"
@@ -76,7 +78,7 @@ const LinkItem = ({ link }: Props) => {
             top={0}
             bottom={0}
             margin="auto"
-            bg="white"
+            bg={bg}
           >
             <Button
               size="xs"
@@ -87,7 +89,7 @@ const LinkItem = ({ link }: Props) => {
             </Button>
           </Center>
         </Fade>
-      }
+      )}
     </ListItem>
   )
 }

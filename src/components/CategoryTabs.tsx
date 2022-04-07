@@ -6,6 +6,7 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
+  useColorModeValue,
 } from '@chakra-ui/react'
 import { useData } from '../providers/DataProvider'
 import LinkList from './LinkList'
@@ -24,16 +25,8 @@ const CategoryTabs = () => {
     <Tabs isLazy>
       <TabList px={4}>
         <CustomTab links={categorized} title="All" />
-        <CustomTab
-          links={fragments}
-          title="Fragments"
-          icon={<HashIcon color="gray.500" />}
-        />
-        <CustomTab
-          links={broken}
-          title="Broken"
-          icon={<BrokenLinkIcon color="gray.500" />}
-        />
+        <CustomTab links={fragments} title="Fragments" icon={<HashIcon />} />
+        <CustomTab links={broken} title="404" icon={<BrokenLinkIcon />} />
       </TabList>
 
       <TabPanels pb={20}>
@@ -60,9 +53,9 @@ type CustomTabProps = {
 const CustomTab = React.forwardRef<HTMLButtonElement, CustomTabProps>(
   (props, ref) => {
     const linksQty = lp.getCategorizedLinksQty(props.links)
-
+    const border = useColorModeValue('blurple.500', 'blurple.400')
     if (linksQty < 1) return null
-
+    
     return (
       <Tab
         ref={ref}
@@ -70,7 +63,7 @@ const CustomTab = React.forwardRef<HTMLButtonElement, CustomTabProps>(
         _selected={{
           fontWeight: 'medium',
           borderBottom: '3px solid',
-          borderColor: 'blurple.500',
+          borderColor: border,
         }}
       >
         {props.icon && props.icon}

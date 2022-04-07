@@ -1,11 +1,15 @@
 {
+  "name": "Link Roamer",
+  "description": "A browser extension for gathering, organizing, and inspecting all the links on a web page.",
+  "homepage_url": "https://www.linkroamer.com",
   "manifest_version": 3,
   "permissions": [
     "activeTab",
     "tabs",
     "scripting",
     "tabGroups",
-    "bookmarks"
+    "bookmarks",
+    "declarativeContent"
   ],
   "background": {
     "service_worker": "background.ts"

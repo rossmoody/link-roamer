@@ -58,7 +58,7 @@ const BookmarkPopover: React.FC = ({ children }) => {
         <ReactFocusLock>
           <PopoverHeader pt={4} fontWeight="bold" border="0">
             <Heading size="sm">Set a folder title</Heading>
-            <Text fontWeight="normal" color="gray.600" fontSize="sm" mt={1}>
+            <Text fontWeight="normal" color="textMuted" fontSize="sm" mt={1}>
               The folder will be created initially inside the &quot;Other
               Bookmarks&quot; directory.
             </Text>

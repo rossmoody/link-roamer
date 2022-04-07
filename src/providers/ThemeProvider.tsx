@@ -2,6 +2,18 @@ import React from 'react'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 
 const theme = extendTheme({
+  config: {
+    initialColorMode: 'dark',
+    useSystemColorMode: true,
+  },
+  semanticTokens: {
+    colors: {
+      textMuted: {
+        default: 'gray.500',
+        _dark: 'gray.400',
+      },
+    },
+  },
   colors: {
     blurple: {
       '50': '#E9E8FC',
@@ -17,7 +29,7 @@ const theme = extendTheme({
     },
   },
   shadows: {
-    outline: '0 0 0 2px var(--chakra-colors-blurple-100)',
+    outline: '0 0 0 2px var(--chakra-colors-blurple-200)',
   },
   components: {
     Button: {
@@ -28,7 +40,7 @@ const theme = extendTheme({
     },
     Input: {
       defaultProps: {
-        focusBorderColor: 'blurple.100',
+        focusBorderColor: 'blurple.200',
       },
     },
     Tabs: {

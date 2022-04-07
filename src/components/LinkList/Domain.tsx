@@ -30,7 +30,7 @@ const Domain = ({ domain, links }: Props) => {
       return setCheckedItems((prevChecked) =>
         prevChecked.filter((item) => !hrefs.includes(item)),
       )
-    
+
     setCheckedItems((prevChecked) => [...prevChecked, ...hrefs])
   }
 
@@ -60,8 +60,8 @@ const Domain = ({ domain, links }: Props) => {
       </h2>
       <AccordionPanel pb={4}>
         <List spacing={3}>
-          {links.map((link) => (
-            <LinkItem link={link} key={link.href} />
+          {links.map((link, index) => (
+            <LinkItem link={link} key={link.href + index} />
           ))}
         </List>
       </AccordionPanel>
