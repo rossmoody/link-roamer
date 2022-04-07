@@ -43,8 +43,8 @@ const Index = () => {
           <Tag size="sm" colorScheme="blurple">
             {checkedItemsQty} selected
           </Tag>
-          <OverflowActions />
           <ButtonGroup>
+            <OverflowActions />
             <Button
               leftIcon={<ExternalLinkIcon />}
               onClick={createNewWindowTabs}

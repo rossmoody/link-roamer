@@ -1,9 +1,8 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import {
   Button,
   ButtonGroup,
   FormLabel,
-  Heading,
   Input,
   Modal,
   ModalBody,
@@ -23,10 +22,9 @@ import ReactFocusLock from 'react-focus-lock'
 type Props = {
   state: boolean
   setState: React.Dispatch<React.SetStateAction<boolean>>
-  children: ReactNode
 }
 
-const BookmarkModal = ({ children, state, setState }: Props) => {
+const BookmarkModal = ({ state, setState }: Props) => {
   const { checkedItems } = useCheckedItems()
   const inputRef = React.useRef<HTMLInputElement>(null)
 
@@ -42,19 +40,22 @@ const BookmarkModal = ({ children, state, setState }: Props) => {
   }
 
   return (
-    <Modal isOpen={state} onClose={() => setState(false)}>
+    <Modal
+      isOpen={state}
+      onClose={() => setState(false)}
+      size="sm"
+      initialFocusRef={inputRef}
+    >
       <ModalOverlay />
       <ReactFocusLock>
         <ModalContent>
-          <ModalHeader>
-            <Heading size="sm">Set a folder title</Heading>
-            <Text fontWeight="normal" color="textMuted" fontSize="sm" mt={1}>
+          <ModalHeader>Set a folder title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text fontWeight="normal" color="textMuted" fontSize="sm" mb={4}>
               The folder will be created initially inside the &quot;Other
               Bookmarks&quot; directory.
             </Text>
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
             <VisuallyHidden>
               <FormLabel htmlFor="bookmark-input">
                 Set a bookmark folder title

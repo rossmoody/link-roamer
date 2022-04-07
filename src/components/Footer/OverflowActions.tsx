@@ -3,6 +3,7 @@ import {
   IconButton,
   Menu,
   MenuButton,
+  MenuDivider,
   MenuItem,
   MenuList,
 } from '@chakra-ui/react'
@@ -19,10 +20,25 @@ const OverflowActions = () => {
         <MenuButton as={IconButton} aria-label="Options" icon={<MoreIcon />} />
         <MenuList>
           <MenuItem
+            fontSize="sm"
             icon={<BookmarkIcon />}
             onClick={() => setShowBookmark(true)}
           >
             Bookmark links
+          </MenuItem>
+          <MenuDivider />
+          <MenuItem fontSize="sm" icon={<BookmarkIcon />}>
+            Export as JSON
+          </MenuItem>
+          <MenuItem fontSize="sm" icon={<BookmarkIcon />}>
+            Export as CSV
+          </MenuItem>
+          <MenuDivider />
+          <MenuItem fontSize="sm" icon={<BookmarkIcon />}>
+            Copy as JSON
+          </MenuItem>
+          <MenuItem fontSize="sm" icon={<BookmarkIcon />}>
+            Copy as CSV
           </MenuItem>
         </MenuList>
       </Menu>
