@@ -26,7 +26,7 @@ const Index = () => {
   }
 
   return (
-    <Flex as="footer" position="fixed" bottom={2} left={2} right={2}>
+    <Flex as="footer" position="fixed" bottom={4} left={4} right={4}>
       <SlideFade in={showFooter} offsetY="20px" style={{ flex: 1 }}>
         <Flex
           flex={1}

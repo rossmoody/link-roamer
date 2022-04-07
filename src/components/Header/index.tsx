@@ -1,13 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Heading, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  Heading,
+  IconButton,
+  Stack,
+  Text,
+  useColorMode,
+} from '@chakra-ui/react'
 import c from '../../scripts/Chrome'
 import getDomain from '../../scripts/execute-scripts'
 import { useData } from '../../providers/DataProvider'
 import lp from '../../scripts/LinkProcessor'
 import FetchLoader from './FetchLoader'
+import { MoonIcon, SunIcon } from '../icons'
 
 const Header = () => {
   const [domain, setDomain] = useState('')
+  const { colorMode, toggleColorMode } = useColorMode()
   const { data } = useData()
 
   useEffect(() => {
@@ -25,15 +35,26 @@ const Header = () => {
 
   return (
     <Box as="header" p={6} pos="relative">
-      <Heading size="lg" fontWeight="bold">
-        {domain}
-      </Heading>
-      <Text color="textMuted" fontSize="sm">
-        Found {data.links.length} links across{' '}
-        {Object.keys(lp.categorizeByDomain(data.links)).length} different
-        domains
-      </Text>
-      <FetchLoader />
+      <Flex justifyContent="space-between">
+        <Box>
+          <Heading size="lg" fontWeight="bold">
+            {domain}
+          </Heading>
+          <Text color="textMuted" fontSize="sm">
+            Found {data.links.length} links across{' '}
+            {Object.keys(lp.categorizeByDomain(data.links)).length} different
+            domains
+          </Text>
+        </Box>
+        <Stack direction="row" spacing={3} alignItems="center">
+          <FetchLoader />
+          <IconButton
+            aria-label="Change color mode"
+            icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+            onClick={toggleColorMode}
+          />
+        </Stack>
+      </Flex>
     </Box>
   )
 }

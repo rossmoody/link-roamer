@@ -36,13 +36,7 @@ const FetchLoader = () => {
 
   return (
     <Fade in={loading} unmountOnExit>
-      <Tag
-        pos="absolute"
-        top={6}
-        right={6}
-        size="md"
-        colorScheme={state.colorScheme}
-      >
+      <Tag size="md" colorScheme={state.colorScheme}>
         <TagLabel>{state.label}</TagLabel>
         {data.loading && (
           <Spinner
