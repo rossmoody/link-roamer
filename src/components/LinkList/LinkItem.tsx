@@ -56,12 +56,7 @@ const LinkItem = ({ link }: Props) => {
             isChecked={checkedItems.includes(link.href)}
             onChange={handleChange}
           />
-          <ChakraLink
-            href={link.href}
-            target="_blank"
-            rel="noreferrer"
-            wordBreak="break-word"
-          >
+          <ChakraLink href={link.href} wordBreak="break-word">
             <Text as="span" fontSize="14px">
               {link.href}
             </Text>
@@ -85,7 +80,7 @@ const LinkItem = ({ link }: Props) => {
               leftIcon={<ExternalLinkIcon height="12px" />}
               onClick={() => c.createBackgroundTab(link.href)}
             >
-              Open in background
+              New tab
             </Button>
           </Center>
         </Fade>
