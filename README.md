@@ -1,10 +1,10 @@
 # 👋 Link Roamer
 
-> Due to v3 Manifest incompatibility, this extension is only available on Chrome for now. Download this extension on the [Chrome Web store](#).
+![Link Roamer Graphic!](./assets/graphic.png)
 
-A browser extension for gathering, organizing, and inspecting all the links on a web page.
+> Due to v3 Manifest incompatibility, this extension is only available on Chrome for now. Download this extension on the [Chrome Web store](https://chrome.google.com/webstore/detail/link-roamer/lgcgflalbmeodapiohjepkjlgipmhofe).
 
-This extension allows you to:
+A browser extension for gathering, organizing, and inspecting all the links on a web page. This extension allows you to:
 
 #### Inspect links
 
