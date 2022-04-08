@@ -36,10 +36,11 @@ const Domain = ({ domain, links }: Props) => {
         )
       : setCheckedItems((prevChecked) => [...prevChecked, ...hrefs])
   }
+
   return (
     <AccordionItem>
       <h2>
-        <AccordionButton py={3} data-accordion-button>
+        <AccordionButton py={3}>
           <Stack direction="row" spacing={2} alignItems="center" mr="auto">
             <Checkbox
               onChange={handleChange}

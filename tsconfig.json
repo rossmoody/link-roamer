@@ -7,7 +7,6 @@
       "dom",
       "es2019"
     ],
-    "allowJs": true,
     "module": "ESNext",
     "moduleResolution": "node",
     "noImplicitReturns": true,

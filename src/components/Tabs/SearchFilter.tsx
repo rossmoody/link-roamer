@@ -1,6 +1,5 @@
 import React from 'react'
-import { IconButton, Input, Stack } from '@chakra-ui/react'
-import { CodeIcon } from '../icons'
+import { Input, Stack } from '@chakra-ui/react'
 
 type Props = {
   setFilter: React.Dispatch<React.SetStateAction<string>>
@@ -9,11 +8,6 @@ type Props = {
 const SearchFilter = ({ setFilter }: Props) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFilter(event.target.value)
-  }
-
-  const expandAll = () => {
-    const accordionButton = document.querySelectorAll('[data-accordion-button]')
-    console.log(accordionButton)
   }
 
   return (
@@ -25,16 +19,6 @@ const SearchFilter = ({ setFilter }: Props) => {
         type="text"
         variant="filled"
         placeholder="Filter by keyword"
-      />
-      <IconButton
-        aria-label="Expand all"
-        variant="filled"
-        icon={<CodeIcon />}
-      />
-      <IconButton
-        aria-label="Collapse all"
-        variant="filled"
-        icon={<CodeIcon />}
       />
     </Stack>
   )
