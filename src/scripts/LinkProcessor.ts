@@ -32,6 +32,10 @@ export class LinkProcessor {
     return !link.href.includes(FILTER_URL)
   }
 
+  getHrefsArray(links: Link[]) {
+    return links.map((link) => link.href)
+  }
+
   /**
    * Creates a Record of Links categorized by available domain names
    */
