@@ -7,8 +7,8 @@ import Footer from '../components/Footer'
 
 const App = () => {
   return (
-    <DataProvider>
-      <ThemeProvider>
+    <ThemeProvider>
+      <DataProvider>
         <CheckedItemsProvider>
           <Layout>
             <Header />
@@ -16,8 +16,8 @@ const App = () => {
             <Footer />
           </Layout>
         </CheckedItemsProvider>
-      </ThemeProvider>
-    </DataProvider>
+      </DataProvider>
+    </ThemeProvider>
   )
 }
 

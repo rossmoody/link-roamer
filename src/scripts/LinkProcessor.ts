@@ -9,7 +9,7 @@ export class LinkProcessor {
    * If it fails, it returns a fake url with the key 'filtermeout' for
    * targeting later. URL creation fails pretty often.
    */
-  createLinks(href: string) {
+  createLink(href: string) {
     try {
       return new Link(href)
     } catch (e) {
@@ -84,6 +84,56 @@ export class LinkProcessor {
 
   containsBroken(links: Link[]) {
     return links.some((link) => link.requestStatus === 404)
+  }
+
+  /**
+   * Returns a single string of hrefs separated by commas
+   */
+  hrefsToCsvString(links: string[]) {
+    return links.reduce((prevValue, currValue) => {
+      return prevValue + currValue + ','
+    }, '')
+  }
+
+  /**
+   * Returns a single string of hrefs separated by commas
+   */
+  hrefsToJsonString(links: string[]) {
+    const jsonified = links.reduce((prevValue, currValue) => {
+      return `${prevValue}"${currValue}",`
+    }, '')
+    return `[${jsonified}]`
+  }
+
+  saveHrefsToCsvFile(links: string[]) {
+    const csv = 'data:text/csv;charset=utf-8,' + this.hrefsToCsvString(links)
+    const encodedUri = encodeURI(csv)
+    const link = document.createElement('a')
+    link.setAttribute('href', encodedUri)
+    link.setAttribute('download', 'link-roamer-data.csv')
+    document.body.appendChild(link)
+    link.click()
+  }
+
+  saveHrefsToJsonFile(links: string[]) {
+    const json =
+      'data:application/json;charset=utf-8,' + this.hrefsToJsonString(links)
+    const encodedUri = encodeURI(json)
+    const link = document.createElement('a')
+    link.setAttribute('href', encodedUri)
+    link.setAttribute('download', 'link-roamer-data.json')
+    document.body.appendChild(link)
+    link.click()
+  }
+
+  async copyJson(links: string[]) {
+    const value = this.hrefsToJsonString(links)
+    await navigator.clipboard.writeText(value).catch(console.error)
+  }
+
+  async copyCsv(links: string[]) {
+    const value = this.hrefsToCsvString(links)
+    await navigator.clipboard.writeText(value).catch(console.error)
   }
 }
 

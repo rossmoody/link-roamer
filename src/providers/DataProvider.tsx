@@ -28,7 +28,7 @@ export const DataProvider: React.FC = ({ children }) => {
 
       if (id) {
         const links = (await c.executeScript<string[]>(id, gatherHrefs))
-          .map(lp.createLinks)
+          .map(lp.createLink)
           .filter(lp.filterHttp)
           .filter(lp.filterKeyString)
           .sort(lp.sortByHrefLength)

@@ -62,29 +62,27 @@ const LinkItem = ({ link }: Props) => {
             </Text>
           </ChakraLink>
         </Flex>
-        {isHttp && <Tag status="critical">Not secure</Tag>}
+        {isHttp && <Tag status="critical">HTTP</Tag>}
         {isBroken && <Tag status="critical">404</Tag>}
       </Flex>
-      {!isHttp && !isBroken && (
-        <Fade in={hover}>
-          <Center
-            position="absolute"
-            right={0}
-            top={0}
-            bottom={0}
-            margin="auto"
-            bg={bg}
+      <Fade in={hover}>
+        <Center
+          position="absolute"
+          right={0}
+          top={0}
+          bottom={0}
+          margin="auto"
+          bg={bg}
+        >
+          <Button
+            size="xs"
+            leftIcon={<ExternalLinkIcon height="12px" />}
+            onClick={() => c.createBackgroundTab(link.href)}
           >
-            <Button
-              size="xs"
-              leftIcon={<ExternalLinkIcon height="12px" />}
-              onClick={() => c.createBackgroundTab(link.href)}
-            >
-              New tab
-            </Button>
-          </Center>
-        </Fade>
-      )}
+            New tab
+          </Button>
+        </Center>
+      </Fade>
     </ListItem>
   )
 }
