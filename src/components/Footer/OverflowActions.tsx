@@ -19,7 +19,12 @@ const OverflowActions = () => {
   return (
     <React.Fragment>
       <Menu>
-        <MenuButton as={IconButton} aria-label="Options" icon={<MoreIcon />} />
+        <MenuButton
+          as={IconButton}
+          aria-label="Options"
+          variant="solid"
+          icon={<MoreIcon />}
+        />
         <MenuList>
           <MenuItem fontSize="md" onClick={() => setShowBookmark(true)}>
             Bookmark links

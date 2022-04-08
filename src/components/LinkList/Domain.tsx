@@ -23,25 +23,23 @@ type Props = {
 
 const Domain = ({ domain, links }: Props) => {
   const { checkedItems, setCheckedItems } = useCheckedItems()
-
-  const handleChange = () => {
-    const hrefs = links.map((link) => link.href)
-    if (allChecked)
-      return setCheckedItems((prevChecked) =>
-        prevChecked.filter((item) => !hrefs.includes(item)),
-      )
-
-    setCheckedItems((prevChecked) => [...prevChecked, ...hrefs])
-  }
-
   const allChecked = links.every((link) => checkedItems.includes(link.href))
   const isIndeterminate =
     links.some((link) => checkedItems.includes(link.href)) && !allChecked
 
+  const handleChange = () => {
+    const hrefs = links.map((link) => link.href)
+
+    allChecked
+      ? setCheckedItems((prevChecked) =>
+          prevChecked.filter((item) => !hrefs.includes(item)),
+        )
+      : setCheckedItems((prevChecked) => [...prevChecked, ...hrefs])
+  }
   return (
     <AccordionItem>
       <h2>
-        <AccordionButton py={3}>
+        <AccordionButton py={3} data-accordion-button>
           <Stack direction="row" spacing={2} alignItems="center" mr="auto">
             <Checkbox
               onChange={handleChange}

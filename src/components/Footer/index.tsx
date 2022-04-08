@@ -46,17 +46,14 @@ const Index = () => {
           <ButtonGroup>
             <OverflowActions />
             <Button
+              variant="solid"
               leftIcon={<ExternalLinkIcon />}
               onClick={createNewWindowTabs}
             >
               Open in new window
             </Button>
             <TabGroupPopover>
-              <Button
-                leftIcon={<NewTabIcon />}
-                variant="solid"
-                colorScheme="blurple"
-              >
+              <Button leftIcon={<NewTabIcon />} variant="solid">
                 Open in tab group
               </Button>
             </TabGroupPopover>

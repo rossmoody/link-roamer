@@ -16,7 +16,7 @@ const WarningTag = ({ links }: Props) => {
     return (
       <Tooltip
         shouldWrapChildren
-        label="Links within this domain are broken or not secure"
+        label="Links within this domain may be broken or unsecure"
         placement="auto-start"
         borderRadius="md"
         fontSize="sm"
