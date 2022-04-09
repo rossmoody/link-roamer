@@ -13,57 +13,59 @@ const NODE_ENV = isProduction
   ? JSON.stringify('production')
   : JSON.stringify('development')
 
-export default [
-  {
-    input: 'src/api/index.ts',
-    output: {
-      dir: 'dist/api',
-      format: 'esm',
-    },
-    plugins: [typescript()],
+const apiConfig = {
+  input: 'src/api/index.ts',
+  output: {
+    dir: 'dist/api',
+    format: 'esm',
   },
-  {
-    input: 'src/v2-manifest.json',
-    output: {
-      dir: 'dist/v2-manifest',
-      format: 'esm',
-      chunkFileNames: path.join('chunks', '[name]-[hash].js'),
-    },
-    plugins: [
-      replace({
-        'process.env.NODE_ENV': NODE_ENV,
-        isV3Manifest: '',
-        preventAssignment: true,
-      }),
-      chromeExtension(),
-      simpleReloader(),
-      resolve(),
-      commonjs(),
-      typescript(),
-      emptyDir(),
-      isProduction && zip({ dir: 'releases/v2-manifest' }),
-    ],
+  plugins: [typescript()],
+}
+
+const v2Manifest = {
+  input: 'src/v2-manifest.json',
+  output: {
+    dir: 'dist/v2-manifest',
+    format: 'esm',
+    chunkFileNames: path.join('chunks', '[name]-[hash].js'),
   },
-  {
-    input: 'src/v3-manifest.json',
-    output: {
-      dir: 'dist/v3-manifest',
-      format: 'esm',
-      chunkFileNames: path.join('chunks', '[name]-[hash].js'),
-    },
-    plugins: [
-      replace({
-        'process.env.NODE_ENV': NODE_ENV,
-        isV3Manifest: 'true',
-        preventAssignment: true,
-      }),
-      chromeExtension(),
-      simpleReloader(),
-      resolve(),
-      commonjs(),
-      typescript(),
-      emptyDir(),
-      isProduction && zip({ dir: 'releases/v3-manifest' }),
-    ],
+  plugins: [
+    replace({
+      'process.env.NODE_ENV': NODE_ENV,
+      isV3Manifest: '',
+      preventAssignment: true,
+    }),
+    chromeExtension(),
+    simpleReloader(),
+    resolve(),
+    commonjs(),
+    typescript(),
+    emptyDir(),
+    isProduction && zip({ dir: 'releases/v2-manifest' }),
+  ],
+}
+
+const v3Manifest = {
+  input: 'src/v3-manifest.json',
+  output: {
+    dir: 'dist/v3-manifest',
+    format: 'esm',
+    chunkFileNames: path.join('chunks', '[name]-[hash].js'),
   },
-]
+  plugins: [
+    replace({
+      'process.env.NODE_ENV': NODE_ENV,
+      isV3Manifest: 'true',
+      preventAssignment: true,
+    }),
+    chromeExtension(),
+    simpleReloader(),
+    resolve(),
+    commonjs(),
+    typescript(),
+    emptyDir(),
+    isProduction && zip({ dir: 'releases/v3-manifest' }),
+  ],
+}
+
+export default [apiConfig, v2Manifest, v3Manifest]

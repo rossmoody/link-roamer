@@ -7,6 +7,7 @@
     "release": "cross-env NODE_ENV=production rollup -c",
     "start": "rollup -c -w"
   },
+  "type": "module",
   "keywords": [
     "chrome-extension",
     "web-extension",
