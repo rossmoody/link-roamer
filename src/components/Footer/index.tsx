@@ -52,11 +52,13 @@ const Index = () => {
             >
               Open in new window
             </Button>
-            <TabGroupPopover>
-              <Button leftIcon={<NewTabIcon />} variant="solid">
-                Open in tab group
-              </Button>
-            </TabGroupPopover>
+            {'isV3Manifest' && (
+              <TabGroupPopover>
+                <Button leftIcon={<NewTabIcon />} variant="solid">
+                  Open in tab group
+                </Button>
+              </TabGroupPopover>
+            )}
           </ButtonGroup>
         </Flex>
       </SlideFade>

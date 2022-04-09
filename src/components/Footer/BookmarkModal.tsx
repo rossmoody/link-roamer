@@ -37,6 +37,8 @@ const BookmarkModal = ({ state, setState }: Props) => {
       const prettyUrl = new Link(url).displayHref
       c.createBookmark(prettyUrl, id, url)
     })
+    
+    setState(false)
   }
 
   return (

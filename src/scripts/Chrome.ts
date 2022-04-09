@@ -73,7 +73,9 @@ class Chrome {
     const config: chrome.bookmarks.BookmarkCreateArg = {
       title,
     }
-    return await chrome.bookmarks.create(config)
+
+    if ('isV3Manifest') return await chrome.bookmarks.create(config)
+    return browser.bookmarks.create(config)
   }
 
   /**
@@ -85,7 +87,8 @@ class Chrome {
       title,
       url,
     }
-    return await chrome.bookmarks.create(config)
+    if ('isV3Manifest') return await chrome.bookmarks.create(config)
+    return browser.bookmarks.create(config)
   }
 
   /**
