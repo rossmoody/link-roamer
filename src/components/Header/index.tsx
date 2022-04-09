@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import c from '../../scripts/Chrome'
-import getDomain from '../../scripts/execute-scripts'
 import { useData } from '../../providers/DataProvider'
 import lp from '../../scripts/LinkProcessor'
 import FetchLoader from './FetchLoader'
 import ThemeToggle from './ThemeToggle'
+import getDomain from '../../scripts/execute-scripts'
 
 const Header = () => {
   const [domain, setDomain] = useState('')

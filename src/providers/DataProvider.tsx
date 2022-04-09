@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import c from '../scripts/Chrome'
 import { gatherHrefs } from '../scripts/execute-scripts'
-import lp from '../scripts/LinkProcessor'
 import { LinkData } from '../types'
+import lp from '../scripts/LinkProcessor'
 
 interface DataContextProps {
   data: LinkData
@@ -32,6 +32,8 @@ export const DataProvider: React.FC = ({ children }) => {
           .filter(lp.filterHttp)
           .filter(lp.filterKeyString)
           .sort(lp.sortByHrefLength)
+
+        console.log('links', links)
 
         links.length > 0
           ? setData({ links, loading: true })

@@ -11,26 +11,53 @@ import replace from '@rollup/plugin-replace'
 
 const isProduction = process.env.NODE_ENV === 'production'
 
-export default {
-  input: 'src/manifest.json',
-  output: {
-    dir: 'dist',
-    format: 'esm',
-    chunkFileNames: path.join('chunks', '[name]-[hash].js'),
+const NODE_ENV = isProduction
+  ? JSON.stringify('production')
+  : JSON.stringify('development')
+
+export default [
+  {
+    input: 'src/v2-manifest.json',
+    output: {
+      dir: 'dist/v2-manifest',
+      format: 'esm',
+      chunkFileNames: path.join('chunks', '[name]-[hash].js'),
+    },
+    plugins: [
+      replace({
+        'process.env.NODE_ENV': NODE_ENV,
+        isV3Manifest: '',
+        preventAssignment: true,
+      }),
+      chromeExtension(),
+      simpleReloader(),
+      resolve(),
+      commonjs(),
+      typescript(),
+      emptyDir(),
+      isProduction && zip({ dir: 'releases/v2-manifest' }),
+    ],
   },
-  plugins: [
-    replace({
-      'process.env.NODE_ENV': isProduction
-        ? JSON.stringify('production')
-        : JSON.stringify('development'),
-      preventAssignment: true,
-    }),
-    chromeExtension(),
-    simpleReloader(),
-    resolve(),
-    commonjs(),
-    typescript(),
-    emptyDir(),
-    isProduction && zip({ dir: 'releases' }),
-  ],
-}
+  {
+    input: 'src/v3-manifest.json',
+    output: {
+      dir: 'dist/v3-manifest',
+      format: 'esm',
+      chunkFileNames: path.join('chunks', '[name]-[hash].js'),
+    },
+    plugins: [
+      replace({
+        'process.env.NODE_ENV': NODE_ENV,
+        isV3Manifest: 'true',
+        preventAssignment: true,
+      }),
+      chromeExtension(),
+      simpleReloader(),
+      resolve(),
+      commonjs(),
+      typescript(),
+      emptyDir(),
+      isProduction && zip({ dir: 'releases/v3-manifest' }),
+    ],
+  },
+]

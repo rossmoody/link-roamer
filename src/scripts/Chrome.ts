@@ -9,17 +9,30 @@ class Chrome {
    * The function returns the result of whatever function is passed in.
    */
   async executeScript<Type>(tabId: number, func: () => Type) {
+    if ('isV3Manifest') {
+      return (
+        await chrome.scripting.executeScript({
+          target: { tabId },
+          func,
+        })
+      )[0].result as Type
+    }
+
     return (
-      await chrome.scripting.executeScript({
-        target: { tabId },
-        func,
+      await browser.tabs.executeScript(tabId, {
+        code: `(${func})()`,
       })
-    )[0].result as Type
+    )[0] as Type
   }
 
   async getActiveTab() {
     const config: chrome.tabs.QueryInfo = { active: true, currentWindow: true }
-    return (await chrome.tabs.query(config))[0]
+
+    if ('isV3Manifest') {
+      return (await chrome.tabs.query(config))[0]
+    }
+
+    return (await browser.tabs.query(config))[0]
   }
 
   async createBackgroundTab(url: string) {

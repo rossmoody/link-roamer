@@ -2,6 +2,8 @@
 releases
 
 # Logs
+.DS_Store
+src/.DS_Store
 logs
 *.log
 npm-debug.log*

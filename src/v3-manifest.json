@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Link Roamer",
+  "description": "A browser extension for gathering, organizing, and inspecting all the links on a web page.",
+  "homepage_url": "https://www.linkroamer.com",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "scripting",
+    "tabGroups",
+    "bookmarks",
+    "declarativeContent",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.ts"
+  },
+  "action": {
+    "default_icon": {
+      "16": "public/icons/16.png",
+      "24": "public/icons/24.png",
+      "32": "public/icons/32.png"
+    },
+    "default_popup": "public/index.html"
+  },
+  "icons": {
+    "48": "public/icons/48.png",
+    "64": "public/icons/64.png",
+    "128": "public/icons/128.png",
+    "256": "public/icons/256.png"
+  },
+  "host_permissions": [
+    "https://fetch-fav-h57lsidp3a-uc.a.run.app/*"
+  ]
+}

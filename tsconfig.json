@@ -16,7 +16,8 @@
     "types": [
       "react/next",
       "react-dom/next",
-      "chrome"
+      "chrome",
+      "firefox-webext-browser"
     ]
   }
 }
