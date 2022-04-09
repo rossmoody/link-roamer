@@ -24,7 +24,7 @@
     "default_popup": "public/index.html"
   },
   "icons": {
-    "48": "public/icons/64.png",
+    "48": "public/icons/48.png",
     "64": "public/icons/64.png",
     "128": "public/icons/128.png",
     "256": "public/icons/256.png"
