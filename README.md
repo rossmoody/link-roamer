@@ -15,7 +15,7 @@ A browser extension for gathering, organizing, and inspecting all the links on a
 #### Organize links
 
 - Group links by the domain name
-- Create a tab group from a set of selected links
+- Create a tab group from a set of selected links (_*Chrome only_)
 - Save a set of selected links as bookmarks
 
 #### Interact with links
