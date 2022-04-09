@@ -7,7 +7,11 @@ type CheckedItemsContextProps = {
 
 const CheckedItemsContext = React.createContext({} as CheckedItemsContextProps)
 
-export const CheckedItemsProvider: React.FC = ({ children }) => {
+export const CheckedItemsProvider = ({
+  children,
+}: {
+  children: React.ReactNode
+}) => {
   const [checkedItems, setCheckedItems] = React.useState<string[]>([])
 
   const checkedMemo = React.useMemo(

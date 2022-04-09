@@ -58,7 +58,7 @@ const theme = extendTheme({
   },
 })
 
-const ThemeProvider: React.FC = ({ children }) => (
+const ThemeProvider = ({ children }: { children: React.ReactNode }) => (
   <ChakraProvider theme={theme}>{children}</ChakraProvider>
 )
 

@@ -8,7 +8,7 @@ import {
   Tag,
   useColorModeValue,
 } from '@chakra-ui/react'
-import { ExternalLinkIcon, NewTabIcon } from '../icons'
+import { ExternalLinkIcon } from '../icons'
 import c from '../../scripts/Chrome'
 import TabGroupPopover from './TabGroupPopover'
 import OverflowActions from './OverflowActions'
@@ -52,13 +52,7 @@ const Index = () => {
             >
               Open in new window
             </Button>
-            {'isV3Manifest' && (
-              <TabGroupPopover>
-                <Button leftIcon={<NewTabIcon />} variant="solid">
-                  Open in tab group
-                </Button>
-              </TabGroupPopover>
-            )}
+            {'isV3Manifest' && <TabGroupPopover />}
           </ButtonGroup>
         </Flex>
       </SlideFade>

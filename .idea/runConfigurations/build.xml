@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Build and Watch" type="js.build_tools.npm" singleton="false">
+  <configuration default="false" name="build" type="js.build_tools.npm" singleton="false">
     <package-json value="$PROJECT_DIR$/package.json" />
     <command value="run" />
     <scripts>

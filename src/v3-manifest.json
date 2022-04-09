@@ -30,6 +30,7 @@
     "256": "public/icons/256.png"
   },
   "host_permissions": [
-    "https://fetch-fav-h57lsidp3a-uc.a.run.app/*"
+    "https://fetch-fav-h57lsidp3a-uc.a.run.app/*",
+    "http://localhost:8080/*"
   ]
 }

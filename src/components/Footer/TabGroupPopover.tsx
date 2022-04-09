@@ -20,8 +20,9 @@ import {
 import c from '../../scripts/Chrome'
 import { useCheckedItems } from '../../providers/CheckedItems'
 import ReactFocusLock from 'react-focus-lock'
+import { NewTabIcon } from '../icons'
 
-const TabGroupPopover: React.FC = ({ children }) => {
+const TabGroupPopover = () => {
   const { onOpen, onClose, isOpen } = useDisclosure()
   const { checkedItems } = useCheckedItems()
   const inputRef = React.useRef<HTMLInputElement>(null)
@@ -48,7 +49,12 @@ const TabGroupPopover: React.FC = ({ children }) => {
       onOpen={onOpen}
       onClose={onClose}
     >
-      <PopoverTrigger>{children}</PopoverTrigger>
+      {/*// @ts-ignore*/}
+      <PopoverTrigger>
+        <Button leftIcon={<NewTabIcon />} variant="solid">
+          Open in tab group
+        </Button>
+      </PopoverTrigger>
       <PopoverContent>
         <ReactFocusLock>
           <PopoverHeader pt={4} fontWeight="bold" border="0">

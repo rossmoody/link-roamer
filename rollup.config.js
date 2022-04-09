@@ -15,6 +15,14 @@ const NODE_ENV = isProduction
 
 export default [
   {
+    input: 'src/api/index.ts',
+    output: {
+      dir: 'dist/api',
+      format: 'esm',
+    },
+    plugins: [typescript()],
+  },
+  {
     input: 'src/v2-manifest.json',
     output: {
       dir: 'dist/v2-manifest',

@@ -11,7 +11,7 @@ interface DataContextProps {
 
 const DataContext = React.createContext({} as DataContextProps)
 
-export const DataProvider: React.FC = ({ children }) => {
+export const DataProvider = ({ children }: { children: React.ReactNode }) => {
   const [data, setData] = useState<LinkData>({ links: [], loading: true })
 
   const dataMemo = useMemo(

@@ -13,7 +13,6 @@ export class LinkProcessor {
     try {
       return new Link(href)
     } catch (e) {
-      console.error(e)
       return new Link(FILTER_URL)
     }
   }
