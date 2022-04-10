@@ -30,13 +30,6 @@ finding broken links (404). This extension allows you to:
 
 ![Link Roamer Graphic!](./assets/graphic-2.png)
 
-## Open source
-
-This extension is open source and doesn't collect any information from users. It's free, and made available because I
-enjoy making useful things for the web.
-
-Please consider contributing with an idea, bug fix, or feature request.
-
 ## Local development
 
 Before making edits you will need to build the extension locally and side load it as a developer extension to test any
@@ -72,6 +65,15 @@ This will build to the `dist` folder. To load the extension, open the Extensions
 click "Load unpacked", and choose the `dist/v3-manifest` folder.
 
 When you make changes in src the background script and any content script will reload automatically.
+
+---
+
+## Open source
+
+This extension is open source and doesn't collect any information from users. It's free, and made available because I
+enjoy making useful things for the web.
+
+Please consider contributing with an idea, bug fix, or feature request.
 
 ---
 
