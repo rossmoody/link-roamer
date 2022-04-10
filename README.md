@@ -28,6 +28,8 @@ finding broken links (404). This extension allows you to:
 
 ---
 
+![Link Roamer Graphic!](./assets/graphic-2.png)
+
 ## Open source
 
 This extension is open source and doesn't collect any information from users. It's free, and made available because I
