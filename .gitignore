@@ -1,5 +1,6 @@
 # Chrome extension release zip files
 releases
+.idea
 
 # Logs
 .DS_Store
