@@ -69,4 +69,8 @@ const v3Manifest = {
   ],
 }
 
-export default [apiConfig, v2Manifest, v3Manifest]
+const exports = isProduction
+  ? [v2Manifest, v3Manifest]
+  : [apiConfig, v3Manifest]
+
+export default exports

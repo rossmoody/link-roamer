@@ -33,8 +33,6 @@ export const DataProvider = ({ children }: Children) => {
           .filter(lp.filterKeyString)
           .sort(lp.sortByHrefLength)
 
-        console.log('links', links)
-
         links.length > 0
           ? setData({ links, loading: true })
           : setData({ links: [], loading: false })
@@ -48,7 +46,6 @@ export const DataProvider = ({ children }: Children) => {
     const fetchData = async () => {
       if (data.links.length > 0) {
         const result = await c.fetchLinks(data.links)
-
         const links = data.links.map((link) => {
           const status = result.find(({ url }) => url === link.href)
           if (status) link.status = status
@@ -58,7 +55,7 @@ export const DataProvider = ({ children }: Children) => {
         setData({ links, loading: false })
       }
     }
-
+    
     fetchData().catch(console.error)
   }, [data.links.length])
 

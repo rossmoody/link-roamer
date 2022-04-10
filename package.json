@@ -1,9 +1,9 @@
 {
   "name": "link-roamer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A browser extension for gathering, organizing, and inspecting all the links on a web page.",
   "scripts": {
-    "server": "npx functions-framework --target=fetchStatuses --source=dist/api",
+    "server": "npx functions-framework --target fetchStatuses --source dist/api",
     "release": "cross-env NODE_ENV=production rollup -c",
     "start": "rollup -c -w"
   },

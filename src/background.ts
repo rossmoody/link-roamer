@@ -19,7 +19,7 @@ chrome.runtime.onMessage.addListener(
       }
 
       fetch(url, init).then(async (result) => {
-        const json = await result.json()
+        const json: Response[] = await result.json()
         sendResponse(json)
       })
     }
