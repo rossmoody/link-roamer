@@ -1,22 +1,18 @@
 import { http } from '@google-cloud/functions-framework'
 import fetch from 'node-fetch'
 
-http('fetchStatuses', (request, response) => {
-  const links = JSON.parse(request.body)
+http('fetchStatuses', async (request, response) => {
+  const links: string[] = JSON.parse(request.body)
 
-  console.log(links, request)
+  const responses = await Promise.all(
+    links.map(async (link: string) => fetch(link, { method: 'HEAD' })),
+  ).catch(() => [{}] as Response[])
 
-  Promise.all(
-    links.map(async (link: any) => {
-      const response = await fetch(link, { method: 'HEAD' })
+  const result = responses.map((response) => ({
+    status: response.status,
+    url: response.url,
+    statusText: response.statusText,
+  }))
 
-      return {
-        status: response.status,
-        url: response.url,
-        statusText: response.statusText,
-      }
-    }),
-  ).then((result) => {
-    response.send(JSON.stringify(result))
-  })
+  response.send(JSON.stringify(result))
 })

@@ -30,7 +30,7 @@ const FetchLoader = () => {
             colorScheme: 'green',
           })
 
-      setTimeout(setLoading, 2000, false)
+      setTimeout(setLoading, 2400, false)
     }
   }, [data.loading])
 

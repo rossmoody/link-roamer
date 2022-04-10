@@ -20,7 +20,7 @@ const apiConfig = {
     format: 'esm',
   },
   plugins: [typescript()],
-  external: ['@google-cloud/functions-framework', 'node-fetch'],
+  external: ['node-fetch', '@google-cloud/functions-framework'],
 }
 
 const v2Manifest = {

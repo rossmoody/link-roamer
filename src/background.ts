@@ -1,6 +1,9 @@
 import { Message } from './types'
 
-// const url = 'https://fetch-fav-h57lsidp3a-uc.a.run.app'
+const url =
+  process.env.NODE_ENV === 'production'
+    ? 'https://fetch-fav-h57lsidp3a-uc.a.run.app'
+    : 'http://localhost:8080'
 
 /**
  * Listens for a message from the extension to fetch HEAD information
@@ -15,7 +18,7 @@ chrome.runtime.onMessage.addListener(
         body: message.data,
       }
 
-      fetch('http://localhost:8080', init).then(async (result) => {
+      fetch(url, init).then(async (result) => {
         const json = await result.json()
         sendResponse(json)
       })
