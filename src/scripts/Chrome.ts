@@ -55,6 +55,7 @@ class Chrome {
       tabIds,
       createProperties: { windowId },
     }
+
     return await chrome.tabs.group(config)
   }
 

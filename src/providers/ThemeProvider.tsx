@@ -1,6 +1,7 @@
 import React from 'react'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import c from '../scripts/Chrome'
+import { Children } from '../types'
 
 const mode = c.getStorage('mode')
 
@@ -58,7 +59,7 @@ const theme = extendTheme({
   },
 })
 
-const ThemeProvider = ({ children }: { children: React.ReactNode }) => (
+const ThemeProvider = ({ children }: Children) => (
   <ChakraProvider theme={theme}>{children}</ChakraProvider>
 )
 

@@ -7,18 +7,11 @@
       "dom",
       "es2019"
     ],
-    "allowJs": true,
     "module": "ESNext",
     "moduleResolution": "node",
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "strict": true,
-    "target": "es2018",
-    "types": [
-      "react/next",
-      "react-dom/next",
-      "chrome",
-      "firefox-webext-browser"
-    ]
+    "target": "es2018"
   }
 }

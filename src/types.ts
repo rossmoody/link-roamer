@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from './scripts/Link'
 
 export type CategorizedLinks = Record<string, Link[]>
@@ -16,4 +17,8 @@ export type LinkStatus = {
 export type LinkData = {
   loading: boolean
   links: Link[]
+}
+
+export type Children = {
+  children: React.ReactNode
 }

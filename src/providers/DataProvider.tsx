@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import c from '../scripts/Chrome'
 import { gatherHrefs } from '../scripts/execute-scripts'
-import { LinkData } from '../types'
+import { Children, LinkData } from '../types'
 import lp from '../scripts/LinkProcessor'
 
 interface DataContextProps {
@@ -11,7 +11,7 @@ interface DataContextProps {
 
 const DataContext = React.createContext({} as DataContextProps)
 
-export const DataProvider = ({ children }: { children: React.ReactNode }) => {
+export const DataProvider = ({ children }: Children) => {
   const [data, setData] = useState<LinkData>({ links: [], loading: true })
 
   const dataMemo = useMemo(

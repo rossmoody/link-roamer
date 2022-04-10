@@ -1,7 +1,7 @@
 import { http } from '@google-cloud/functions-framework'
 import fetch from 'node-fetch'
 
-http('fetchStatuses', (request: any, res: any) => {
+http('fetchStatuses', (request, response) => {
   const links = JSON.parse(request.body)
 
   console.log(links, request)
@@ -17,6 +17,6 @@ http('fetchStatuses', (request: any, res: any) => {
       }
     }),
   ).then((result) => {
-    res.send(JSON.stringify(result))
+    response.send(JSON.stringify(result))
   })
 })
