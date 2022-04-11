@@ -18,10 +18,14 @@ chrome.runtime.onMessage.addListener(
         body: message.data,
       }
 
-      fetch(url, init).then(async (result) => {
-        const json: Response[] = await result.json()
-        sendResponse(json)
-      })
+      try {
+        fetch(url, init).then(async (result) => {
+          const json: Response[] = await result.json()
+          sendResponse(json)
+        })
+      } catch (error) {
+        sendResponse([])
+      }
     }
 
     return true

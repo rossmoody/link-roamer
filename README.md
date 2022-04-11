@@ -2,7 +2,11 @@
 
 ![Link Roamer Graphic!](./assets/graphic.png)
 
+--- 
+
 > 🚀 Download this extension on the [Chrome Web store](https://chrome.google.com/webstore/detail/link-roamer/lgcgflalbmeodapiohjepkjlgipmhofe) or the [Firefox Addon Marketplace](https://addons.mozilla.org/en-US/firefox/addon/link-roamer/). 🚀
+
+--- 
 
 A browser extension for gathering, organizing, and inspecting all the links on a web page. It's also pretty good at
 finding broken links (404). This extension allows you to:

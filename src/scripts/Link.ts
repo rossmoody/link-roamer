@@ -1,8 +1,7 @@
 import { LinkStatus } from '../types'
 
 class Link extends URL {
-  requestStatus = 200
-  requestStatusText = ''
+  _status = {} as LinkStatus
 
   constructor(href: string) {
     super(href)
@@ -28,8 +27,11 @@ class Link extends URL {
    * Sets the response status specs
    */
   set status(status: LinkStatus) {
-    this.requestStatus = status.status
-    this.requestStatusText = status.statusText
+    this._status = status
+  }
+
+  get status() {
+    return this._status
   }
 }
 

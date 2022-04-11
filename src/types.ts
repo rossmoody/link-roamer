@@ -8,12 +8,6 @@ export type Message = {
   data: string
 }
 
-export type LinkStatus = {
-  status: number
-  url: string
-  statusText: string
-}
-
 export type LinkData = {
   loading: boolean
   links: Link[]
@@ -21,4 +15,13 @@ export type LinkData = {
 
 export type Children = {
   children: React.ReactNode
+}
+
+export type LinkStatus = {
+  ok: boolean
+  redirected: boolean
+  status: number
+  statusText: string
+  type: ResponseType
+  url: string
 }

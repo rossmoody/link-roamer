@@ -55,7 +55,7 @@ export const DataProvider = ({ children }: Children) => {
         setData({ links, loading: false })
       }
     }
-    
+
     fetchData().catch(console.error)
   }, [data.links.length])
 

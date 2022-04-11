@@ -55,7 +55,7 @@ export class LinkProcessor {
    * Filter links to include only those with a status code of 404
    */
   filterBrokenLinks(links: Link[]) {
-    const filtered = links.filter((link) => link.requestStatus === 404)
+    const filtered = links.filter((link) => link.status.status === 404)
     return this.categorizeByDomain(filtered)
   }
 
@@ -82,7 +82,7 @@ export class LinkProcessor {
   }
 
   containsBroken(links: Link[]) {
-    return links.some((link) => link.requestStatus === 404)
+    return links.some((link) => link.status.status === 404)
   }
 
   /**
