@@ -2,6 +2,9 @@ import { http } from '@google-cloud/functions-framework'
 import fetch, { Response } from 'node-fetch'
 import { LinkStatus } from '../types'
 
+/**
+ * Only checking status codes from the headers
+ */
 const fetchWithHeadMethod = (link: string) => fetch(link, { method: 'HEAD' })
 
 /**
