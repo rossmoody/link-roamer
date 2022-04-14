@@ -5,7 +5,9 @@ import { theme } from 'providers/ThemeProvider'
 export default function Document() {
   return (
     <Html>
-      <Head />
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <body>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <Main />

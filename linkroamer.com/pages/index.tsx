@@ -16,7 +16,6 @@ const Home: NextPage = () => {
           name="description"
           content="A free and open-source browser extension for finding, organizing, inspecting, bookmarking, grouping, and exporting all the links from a page."
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
         <Main />
