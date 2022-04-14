@@ -1,24 +1,18 @@
-import { Box, Heading, Stack, Text } from '@chakra-ui/react'
+import { Center, Heading, Stack, Text } from '@chakra-ui/react'
 import React from 'react'
-
-export type HighlightData = {
-  logo: React.ReactNode
-  subtitle: string
-  title: string
-  description: string
-}
+import { HighlightData } from './types'
 
 const Highlight = (props: HighlightData) => {
   return (
     <Stack spacing={3} minWidth="300px" flex={1}>
-      <Box bg="blurple.400" height={16} width={16} borderRadius="2xl">
+      <Center bg={props.color} height={16} width={16} borderRadius="2xl" mb={4}>
         {props.logo}
-      </Box>
+      </Center>
       <Text
         textTransform="uppercase"
         fontWeight="bold"
         letterSpacing="wider"
-        color="blurple.200"
+        color={props.color}
       >
         {props.subtitle}
       </Text>

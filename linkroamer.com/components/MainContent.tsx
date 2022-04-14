@@ -76,14 +76,14 @@ const MainContent = () => (
         />
       </ButtonGroup>
     </Stack>
-    <HStack spacing={4} mt={10} height="20px" display={['none', 'flex']}>
-      <Stack direction="row" alignItems="center" spacing={1}>
+    <HStack spacing={2} mt={10} height="20px" display={['none', 'flex']}>
+      <HStack alignItems="center" spacing={1}>
         <StarIcon />
         <StarIcon />
         <StarIcon />
         <StarIcon />
         <StarIcon />
-      </Stack>
+      </HStack>
       <Divider orientation="vertical" />
       <Text fontSize="xs" color="gray.300">
         Rated 5 stars by a bunch of awesome folks

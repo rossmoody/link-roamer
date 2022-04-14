@@ -1,8 +1,6 @@
-type Props = {
-  size?: number
-}
+import { IconProps } from '../types'
 
-const StarIcon = ({ size = 16 }: Props) => (
+const StarIcon = ({ size = 16 }: IconProps) => (
   <svg
     width={size}
     height={size}

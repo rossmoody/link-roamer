@@ -1,7 +1,6 @@
-type Props = {
-  size?: number
-}
-const SafariIcon = ({ size = 24 }: Props) => (
+import { IconProps } from '../types'
+
+const SafariIcon = ({ size = 24 }: IconProps) => (
   <svg
     width={size}
     height={size}

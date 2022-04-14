@@ -1,7 +1,6 @@
-type Props = {
-  size?: number
-}
-const ChromeIcon = ({ size = 24 }: Props) => (
+import { IconProps } from '../types'
+
+const ChromeIcon = ({ size = 24 }: IconProps) => (
   <svg
     viewBox="0 0 94 93"
     fill="none"
