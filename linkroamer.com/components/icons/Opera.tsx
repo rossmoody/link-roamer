@@ -1,7 +1,7 @@
 type Props = {
-  size: number
+  size?: number
 }
-const OperaIcon = ({ size }: Props) => (
+const OperaIcon = ({ size = 24 }: Props) => (
   <svg
     width={size}
     height={size}

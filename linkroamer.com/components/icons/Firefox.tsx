@@ -1,7 +1,7 @@
 type Props = {
-  size: number
+  size?: number
 }
-const FirefoxIcon = ({ size }: Props) => (
+const FirefoxIcon = ({ size = 24 }: Props) => (
   <svg
     width={size}
     height={size}

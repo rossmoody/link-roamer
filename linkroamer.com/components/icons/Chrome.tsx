@@ -1,7 +1,7 @@
 type Props = {
-  size: number
+  size?: number
 }
-const ChromeIcon = ({ size }: Props) => (
+const ChromeIcon = ({ size = 24 }: Props) => (
   <svg
     viewBox="0 0 94 93"
     fill="none"

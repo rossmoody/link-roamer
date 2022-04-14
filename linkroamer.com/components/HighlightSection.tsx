@@ -1,4 +1,5 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, Spacer } from '@chakra-ui/react'
+import React from 'react'
 import Highlight, { HighlightData } from './Highlight'
 import FirefoxIcon from './icons/Firefox'
 
@@ -27,11 +28,14 @@ const data: HighlightData[] = [
 ]
 
 const HighlightSection = () => (
-  <Flex as="section" gap={20} wrap="wrap" direction="row">
-    {data.map((highlight) => (
-      <Highlight key={highlight.title} {...highlight} />
-    ))}
-  </Flex>
+  <React.Fragment>
+    <Spacer height={[12, 20, 48]} />
+    <Flex as="section" gap={20} wrap="wrap" direction="row">
+      {data.map((highlight) => (
+        <Highlight key={highlight.title} {...highlight} />
+      ))}
+    </Flex>
+  </React.Fragment>
 )
 
 export default HighlightSection

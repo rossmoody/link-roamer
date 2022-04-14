@@ -1,4 +1,3 @@
-import { Spacer } from '@chakra-ui/react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import React from 'react'
@@ -19,7 +18,6 @@ const Home: NextPage = () => {
       </Head>
       <Layout>
         <Main />
-        <Spacer height={[12, 20, 48]} />
         <HighlightSection />
         <BackgroundBursts />
       </Layout>

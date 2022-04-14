@@ -1,8 +1,8 @@
 type Props = {
-  size: number
+  size?: number
 }
 
-const StarIcon = ({ size }: Props) => (
+const StarIcon = ({ size = 16 }: Props) => (
   <svg
     width={size}
     height={size}
