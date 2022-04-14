@@ -6,6 +6,7 @@ import {
   Heading,
   HStack,
   IconButton,
+  Link,
   Stack,
   Text,
 } from '@chakra-ui/react'
@@ -14,28 +15,30 @@ import FirefoxIcon from './icons/Firefox'
 import OperaIcon from './icons/Opera'
 import SafariIcon from './icons/Safari'
 import StarIcon from './icons/Star'
+import { Links } from './types'
 
-const urls = {
-  chromeWebstore:
-    'https://chrome.google.com/webstore/detail/link-roamer/lgcgflalbmeodapiohjepkjlgipmhofe',
-  firefoxMarketplace:
-    'https://addons.mozilla.org/en-US/firefox/addon/link-roamer/',
-  operaMarketplace: '',
+const gradientText = {
+  backgroundClip: 'text',
+  textColor: 'transparent',
+  bgGradient: 'linear-gradient(275.82deg, #6FBBFC 0%, #6D48FF 100%);',
 }
 
 const MainContent = () => (
   <Box maxWidth="500px">
     <Heading fontWeight="bold" fontSize={['5xl', '6xl']} lineHeight={1.1}>
       Quickly{' '}
-      <Text as="span" color="blurple.300">
+      <Text as="span" {...gradientText}>
         handle all the links
       </Text>{' '}
       on a web page
     </Heading>
     <Text mt={6} fontSize={['md', 'lg']}>
-      A free and open-source browser extension for finding, organizing,
-      inspecting, bookmarking, grouping, and exporting all the links from a
-      page.
+      A free and{' '}
+      <Link color="blurple.300" href={Links.githubRepo}>
+        open-source
+      </Link>{' '}
+      browser extension for finding, organizing, inspecting, bookmarking,
+      grouping, and exporting all the links from a page.
     </Text>
     <Stack
       mt={12}
@@ -45,7 +48,7 @@ const MainContent = () => (
     >
       <Button
         as="a"
-        href={urls.chromeWebstore}
+        href={Links.chromeWebstore}
         leftIcon={<ChromeIcon />}
         variant="solid"
         colorScheme="blurple"
@@ -55,23 +58,23 @@ const MainContent = () => (
       <ButtonGroup>
         <IconButton
           as="a"
-          href={urls.firefoxMarketplace}
+          href={Links.firefoxMarketplace}
           variant="ghost"
           aria-label="Navigate to Firefox extension"
           icon={<FirefoxIcon />}
         />
         <IconButton
           as="a"
-          href={urls.operaMarketplace}
+          href={Links.operaMarketplace}
           variant="ghost"
           aria-label="Navigate to Opera extension"
           icon={<OperaIcon />}
         />
         <IconButton
           as="a"
-          href={urls.operaMarketplace}
+          href={Links.safariAppStore}
           variant="ghost"
-          aria-label="Navigate to Opera extension"
+          aria-label="Navigate to Safari extension"
           icon={<SafariIcon />}
         />
       </ButtonGroup>

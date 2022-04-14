@@ -4,7 +4,7 @@ import Highlight from './Highlight'
 import BookmarkIcon from './icons/Bookmark'
 import ExportIcon from './icons/Export'
 import LockIcon from './icons/Lock'
-import { HighlightData } from './types'
+import { HighlightData, Links } from './types'
 
 const data: HighlightData[] = [
   {
@@ -13,17 +13,11 @@ const data: HighlightData[] = [
     description: (
       <React.Fragment>
         Highlight links that return a{' '}
-        <Link
-          color="blurple.300"
-          href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
-        >
+        <Link color="blurple.300" href={Links.fourOhFour}>
           404
         </Link>{' '}
         status or have a{' '}
-        <Link
-          color="blurple.300"
-          href="https://www.deptagency.com/en-us/insight/the-dangers-of-non-secure-http/"
-        >
+        <Link color="blurple.300" href={Links.httpDangers}>
           non-secure HTTP
         </Link>{' '}
         protocol.

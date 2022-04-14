@@ -10,7 +10,7 @@ const BackgroundBursts = () => (
         right="-90px"
         top="-150px"
         background="#73E0D9"
-        opacity={['0', '0', '0', '0.3']}
+        opacity={['0', '0', '0.1', '0.4']}
         filter="blur(200px)"
       />
       <Box
@@ -20,7 +20,7 @@ const BackgroundBursts = () => (
         right="150px"
         top="200px"
         background="#596AFF"
-        opacity={['0.1', '0.1', '0.1', '0.3']}
+        opacity={['0.1', '0.1', '0.1', '0.4']}
         filter="blur(150px)"
       />
     </Box>

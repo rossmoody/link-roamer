@@ -1,6 +1,5 @@
 import { Center, Flex } from '@chakra-ui/react'
-import Image from 'next/image'
-import image from '../public/link-roamer-example.png'
+import ExtensionGraphic from './ExtensionGraphic'
 import MainContent from './MainContent'
 
 const Main = () => {
@@ -16,13 +15,9 @@ const Main = () => {
         <MainContent />
       </Flex>
       <Center flex={1}>
-        <Image
-          src={image}
-          alt="Link Roamer Example"
-          layout="intrinsic"
-          width="602"
-          height="750"
-        />
+        <Center width="500px">
+          <ExtensionGraphic />
+        </Center>
       </Center>
     </Flex>
   )
