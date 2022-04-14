@@ -48,8 +48,10 @@ http('fetchStatuses', async (request, response) => {
  * Development helper function to log failed request
  * headers to the console to understand why
  */
-function logHeaders(response: Response) {
-  const headers = []
-  for (const pair of response.headers.entries()) headers.push(pair)
-  console.log(headers)
+const logHeaders = (response: Response) => {
+  const headers = {} as any
+  for (const [key, value] of response.headers.entries()) {
+    headers[key] = value
+  }
+  console.log(response.url, headers)
 }

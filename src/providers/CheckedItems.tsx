@@ -1,4 +1,5 @@
 import React from 'react'
+import { Children } from '../types'
 
 type CheckedItemsContextProps = {
   checkedItems: string[]
@@ -7,11 +8,7 @@ type CheckedItemsContextProps = {
 
 const CheckedItemsContext = React.createContext({} as CheckedItemsContextProps)
 
-export const CheckedItemsProvider = ({
-  children,
-}: {
-  children: React.ReactNode
-}) => {
+export const CheckedItemsProvider = ({ children }: Children) => {
   const [checkedItems, setCheckedItems] = React.useState<string[]>([])
 
   const checkedMemo = React.useMemo(

@@ -5,7 +5,6 @@
   "homepage_url": "https://www.linkroamer.com",
   "permissions": [
     "activeTab",
-    "tabs",
     "scripting",
     "tabGroups",
     "bookmarks",
