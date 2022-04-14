@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react'
 import React from 'react'
-import { Children } from 'types'
+import { Children } from '../types'
 import Footer from './Footer'
 import TopNav from './TopNav'
 

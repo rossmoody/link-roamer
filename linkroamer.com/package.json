@@ -1,5 +1,4 @@
 {
-  "name": "link-roamer-website",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -24,13 +23,5 @@
     "eslint": "8.13.0",
     "eslint-config-next": "12.1.5",
     "typescript": "4.6.3"
-  },
-  "prettier": {
-    "semi": false,
-    "tabWidth": 2,
-    "trailingComma": "all",
-    "singleQuote": true,
-    "arrowParens": "always",
-    "proseWrap": "always"
   }
 }

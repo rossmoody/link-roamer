@@ -1,11 +1,11 @@
 import { Spacer } from '@chakra-ui/react'
-import BackgroundBursts from 'components/BackgroundBursts'
-import HighlightSection from 'components/HighlightSection'
-import Layout from 'components/Layout'
-import Main from 'components/Main'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import React from 'react'
+import BackgroundBursts from '../components/BackgroundBursts'
+import HighlightSection from '../components/HighlightSection'
+import Layout from '../components/Layout'
+import Main from '../components/Main'
 
 const Home: NextPage = () => {
   return (

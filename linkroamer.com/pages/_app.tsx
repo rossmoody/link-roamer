@@ -1,7 +1,7 @@
-import GoogleAnalytics from 'components/GoogleAnalytics'
 import type { AppProps } from 'next/app'
-import ThemeProvider from 'providers/ThemeProvider'
 import React from 'react'
+import GoogleAnalytics from '../components/GoogleAnalytics'
+import ThemeProvider from '../providers/ThemeProvider'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
