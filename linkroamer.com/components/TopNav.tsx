@@ -1,4 +1,4 @@
-import { Flex, IconButton, Spacer, Stack, Text } from '@chakra-ui/react'
+import { Box, Flex, IconButton, Spacer, Stack, Text } from '@chakra-ui/react'
 import React from 'react'
 import AppIcon from './AppIcon'
 import Logotype from './Logotype'
@@ -7,7 +7,9 @@ import SquiggleArrow from './SquiggleArrow'
 const TopNav = () => (
   <React.Fragment>
     <Flex as="nav" alignItems="center" py={6}>
-      <Logotype />
+      <Box w="200px">
+        <Logotype />
+      </Box>
       <Spacer />
       <Stack
         direction="row"
@@ -26,7 +28,7 @@ const TopNav = () => (
         />
       </Stack>
     </Flex>
-    <Spacer height={[8, 12, 16]} />
+    <Spacer height={[8]} />
   </React.Fragment>
 )
 

@@ -8,7 +8,7 @@ import '@fontsource/inter/600.css'
 import '@fontsource/inter/700.css'
 import '@fontsource/inter/800.css'
 import React from 'react'
-import { Children } from '../types'
+import { Children } from '../components/types'
 
 export const theme = extendTheme({
   config: {
