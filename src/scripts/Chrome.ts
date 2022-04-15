@@ -114,7 +114,7 @@ class Chrome {
   }
 
   async setStorage(key: string, value: string) {
-    return await chrome.storage.sync.set({ items: { key: value } })
+    return await chrome.storage.sync.set({ items: { [key]: value } })
   }
 }
 
