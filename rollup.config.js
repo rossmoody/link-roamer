@@ -1,11 +1,11 @@
-import path from 'path'
-import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
+import resolve from '@rollup/plugin-node-resolve'
+import replace from '@rollup/plugin-replace'
 import typescript from '@rollup/plugin-typescript'
+import path from 'path'
 import { chromeExtension, simpleReloader } from 'rollup-plugin-chrome-extension'
 import { emptyDir } from 'rollup-plugin-empty-dir'
 import zip from 'rollup-plugin-zip'
-import replace from '@rollup/plugin-replace'
 
 const isProduction = process.env.NODE_ENV === 'production'
 

@@ -12,7 +12,6 @@ import {
 } from '@chakra-ui/react'
 import ChromeIcon from './icons/Chrome'
 import FirefoxIcon from './icons/Firefox'
-import SafariIcon from './icons/Safari'
 import StarIcon from './icons/Star'
 import { Links } from './types'
 
@@ -37,7 +36,7 @@ const MainContent = () => (
         open-source
       </Link>{' '}
       browser extension for finding, organizing, inspecting, bookmarking,
-      grouping, and exporting all the links from a page.
+      grouping, and exporting all the links on a page.
     </Text>
     <Stack
       mt={12}
@@ -61,13 +60,6 @@ const MainContent = () => (
           variant="ghost"
           aria-label="Navigate to Firefox extension"
           icon={<FirefoxIcon />}
-        />
-        <IconButton
-          as="a"
-          href={Links.safariAppStore}
-          variant="ghost"
-          aria-label="Navigate to Safari extension"
-          icon={<SafariIcon />}
         />
       </ButtonGroup>
     </Stack>

@@ -4,7 +4,7 @@ import Logotype from './Logotype'
 import { Links } from './types'
 
 const Footer = () => (
-  <Flex mt={60} mb={12} direction={['column', 'column', 'row']} gap={2}>
+  <Flex mt={40} mb={12} direction={['column', 'column', 'row']} gap={2}>
     <Box w="150px" mb={4}>
       <Logotype />
     </Box>

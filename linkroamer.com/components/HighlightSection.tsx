@@ -46,7 +46,7 @@ const data: HighlightData[] = [
 
 const HighlightSection = () => (
   <React.Fragment>
-    <Spacer height={[12, 20, 48]} />
+    <Spacer height={[12, 20, 32]} />
     <Flex as="section" gap={20} wrap="wrap" direction="row">
       {data.map((highlight) => (
         <Highlight key={highlight.title} {...highlight} />
