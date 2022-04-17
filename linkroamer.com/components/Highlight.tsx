@@ -5,7 +5,13 @@ import { HighlightData } from './types'
 const Highlight = (props: HighlightData) => {
   return (
     <Stack spacing={3} minWidth="220px" flex={1}>
-      <Center bg={props.color} height={16} width={16} borderRadius="2xl" mb={4}>
+      <Center
+        bg={props.color}
+        height={[12, 16]}
+        width={[12, 16]}
+        borderRadius="2xl"
+        mb={4}
+      >
         {props.logo}
       </Center>
       <Text

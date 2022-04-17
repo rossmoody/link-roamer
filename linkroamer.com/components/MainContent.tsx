@@ -12,7 +12,6 @@ import {
 } from '@chakra-ui/react'
 import ChromeIcon from './icons/Chrome'
 import FirefoxIcon from './icons/Firefox'
-import OperaIcon from './icons/Opera'
 import SafariIcon from './icons/Safari'
 import StarIcon from './icons/Star'
 import { Links } from './types'
@@ -62,13 +61,6 @@ const MainContent = () => (
           variant="ghost"
           aria-label="Navigate to Firefox extension"
           icon={<FirefoxIcon />}
-        />
-        <IconButton
-          as="a"
-          href={Links.operaMarketplace}
-          variant="ghost"
-          aria-label="Navigate to Opera extension"
-          icon={<OperaIcon />}
         />
         <IconButton
           as="a"
