@@ -20,6 +20,9 @@
     "react",
     "rollup"
   ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "author": "Ross Moody <@_rossmoody>",
   "license": "MIT",
   "bugs": {

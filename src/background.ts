@@ -19,12 +19,12 @@ chrome.runtime.onMessage.addListener(
       }
 
       try {
-        fetch(url, init).then(async (result) => {
-          const json: Response[] = await result.json()
-          sendResponse(json)
+        fetch(url, init).then((result) => {
+          result.json().then(sendResponse)
         })
       } catch (error) {
-        sendResponse([])
+        console.log(error, 'Error in background.ts')
+        sendResponse([{}])
       }
     }
 
@@ -37,10 +37,10 @@ chrome.runtime.onMessage.addListener(
  * to invoke only on http schemed pages.
  */
 if ('isV3Manifest') {
-  chrome.runtime.onInstalled.addListener(async () => {
-    await chrome.declarativeContent.onPageChanged.removeRules()
-    await chrome.action.disable()
-    await chrome.declarativeContent.onPageChanged.addRules([
+  chrome.runtime.onInstalled.addListener(() => {
+    chrome.declarativeContent.onPageChanged.removeRules()
+    chrome.action.disable()
+    chrome.declarativeContent.onPageChanged.addRules([
       {
         conditions: [
           new chrome.declarativeContent.PageStateMatcher({

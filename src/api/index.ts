@@ -20,33 +20,18 @@ const linkStatus = (response: Response): LinkStatus => ({
   headers: getHeaders(response),
 })
 
-const getStatus = async (url: string, retries = 5) => {
-  // const { signal, abort } = new AbortController()
-  // setTimeout(() => abort(), 5000)
-
+const getStatus = async (url: string) => {
   try {
     const response = await fetch(url)
-
-    if (response.ok) {
-      return linkStatus(response)
-    }
-
-    if (response.status === 404 && retries > 0) {
-      getStatus(url, retries - 1)
-    }
-
-    return response
-  } catch (error: any) {
+    return linkStatus(response)
+  } catch (error) {
+    console.log('Error => ', error)
     return {} as LinkStatus
   }
 }
 
 http('fetchStatuses', async (request, response) => {
   const links: string[] = JSON.parse(request.body)
-
-  const responses = await Promise.all(
-    links.map((href) => getStatus(href)),
-  ).catch(() => [{}] as Response[])
-
+  const responses = await Promise.all(links.map(getStatus))
   response.send(JSON.stringify(responses))
 })
