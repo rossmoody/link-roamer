@@ -73,7 +73,11 @@ const MainContent = () => (
       </HStack>
       <Divider orientation="vertical" />
       <Text fontSize="xs" color="gray.300">
-        Rated 5 stars by a bunch of awesome folks
+        Rated{' '}
+        <Link color="blurple.300" href={Links.chromeWebstore}>
+          5 stars
+        </Link>{' '}
+        by a bunch of awesome folks
       </Text>
     </HStack>
   </Box>

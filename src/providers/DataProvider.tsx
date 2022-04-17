@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import c from '../scripts/Chrome'
 import { gatherHrefs } from '../scripts/execute-scripts'
-import { Children, LinkData } from '../types'
 import lp from '../scripts/LinkProcessor'
+import { Children, LinkData } from '../types'
 
 interface DataContextProps {
   data: LinkData
@@ -51,6 +51,8 @@ export const DataProvider = ({ children }: Children) => {
           if (status) link.status = status
           return link
         })
+
+        console.table(links)
 
         setData({ links, loading: false })
       }

@@ -3,10 +3,14 @@
   "version": "1.0.2",
   "description": "A browser extension for gathering, organizing, and inspecting all the links on a web page.",
   "scripts": {
-    "server": "npx functions-framework --target fetchStatuses --source dist/api",
     "release": "cross-env NODE_ENV=production rollup -c",
+    "safari": "xcrun safari-web-extension-converter ./dist/v2-manifest",
+    "server": "npx functions-framework --target fetchStatuses --source dist/api",
     "start": "rollup -c -w",
-    "safari": "xcrun safari-web-extension-converter ./dist/v2-manifest"
+    "watch": "npm-watch server"
+  },
+  "watch": {
+    "server": "dist/api/*.js"
   },
   "type": "module",
   "keywords": [
@@ -53,6 +57,7 @@
     "eslint": "^7.16.0",
     "eslint-plugin-react": "^7.21.5",
     "node-fetch": "^3.2.3",
+    "npm-watch": "^0.11.0",
     "prettier": "^2.2.1",
     "rollup": "^2.56.3",
     "rollup-plugin-chrome-extension": "^3.6.1",

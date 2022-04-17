@@ -10,11 +10,11 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import Link from '../../scripts/Link'
-import Tag from '../Tag'
 import { useCheckedItems } from '../../providers/CheckedItems'
-import { ExternalLinkIcon } from '../icons'
 import c from '../../scripts/Chrome'
+import Link from '../../scripts/Link'
+import { ExternalLinkIcon } from '../icons'
+import Tag from '../Tag'
 
 type Props = {
   link: Link
@@ -38,8 +38,6 @@ const LinkItem = ({ link }: Props) => {
 
   const isHttp = link.protocol === 'http:'
   const isBroken = link.status.status === 404
-
-  if (isBroken) console.log(link.status)
 
   return (
     <ListItem

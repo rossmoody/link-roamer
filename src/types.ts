@@ -24,4 +24,5 @@ export type LinkStatus = {
   statusText: string
   type: ResponseType
   url: string
+  headers: Record<string, string>
 }
