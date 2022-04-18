@@ -1,5 +1,5 @@
-import Link from './Link'
 import { CategorizedLinks } from '../types'
+import Link from './Link'
 
 const FILTER_URL = 'https://www.filterthisurlout-1-2-3-4-5.com'
 
@@ -55,7 +55,7 @@ export class LinkProcessor {
    * Filter links to include only those with a status code of 404
    */
   filterBrokenLinks(links: Link[]) {
-    const filtered = links.filter((link) => link.status.status === 404)
+    const filtered = links.filter((link) => link.status.broken)
     return this.categorizeByDomain(filtered)
   }
 
@@ -82,7 +82,7 @@ export class LinkProcessor {
   }
 
   containsBroken(links: Link[]) {
-    return links.some((link) => link.status.status === 404)
+    return links.some((link) => link.status.broken)
   }
 
   /**

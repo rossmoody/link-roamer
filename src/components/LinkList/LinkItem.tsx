@@ -37,7 +37,7 @@ const LinkItem = ({ link }: Props) => {
   }
 
   const isHttp = link.protocol === 'http:'
-  const isBroken = link.status.status === 404
+  const isBroken = link.status.broken
 
   return (
     <ListItem

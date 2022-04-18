@@ -30,9 +30,7 @@ export const DataProvider = ({ children }: Children) => {
       const { id } = await c.getActiveTab()
 
       if (id) {
-        const links = (
-          await c.executeScript<string[]>(id, gatherHrefs)
-        )
+        const links = (await c.executeScript<string[]>(id, gatherHrefs))
           .map(lp.createLink)
           .filter(lp.filterHttp)
           .filter(lp.filterKeyString)
@@ -51,8 +49,12 @@ export const DataProvider = ({ children }: Children) => {
     const fetchData = async () => {
       if (data.links.length > 0) {
         const result = await c.fetchLinks(data.links)
+        console.log(result)
+
         const links = data.links.map((link) => {
-          const status = result.find(({ url }) => url === link.href)
+          const status = result.find(
+            (status) => status.url.original === link.href,
+          )
           if (status) link.status = status
           return link
         })
@@ -65,9 +67,7 @@ export const DataProvider = ({ children }: Children) => {
   }, [data.links.length])
 
   return (
-    <DataContext.Provider value={dataMemo}>
-      {children}
-    </DataContext.Provider>
+    <DataContext.Provider value={dataMemo}>{children}</DataContext.Provider>
   )
 }
 
