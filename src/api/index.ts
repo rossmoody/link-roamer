@@ -20,33 +20,38 @@ const linkStatus = (response: Response): LinkStatus => ({
   url: response.url,
 })
 
-const getStatus = async (url: string, retries = 3) => {
+const getStatus = async (url: string, retries: number) => {
   const controller = new globalThis.AbortController()
-
-  //@ts-ignore
-  controller.signal.onabort(() => console.log(url))
-
-  setTimeout(() => {
+  const timeout = setTimeout(() => {
     controller.abort()
-  }, 10000)
+  }, 4000)
+
+  controller.signal.addEventListener('abort', () =>
+    console.log('Failed: ', '\n', url, '\n', 'Retries: ', '\n', retries, '\n'),
+  )
 
   try {
     const response = await fetch(url, {
       signal: controller.signal,
     })
 
-    if (response.status === 404 && retries >= 0)
+    clearTimeout(timeout)
+
+    if (response.status === 404 && retries >= 0) {
       getStatus(url, retries - 1)
+    }
 
     return linkStatus(response)
   } catch (error) {
+    if (retries >= 0) {
+      getStatus(url, retries - 1)
+    }
+
     return {} as LinkStatus
   }
 }
 
-const resolveSettledPromises = (
-  promise: PromiseSettledResult<LinkStatus>,
-) => {
+const resolveSettledPromises = (promise: PromiseSettledResult<LinkStatus>) => {
   switch (promise.status) {
     case 'fulfilled':
       return promise.value
@@ -58,7 +63,10 @@ const resolveSettledPromises = (
 
 http('fetchStatuses', async (request, response) => {
   const links: string[] = JSON.parse(request.body)
-  const results = await Promise.allSettled(links.map(getStatus))
-  const settled = results.map(resolveSettledPromises)
-  response.send(JSON.stringify(settled))
+
+  const results = (
+    await Promise.allSettled(links.map((link) => getStatus(link, 3)))
+  ).map(resolveSettledPromises)
+
+  response.send(JSON.stringify(results))
 })
