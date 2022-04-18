@@ -6,7 +6,7 @@
  */
 export function gatherHrefs() {
   const links = Array.from(document.links)
-  const hrefs = links.map((link) => decodeURI(link.href))
+  const hrefs = links.map((link) => link.href)
   return [...new Set(hrefs)]
 }
 

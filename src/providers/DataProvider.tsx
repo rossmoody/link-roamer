@@ -12,7 +12,10 @@ interface DataContextProps {
 const DataContext = React.createContext({} as DataContextProps)
 
 export const DataProvider = ({ children }: Children) => {
-  const [data, setData] = useState<LinkData>({ links: [], loading: true })
+  const [data, setData] = useState<LinkData>({
+    links: [],
+    loading: true,
+  })
 
   const dataMemo = useMemo(
     () => ({
@@ -27,7 +30,9 @@ export const DataProvider = ({ children }: Children) => {
       const { id } = await c.getActiveTab()
 
       if (id) {
-        const links = (await c.executeScript<string[]>(id, gatherHrefs))
+        const links = (
+          await c.executeScript<string[]>(id, gatherHrefs)
+        )
           .map(lp.createLink)
           .filter(lp.filterHttp)
           .filter(lp.filterKeyString)
@@ -52,8 +57,6 @@ export const DataProvider = ({ children }: Children) => {
           return link
         })
 
-        console.table(links)
-
         setData({ links, loading: false })
       }
     }
@@ -62,7 +65,9 @@ export const DataProvider = ({ children }: Children) => {
   }, [data.links.length])
 
   return (
-    <DataContext.Provider value={dataMemo}>{children}</DataContext.Provider>
+    <DataContext.Provider value={dataMemo}>
+      {children}
+    </DataContext.Provider>
   )
 }
 

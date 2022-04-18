@@ -3,35 +3,62 @@ import fetch, { Response } from 'node-fetch'
 import { LinkStatus } from '../types'
 
 const getHeaders = (response: Response) => {
-  const headers = {} as Record<string, string>
-  for (const [key, value] of response.headers.entries()) {
-    headers[key] = value
-  }
-  return headers
+  const entries = Array.from(response.headers.entries())
+  return entries.reduce((accumulator, [key, value]) => {
+    accumulator[key] = value
+    return accumulator
+  }, {} as Record<string, string>)
 }
 
 const linkStatus = (response: Response): LinkStatus => ({
-  redirected: response.redirected,
+  headers: getHeaders(response),
   ok: response.ok,
+  redirected: response.redirected,
   status: response.status,
-  url: response.url,
   statusText: response.statusText,
   type: response.type,
-  headers: getHeaders(response),
+  url: response.url,
 })
 
-const getStatus = async (url: string) => {
+const getStatus = async (url: string, retries = 3) => {
+  const controller = new globalThis.AbortController()
+
+  //@ts-ignore
+  controller.signal.onabort(() => console.log(url))
+
+  setTimeout(() => {
+    controller.abort()
+  }, 10000)
+
   try {
-    const response = await fetch(url)
+    const response = await fetch(url, {
+      signal: controller.signal,
+    })
+
+    if (response.status === 404 && retries >= 0)
+      getStatus(url, retries - 1)
+
     return linkStatus(response)
   } catch (error) {
-    console.log('Error => ', error)
     return {} as LinkStatus
+  }
+}
+
+const resolveSettledPromises = (
+  promise: PromiseSettledResult<LinkStatus>,
+) => {
+  switch (promise.status) {
+    case 'fulfilled':
+      return promise.value
+
+    case 'rejected':
+      return {}
   }
 }
 
 http('fetchStatuses', async (request, response) => {
   const links: string[] = JSON.parse(request.body)
-  const responses = await Promise.all(links.map(getStatus))
-  response.send(JSON.stringify(responses))
+  const results = await Promise.allSettled(links.map(getStatus))
+  const settled = results.map(resolveSettledPromises)
+  response.send(JSON.stringify(settled))
 })
