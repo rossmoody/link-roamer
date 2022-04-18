@@ -21,7 +21,7 @@ const linkStatus = (response: Response): LinkStatus => ({
 })
 
 const getStatus = (url: string) => {
-  const fetchStatus = async (retries: number) => {
+  async function fetchStatus(retries: number) {
     const controller = new globalThis.AbortController()
 
     const timeout = setTimeout(() => {
