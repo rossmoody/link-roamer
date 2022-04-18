@@ -23,7 +23,6 @@ chrome.runtime.onMessage.addListener(
           result.json().then(sendResponse)
         })
       } catch (error) {
-        console.log(error, 'Error in background.ts')
         sendResponse([{}])
       }
     }

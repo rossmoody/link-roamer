@@ -20,35 +20,36 @@ const linkStatus = (response: Response): LinkStatus => ({
   url: response.url,
 })
 
-const getStatus = async (url: string, retries: number) => {
-  const controller = new globalThis.AbortController()
-  const timeout = setTimeout(() => {
-    controller.abort()
-  }, 4000)
+const getStatus = (url: string) => {
+  const fetchStatus = async (retries: number) => {
+    const controller = new globalThis.AbortController()
 
-  controller.signal.addEventListener('abort', () =>
-    console.log('Failed: ', '\n', url, '\n', 'Retries: ', '\n', retries, '\n'),
-  )
+    const timeout = setTimeout(() => {
+      controller.abort()
+    }, 4000)
 
-  try {
-    const response = await fetch(url, {
-      signal: controller.signal,
-    })
+    try {
+      const response = await fetch(url, {
+        signal: controller.signal,
+      })
 
-    clearTimeout(timeout)
+      clearTimeout(timeout)
 
-    if (response.status === 404 && retries >= 0) {
-      getStatus(url, retries - 1)
+      if (response.status === 404 && retries >= 0) {
+        fetchStatus(retries - 1)
+      }
+
+      return linkStatus(response)
+    } catch (error) {
+      if (retries >= 0) {
+        fetchStatus(retries - 1)
+      }
+
+      return {} as LinkStatus
     }
-
-    return linkStatus(response)
-  } catch (error) {
-    if (retries >= 0) {
-      getStatus(url, retries - 1)
-    }
-
-    return {} as LinkStatus
   }
+
+  return fetchStatus(5)
 }
 
 const resolveSettledPromises = (promise: PromiseSettledResult<LinkStatus>) => {
@@ -63,10 +64,8 @@ const resolveSettledPromises = (promise: PromiseSettledResult<LinkStatus>) => {
 
 http('fetchStatuses', async (request, response) => {
   const links: string[] = JSON.parse(request.body)
-
-  const results = (
-    await Promise.allSettled(links.map((link) => getStatus(link, 3)))
-  ).map(resolveSettledPromises)
-
+  const results = (await Promise.allSettled(links.map(getStatus))).map(
+    resolveSettledPromises,
+  )
   response.send(JSON.stringify(results))
 })
