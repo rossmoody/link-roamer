@@ -54,8 +54,13 @@ export class LinkProcessor {
   /**
    * Filter links to include only those with a status code of 404
    */
-  filterBrokenLinks(links: Link[]) {
-    const filtered = links.filter((link) => link.status.broken)
+  filter404Links(links?: Link[]) {
+    if (!links) return {}
+
+    const filtered = links.filter(
+      (link) => link.status.http?.response?.statusCode === 404,
+    )
+
     return this.categorizeByDomain(filtered)
   }
 
@@ -77,12 +82,18 @@ export class LinkProcessor {
     return counter
   }
 
-  containsHttp(links: Link[]) {
-    return links.some((link) => link.protocol === 'http:')
+  getHttpLinkQty(links: Link[]) {
+    let counter = 0
+    links.forEach((link) => (link.protocol === 'http:' ? counter++ : null))
+    return counter
   }
 
-  containsBroken(links: Link[]) {
-    return links.some((link) => link.status.broken)
+  get404Qty(links: Link[]) {
+    let counter = 0
+    links.forEach((link) =>
+      link.status.http?.response?.statusCode === 404 ? counter++ : null,
+    )
+    return counter
   }
 
   /**

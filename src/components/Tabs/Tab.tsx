@@ -1,10 +1,9 @@
-import React, { ReactElement } from 'react'
 import { Badge, Tab, useColorModeValue } from '@chakra-ui/react'
+import React from 'react'
 
 type CustomTabProps = {
   linksQty: number
   title: string
-  icon?: ReactElement
 }
 
 const CustomTab = React.forwardRef<HTMLButtonElement, CustomTabProps>(
@@ -22,7 +21,6 @@ const CustomTab = React.forwardRef<HTMLButtonElement, CustomTabProps>(
           borderColor: border,
         }}
       >
-        {props.icon && props.icon}
         {props.title} <Badge>{props.linksQty}</Badge>
       </Tab>
     )

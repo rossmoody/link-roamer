@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
 import { TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react'
 import { useData } from '../../providers/DataProvider'
-import LinkList from '../LinkList'
-import lp from '../../scripts/LinkProcessor'
-import { BrokenLinkIcon, HashIcon } from '../icons'
-import Tab from './Tab'
 import Link from '../../scripts/Link'
+import lp from '../../scripts/LinkProcessor'
+import LinkList from '../LinkList'
 import SearchFilter from './SearchFilter'
+import Tab from './Tab'
 
 const CategoryTabs = () => {
   const [links, setLinks] = useState<Link[]>([])
@@ -26,7 +25,7 @@ const CategoryTabs = () => {
 
   const categorized = lp.categorizeByDomain(links)
   const fragments = lp.filterFragmentLinks(links)
-  const broken = lp.filterBrokenLinks(links)
+  const broken = lp.filter404Links(links)
 
   return (
     <React.Fragment>
@@ -37,13 +36,8 @@ const CategoryTabs = () => {
           <Tab
             linksQty={lp.getCategorizedLinksQty(fragments)}
             title="Fragments"
-            icon={<HashIcon />}
           />
-          <Tab
-            linksQty={lp.getCategorizedLinksQty(broken)}
-            title="404"
-            icon={<BrokenLinkIcon />}
-          />
+          <Tab linksQty={lp.getCategorizedLinksQty(broken)} title="404" />
         </TabList>
 
         <TabPanels pb={20}>

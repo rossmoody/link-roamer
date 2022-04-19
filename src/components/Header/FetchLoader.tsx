@@ -15,12 +15,13 @@ const FetchLoader = () => {
 
   useEffect(() => {
     if (!data.loading) {
-      const brokenLinks = linkProcessor.filterBrokenLinks(data.links)
-      const brokenLinksQty = Object.keys(brokenLinks).length
+      const brokenLinksQty = Object.keys(
+        linkProcessor.filter404Links(data.links),
+      ).length
 
       brokenLinksQty
         ? setState({
-            label: `Found ${brokenLinksQty} broken link${
+            label: `Found ${brokenLinksQty} 404 link${
               brokenLinksQty < 2 ? '' : 's'
             }`,
             colorScheme: 'red',

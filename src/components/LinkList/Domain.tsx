@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   AccordionButton,
   AccordionIcon,
@@ -7,14 +6,17 @@ import {
   Badge,
   Checkbox,
   Heading,
+  HStack,
   List,
   Stack,
 } from '@chakra-ui/react'
-import Link from '../../scripts/Link'
-import LinkItem from './LinkItem'
+import React from 'react'
 import { useCheckedItems } from '../../providers/CheckedItems'
+import Link from '../../scripts/Link'
+import lp from '../../scripts/LinkProcessor'
+import QuantityTag from '../QuantityTag'
 import Favicon from './Favicon'
-import WarningTag from './WarningTag'
+import LinkItem from './LinkItem'
 
 type Props = {
   domain: string
@@ -37,6 +39,9 @@ const Domain = ({ domain, links }: Props) => {
       : setCheckedItems((prevChecked) => [...prevChecked, ...hrefs])
   }
 
+  const httpQty = lp.getHttpLinkQty(links)
+  const brokenQty = lp.get404Qty(links)
+
   return (
     <AccordionItem>
       <h2>
@@ -53,7 +58,18 @@ const Domain = ({ domain, links }: Props) => {
             </Heading>
             <Badge>{links.length}</Badge>
           </Stack>
-          <WarningTag links={links} />
+          <HStack>
+            {httpQty && (
+              <QuantityTag quantity={httpQty} colorScheme="yellow" size="sm">
+                HTTP
+              </QuantityTag>
+            )}
+            {brokenQty && (
+              <QuantityTag quantity={brokenQty} colorScheme="red" size="sm">
+                404
+              </QuantityTag>
+            )}
+          </HStack>
           <AccordionIcon />
         </AccordionButton>
       </h2>

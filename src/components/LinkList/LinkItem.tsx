@@ -6,6 +6,7 @@ import {
   Flex,
   Link as ChakraLink,
   ListItem,
+  Tag,
   Text,
   useColorModeValue,
 } from '@chakra-ui/react'
@@ -14,7 +15,6 @@ import { useCheckedItems } from '../../providers/CheckedItems'
 import c from '../../scripts/Chrome'
 import Link from '../../scripts/Link'
 import { ExternalLinkIcon } from '../icons'
-import Tag from '../Tag'
 
 type Props = {
   link: Link
@@ -62,8 +62,16 @@ const LinkItem = ({ link }: Props) => {
             </Text>
           </ChakraLink>
         </Flex>
-        {isHttp && <Tag status="critical">HTTP</Tag>}
-        {isBroken && <Tag status="critical">404</Tag>}
+        {isHttp && (
+          <Tag size="sm" colorScheme="yellow">
+            HTTP
+          </Tag>
+        )}
+        {isBroken && (
+          <Tag size="sm" colorScheme="red">
+            404
+          </Tag>
+        )}
       </Flex>
       <Fade in={hover}>
         <Center
