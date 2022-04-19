@@ -33,10 +33,8 @@ const Domain = ({ domain, links }: Props) => {
     const hrefs = links.map((link) => link.href)
 
     allChecked
-      ? setCheckedItems((prevChecked) =>
-          prevChecked.filter((item) => !hrefs.includes(item)),
-        )
-      : setCheckedItems((prevChecked) => [...prevChecked, ...hrefs])
+      ? setCheckedItems((prev) => prev.filter((item) => !hrefs.includes(item)))
+      : setCheckedItems((prev) => [...prev, ...hrefs])
   }
 
   const httpQty = lp.getHttpLinkQty(links)
@@ -58,7 +56,7 @@ const Domain = ({ domain, links }: Props) => {
             </Heading>
             <Badge>{links.length}</Badge>
           </Stack>
-          <HStack>
+          <HStack spacing={1}>
             {httpQty && (
               <QuantityTag quantity={httpQty} colorScheme="yellow" size="sm">
                 HTTP
