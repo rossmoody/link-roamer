@@ -8,7 +8,7 @@ import {
   ListItem,
   Tag,
   Text,
-  Tooltip,
+  Tooltip
 } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useCheckedItems } from '../../providers/CheckedItems'
@@ -37,9 +37,8 @@ const LinkItem = ({ link }: Props) => {
   }
 
   const isHttp = link.protocol === 'http:'
-  const isBroken = link.status.broken
-  const statusCode = link.status?.http?.response
-    ?.statusCode as keyof typeof statusCodes
+  const isBroken = link.status.ok
+  const statusCode = link.status.status as keyof typeof statusCodes
 
   return (
     <ListItem

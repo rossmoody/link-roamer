@@ -58,7 +58,7 @@ export class LinkProcessor {
     if (!links) return {}
 
     const filtered = links.filter(
-      (link) => link.status.http?.response?.statusCode === 404,
+      (link) => link.status.status === 404,
     )
 
     return this.categorizeByDomain(filtered)
@@ -91,7 +91,7 @@ export class LinkProcessor {
   get404Qty(links: Link[]) {
     let counter = 0
     links.forEach((link) =>
-      link.status.http?.response?.statusCode === 404 ? counter++ : null,
+      link.status.status === 404 ? counter++ : null,
     )
     return counter
   }

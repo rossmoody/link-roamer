@@ -8,7 +8,7 @@ import {
   Heading,
   HStack,
   List,
-  Stack,
+  Stack
 } from '@chakra-ui/react'
 import React from 'react'
 import { useCheckedItems } from '../../providers/CheckedItems'

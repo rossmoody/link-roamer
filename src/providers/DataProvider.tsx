@@ -51,12 +51,12 @@ export const DataProvider = ({ children }: Children) => {
         const result = await c.fetchLinks(data.links)
 
         result.forEach((link) => {
-          if (link.broken) console.log(link)
+          if (!link.ok) console.log(link)
         })
 
         const links = data.links.map((link) => {
           const status = result.find(
-            (status) => status.url.original === link.href,
+            (status) => status.url === link.href,
           )
           if (status) link.status = status
           return link
