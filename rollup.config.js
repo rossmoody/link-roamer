@@ -20,7 +20,7 @@ const apiConfig = {
     format: 'esm',
   },
   plugins: [typescript()],
-  external: ['node-fetch', '@google-cloud/functions-framework', 'broken-link-checker-timeout'],
+  external: ['node-fetch', '@google-cloud/functions-framework'],
 }
 
 const v2Manifest = {
@@ -33,6 +33,7 @@ const v2Manifest = {
   plugins: [
     replace({
       'process.env.NODE_ENV': NODE_ENV,
+      isDevEnv: isProduction ? '' : 'isDevEnv',
       isV3Manifest: '',
       preventAssignment: true,
     }),
@@ -57,6 +58,7 @@ const v3Manifest = {
     replace({
       'process.env.NODE_ENV': NODE_ENV,
       isV3Manifest: 'true',
+      isDevEnv: isProduction ? '' : 'isDevEnv',
       preventAssignment: true,
     }),
     chromeExtension(),

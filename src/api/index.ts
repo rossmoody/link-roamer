@@ -1,24 +1,6 @@
 import { http } from '@google-cloud/functions-framework'
-import fetch, { Response } from 'node-fetch'
-import { LinkStatus } from '../types'
-
-const getHeaders = (response: Response) => {
-  const entries = Array.from(response.headers.entries())
-  return entries.reduce((accumulator, [key, value]) => {
-    accumulator[key] = value
-    return accumulator
-  }, {} as Record<string, string>)
-}
-
-const linkStatus = (response: Response): LinkStatus => ({
-  headers: getHeaders(response),
-  ok: response.ok,
-  redirected: response.redirected,
-  status: response.status,
-  statusText: response.statusText,
-  type: response.type,
-  url: response.url,
-})
+import fetch from 'node-fetch'
+import LinkStatus from './LinkStatus'
 
 const getStatus = (url: string) => {
   async function fetchStatus(retries: number) {
@@ -39,7 +21,7 @@ const getStatus = (url: string) => {
         fetchStatus(retries - 1)
       }
 
-      return linkStatus(response)
+      return new LinkStatus(response)
     } catch (error) {
       if (retries >= 0) {
         fetchStatus(retries - 1)

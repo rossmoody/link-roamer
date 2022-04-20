@@ -1,6 +1,7 @@
 import CreateData = chrome.windows.CreateData
 import GroupOptions = chrome.tabs.GroupOptions
-import { LinkStatus, Message } from '../types'
+import LinkStatus from '../api/LinkStatus'
+import { Message } from '../types'
 import Link from './Link'
 
 class Chrome {

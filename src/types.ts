@@ -16,13 +16,3 @@ export type LinkData = {
 export type Children = {
   children: React.ReactNode
 }
-
-export type LinkStatus =  {
-  ok: boolean
-  redirected: boolean
-  status: number
-  statusText: string
-  type: ResponseType
-  url: string
-  headers: Record<string, string>
-}

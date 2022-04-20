@@ -8,7 +8,7 @@ import {
   ListItem,
   Tag,
   Text,
-  Tooltip
+  Tooltip,
 } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useCheckedItems } from '../../providers/CheckedItems'
@@ -32,12 +32,12 @@ const LinkItem = ({ link }: Props) => {
     checked
       ? setCheckedItems((prevChecked) => [...prevChecked, value])
       : setCheckedItems((prevChecked) =>
-          prevChecked.filter((href) => href !== value),
+          prevChecked.filter((href) => href !== value)
         )
   }
 
   const isHttp = link.protocol === 'http:'
-  const isBroken = link.status.ok
+  const isNotOk = !link.status.ok
   const statusCode = link.status.status as keyof typeof statusCodes
 
   return (
@@ -76,7 +76,7 @@ const LinkItem = ({ link }: Props) => {
               HTTP
             </Tag>
           )}
-          {isBroken && (
+          {isNotOk && (
             <Tooltip
               shouldWrapChildren
               hasArrow

@@ -22,7 +22,7 @@ export const DataProvider = ({ children }: Children) => {
       data,
       setData,
     }),
-    [data],
+    [data]
   )
 
   useEffect(() => {
@@ -55,12 +55,15 @@ export const DataProvider = ({ children }: Children) => {
         })
 
         const links = data.links.map((link) => {
-          const status = result.find(
-            (status) => status.url === link.href,
-          )
+          const status = result.find((status) => status.url === link.href)
           if (status) link.status = status
           return link
         })
+
+        if ('isDevEnv') {
+          console.log('Not ok -> ', lp.filterNotOk(links))
+          console.log('Links -> ', links)
+        }
 
         setData({ links, loading: false })
       }

@@ -1,4 +1,4 @@
-import { LinkStatus } from '../types'
+import LinkStatus from '../api/LinkStatus'
 
 class Link extends URL {
   private _status = {} as LinkStatus

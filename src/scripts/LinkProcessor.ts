@@ -54,13 +54,9 @@ export class LinkProcessor {
   /**
    * Filter links to include only those with a status code of 404
    */
-  filter404Links(links?: Link[]) {
+  filterNotOk(links?: Link[]) {
     if (!links) return {}
-
-    const filtered = links.filter(
-      (link) => link.status.status === 404,
-    )
-
+    const filtered = links.filter((link) => !link.status.ok)
     return this.categorizeByDomain(filtered)
   }
 
@@ -90,9 +86,7 @@ export class LinkProcessor {
 
   get404Qty(links: Link[]) {
     let counter = 0
-    links.forEach((link) =>
-      link.status.status === 404 ? counter++ : null,
-    )
+    links.forEach((link) => (link.status.status === 404 ? counter++ : null))
     return counter
   }
 

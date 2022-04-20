@@ -18,14 +18,14 @@ const CategoryTabs = () => {
 
   useEffect(() => {
     const filteredLinks = data.links.filter((link) =>
-      link.href.includes(filter),
+      link.href.includes(filter)
     )
     setLinks(filteredLinks)
   }, [filter])
 
   const categorized = lp.categorizeByDomain(links)
   const fragments = lp.filterFragmentLinks(links)
-  const broken = lp.filter404Links(links)
+  const notOk = lp.filterNotOk(links)
 
   return (
     <React.Fragment>
@@ -37,7 +37,7 @@ const CategoryTabs = () => {
             linksQty={lp.getCategorizedLinksQty(fragments)}
             title="Fragments"
           />
-          <Tab linksQty={lp.getCategorizedLinksQty(broken)} title="404" />
+          <Tab linksQty={lp.getCategorizedLinksQty(notOk)} title="404" />
         </TabList>
 
         <TabPanels pb={20}>
@@ -48,7 +48,7 @@ const CategoryTabs = () => {
             <LinkList categorizedLinks={fragments} />
           </TabPanel>
           <TabPanel p={0}>
-            <LinkList categorizedLinks={broken} />
+            <LinkList categorizedLinks={notOk} />
           </TabPanel>
         </TabPanels>
       </Tabs>

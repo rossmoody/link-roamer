@@ -218,4 +218,9 @@ export default {
     description:
       'Indicates that the client needs to authenticate to gain network access.',
   },
+  999: {
+    title: 'Custom Status',
+    description:
+      'A non-standard code is returned by some sites (e.g. LinkedIn) which do not permit scanning.',
+  },
 }
