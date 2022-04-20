@@ -1,9 +1,9 @@
 import React from 'react'
-import ThemeProvider from '../providers/ThemeProvider'
 import { CategoryTabs, Header, Layout } from '../components'
-import { DataProvider } from '../providers/DataProvider'
+import ActionsBar from '../components/ActionsBar'
 import { CheckedItemsProvider } from '../providers/CheckedItems'
-import Footer from '../components/Footer'
+import { DataProvider } from '../providers/DataProvider'
+import ThemeProvider from '../providers/ThemeProvider'
 
 const App = () => {
   return (
@@ -13,7 +13,7 @@ const App = () => {
           <Layout>
             <Header />
             <CategoryTabs />
-            <Footer />
+            <ActionsBar />
           </Layout>
         </CheckedItemsProvider>
       </DataProvider>

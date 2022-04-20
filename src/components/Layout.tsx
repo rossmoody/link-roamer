@@ -1,5 +1,5 @@
-import React from 'react'
 import { Box } from '@chakra-ui/react'
+import React from 'react'
 import { Children } from '../types'
 
 const Layout = ({ children }: Children) => (

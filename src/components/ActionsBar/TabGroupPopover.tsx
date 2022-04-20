@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Button,
   ButtonGroup,
@@ -17,9 +16,10 @@ import {
   useDisclosure,
   VisuallyHidden,
 } from '@chakra-ui/react'
-import c from '../../scripts/Chrome'
-import { useCheckedItems } from '../../providers/CheckedItems'
+import React from 'react'
 import ReactFocusLock from 'react-focus-lock'
+import { useCheckedItems } from '../../providers/CheckedItems'
+import c from '../../scripts/Chrome'
 import { NewTabIcon } from '../icons'
 
 const TabGroupPopover = () => {
@@ -32,7 +32,7 @@ const TabGroupPopover = () => {
       checkedItems.map(async (href) => {
         const tab = await c.createBackgroundTab(href)
         return tab.id as number
-      }),
+      })
     )
 
     const title = inputRef.current?.value ?? ''

@@ -1,5 +1,3 @@
-import React from 'react'
-import { useCheckedItems } from '../../providers/CheckedItems'
 import {
   Button,
   ButtonGroup,
@@ -8,12 +6,14 @@ import {
   Tag,
   useColorModeValue,
 } from '@chakra-ui/react'
-import { ExternalLinkIcon } from '../icons'
+import React from 'react'
+import { useCheckedItems } from '../../providers/CheckedItems'
 import c from '../../scripts/Chrome'
-import TabGroupPopover from './TabGroupPopover'
+import { ExternalLinkIcon } from '../icons'
 import OverflowActions from './OverflowActions'
+import TabGroupPopover from './TabGroupPopover'
 
-const Index = () => {
+const ActionsBar = () => {
   const { checkedItems } = useCheckedItems()
   const checkedItemsQty = checkedItems.length
   const showFooter = checkedItemsQty > 0
@@ -60,4 +60,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default ActionsBar

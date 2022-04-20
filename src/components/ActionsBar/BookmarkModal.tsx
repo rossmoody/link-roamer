@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Button,
   ButtonGroup,
@@ -14,10 +13,11 @@ import {
   Text,
   VisuallyHidden,
 } from '@chakra-ui/react'
-import c from '../../scripts/Chrome'
-import { useCheckedItems } from '../../providers/CheckedItems'
-import Link from '../../scripts/Link'
+import React from 'react'
 import ReactFocusLock from 'react-focus-lock'
+import { useCheckedItems } from '../../providers/CheckedItems'
+import c from '../../scripts/Chrome'
+import Link from '../../scripts/Link'
 
 type Props = {
   state: boolean
@@ -30,14 +30,14 @@ const BookmarkModal = ({ state, setState }: Props) => {
 
   async function createBookmark() {
     const { id } = await c.createBookmarkFolder(
-      inputRef.current?.value ?? 'Link Roamer',
+      inputRef.current?.value ?? 'Link Roamer'
     )
 
     checkedItems.forEach((url) => {
       const prettyUrl = new Link(url).displayHref
       c.createBookmark(prettyUrl, id, url)
     })
-    
+
     setState(false)
   }
 
