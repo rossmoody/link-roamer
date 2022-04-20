@@ -11,7 +11,7 @@ class Link extends URL {
   }
 
   /**
-   * Filters a list of givens links to only include ones with HTTP.
+   * Returns whether or not the protocol is http since links can be phone or address too.
    */
   get isHttp() {
     return this.protocol.includes('http')
