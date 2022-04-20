@@ -14,7 +14,7 @@ import React from 'react'
 import { useCheckedItems } from '../../providers/CheckedItems'
 import Link from '../../scripts/Link'
 import lp from '../../scripts/LinkProcessor'
-import QuantityTag from '../QuantityTag'
+import QuantityTag from '../ResponseTag'
 import Favicon from './Favicon'
 import LinkItem from './LinkItem'
 

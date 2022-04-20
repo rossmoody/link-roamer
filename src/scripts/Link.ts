@@ -1,7 +1,7 @@
 import { LinkStatus } from '../types'
 
 class Link extends URL {
-  _status = {} as LinkStatus
+  private _status = {} as LinkStatus
 
   constructor(href: string) {
     super(href)

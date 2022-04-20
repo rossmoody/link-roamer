@@ -1,19 +1,20 @@
 import {
-  Button,
-  Center,
   Checkbox,
   Fade,
   Flex,
+  HStack,
+  IconButton,
   Link as ChakraLink,
   ListItem,
   Tag,
   Text,
-  useColorModeValue,
+  Tooltip,
 } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useCheckedItems } from '../../providers/CheckedItems'
 import c from '../../scripts/Chrome'
 import Link from '../../scripts/Link'
+import statusCodes from '../../status-codes'
 import { ExternalLinkIcon } from '../icons'
 
 type Props = {
@@ -23,7 +24,6 @@ type Props = {
 const LinkItem = ({ link }: Props) => {
   const [hover, setHover] = useState(false)
   const { checkedItems, setCheckedItems } = useCheckedItems()
-  const bg = useColorModeValue('white', 'gray.800')
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.checked
@@ -38,11 +38,12 @@ const LinkItem = ({ link }: Props) => {
 
   const isHttp = link.protocol === 'http:'
   const isBroken = link.status.broken
+  const statusCode = link.status?.http?.response
+    ?.statusCode as keyof typeof statusCodes
 
   return (
     <ListItem
       pl={7}
-      position="relative"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onFocus={() => setHover(true)}
@@ -62,35 +63,35 @@ const LinkItem = ({ link }: Props) => {
             </Text>
           </ChakraLink>
         </Flex>
-        {isHttp && (
-          <Tag size="sm" colorScheme="yellow">
-            HTTP
-          </Tag>
-        )}
-        {isBroken && (
-          <Tag size="sm" colorScheme="red">
-            404
-          </Tag>
-        )}
+        <HStack spacing={1}>
+          <Fade in={hover}>
+            <IconButton
+              aria-label="Open Tab in background"
+              size="xs"
+              icon={<ExternalLinkIcon height="12px" />}
+              onClick={() => c.createBackgroundTab(link.href)}
+            />
+          </Fade>
+          {isHttp && (
+            <Tag size="sm" colorScheme="yellow">
+              HTTP
+            </Tag>
+          )}
+          {isBroken && (
+            <Tooltip
+              shouldWrapChildren
+              hasArrow
+              fontSize="12px"
+              placement="left"
+              label={statusCodes[statusCode]?.description}
+            >
+              <Tag size="sm" colorScheme="red">
+                {statusCode}
+              </Tag>
+            </Tooltip>
+          )}
+        </HStack>
       </Flex>
-      <Fade in={hover}>
-        <Center
-          position="absolute"
-          right={0}
-          top={0}
-          bottom={0}
-          margin="auto"
-          bg={bg}
-        >
-          <Button
-            size="xs"
-            leftIcon={<ExternalLinkIcon height="12px" />}
-            onClick={() => c.createBackgroundTab(link.href)}
-          >
-            Background tab
-          </Button>
-        </Center>
-      </Fade>
     </ListItem>
   )
 }

@@ -49,7 +49,10 @@ export const DataProvider = ({ children }: Children) => {
     const fetchData = async () => {
       if (data.links.length > 0) {
         const result = await c.fetchLinks(data.links)
-        console.log(result)
+
+        result.forEach((link) => {
+          if (link.broken) console.log(link)
+        })
 
         const links = data.links.map((link) => {
           const status = result.find(
