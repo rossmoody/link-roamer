@@ -1,5 +1,5 @@
 import { http } from '@google-cloud/functions-framework'
-import fetch from 'node-fetch'
+import fetch, { AbortError } from 'node-fetch'
 import LinkStatus from './LinkStatus'
 
 const getStatus = (link: string) => {
@@ -28,6 +28,10 @@ const getStatus = (link: string) => {
 
       return new LinkStatus(link, response)
     } catch (error) {
+      if (error instanceof AbortError) {
+        return new LinkStatus(link)
+      }
+
       if (retries >= 0) {
         fetchStatus(retries - 1, method)
       }

@@ -61,19 +61,14 @@ export const DataProvider = ({ children }: Children) => {
 
         if ('isDevEnv') {
           const notOk = lp.filterNotOk(links)
+          const notOkQty = Object.keys(notOk).length
           const invalid = lp.filterValidResponses(links)
+          const invalidQty = Object.keys(invalid).length
+          const resultQty = Object.keys(result).length
 
-          console.log(
-            'After Status Fetch -> ',
-            result,
-            Object.keys(result).length
-          )
-          console.log('Not ok -> ', notOk, Object.keys(notOk).length)
-          console.log(
-            'Empty link status -> ',
-            invalid,
-            Object.keys(invalid).length
-          )
+          console.log('After Status Fetch -> ', result, resultQty)
+          console.log('Not ok -> ', notOk, notOkQty)
+          console.log('Empty link status -> ', invalid, invalidQty)
           console.log('Links -> ', links)
         }
 

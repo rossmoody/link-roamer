@@ -4,12 +4,17 @@ class LinkStatus {
   /**
    * A boolean indicating whether the response was successful (status in the range 200–299) or not. Defaults to true in case links are timed out.
    */
-  ok = true
+  readonly ok: boolean
 
   /**
    * When an instance is created without a response, this defaults to false to check if the instance is valid.
    */
-  validResponse = false
+  readonly validResponse: boolean
+
+  /**
+   * The original url used to fetch. Important when links are redirected as the url returned from response is final destination.
+   */
+  readonly originUrl: string
 
   /**
    * The Headers object associated with the response.
@@ -41,7 +46,11 @@ class LinkStatus {
    * */
   readonly url?: string
 
-  constructor(public originUrl: string, response?: Response) {
+  constructor(originUrl: string, response?: Response) {
+    this.originUrl = originUrl
+    this.ok = false
+    this.validResponse = false
+
     if (response) {
       this.validResponse = true
       this.ok = response.ok
