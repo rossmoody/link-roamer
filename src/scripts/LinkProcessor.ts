@@ -7,12 +7,13 @@ export class LinkProcessor {
   /**
    * Creates a Link object which extends the URL class.
    * If it fails, it returns a fake url with the key 'filtermeout' for
-   * targeting later. URL creation fails pretty often.
+   * targeting later. URL creation fails pretty often. I don't know why.
+   * If you're reading this, please tell me why.
    */
   createLink(href: string) {
     try {
       return new Link(href)
-    } catch (e) {
+    } catch (error) {
       return new Link(FILTER_URL)
     }
   }
@@ -25,14 +26,15 @@ export class LinkProcessor {
   }
 
   /**
-   * Filter the links with 'filtermeout' key
+   * Filter the links with 'filtermeout' key. This is a factory filter helper for when Link creation fails.
    */
   filterKeyString(link: Link) {
     return !link.href.includes(FILTER_URL)
   }
 
   /**
-   * Creates a Record of Links categorized by available domain names
+   * Creates a Record of Links categorized by available domain names. Returns
+   * a Record of Links with keys as domains.
    */
   categorizeByDomain(links: Link[]) {
     return links.reduce((accum, link: Link) => {
@@ -40,7 +42,7 @@ export class LinkProcessor {
       if (!accum[domain]) accum[domain] = []
       accum[domain].push(link)
       return accum
-    }, {} as Record<string, Link[]>)
+    }, {} as CategorizedLinks)
   }
 
   /**
@@ -52,20 +54,18 @@ export class LinkProcessor {
   }
 
   /**
-   * Filter links to include only those with a status code of 404
+   * Return all the links that aren't status ok as a categorized list
    */
-  filterNotOk(links?: Link[]) {
-    if (!links) return {}
+  getNotOkLinks(links: Link[]) {
     const filtered = links.filter((link) => !link.status.ok)
     return this.categorizeByDomain(filtered)
   }
 
   /**
-   * Filter links to include only those with a status code of 404
+   * Return all the links that aren't redirected as a categorized list
    */
-  filterValidResponses(links?: Link[]) {
-    if (!links) return {}
-    const filtered = links.filter((link) => !link.status.validResponse)
+  getRedirectedLinks(links: Link[]) {
+    const filtered = links.filter((link) => link.status.redirected)
     return this.categorizeByDomain(filtered)
   }
 

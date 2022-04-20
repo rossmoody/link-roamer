@@ -23,33 +23,56 @@ const CategoryTabs = () => {
     setLinks(filteredLinks)
   }, [filter])
 
-  const categorized = lp.categorizeByDomain(links)
-  const fragments = lp.filterFragmentLinks(links)
-  const notOk = lp.filterNotOk(links)
+  const all = {
+    links: lp.categorizeByDomain(links),
+    quantity: lp.getCategorizedLinksQty(lp.categorizeByDomain(links)),
+  }
+
+  const fragments = {
+    links: lp.filterFragmentLinks(links),
+    quantity: lp.getCategorizedLinksQty(lp.filterFragmentLinks(links)),
+  }
+
+  const notOk = {
+    links: lp.getNotOkLinks(links),
+    quantity: lp.getCategorizedLinksQty(lp.getNotOkLinks(links)),
+  }
+
+  const redirected = {
+    links: lp.getRedirectedLinks(links),
+    quantity: lp.getCategorizedLinksQty(lp.getRedirectedLinks(links)),
+  }
 
   return (
     <React.Fragment>
       <SearchFilter setFilter={setFilter} />
       <Tabs isLazy>
         <TabList px={3}>
-          <Tab linksQty={lp.getCategorizedLinksQty(categorized)} title="All" />
-          <Tab
-            linksQty={lp.getCategorizedLinksQty(fragments)}
-            title="Fragments"
-          />
-          <Tab linksQty={lp.getCategorizedLinksQty(notOk)} title="Not Ok" />
+          <Tab linksQty={all.quantity} title="All" />
+          <Tab linksQty={fragments.quantity} title="Fragments" />
+          <Tab linksQty={notOk.quantity} title="Issues" />
+          <Tab linksQty={redirected.quantity} title="Redirects" />
         </TabList>
 
         <TabPanels pb={20}>
           <TabPanel p={0}>
-            <LinkList categorizedLinks={categorized} />
+            <LinkList categorizedLinks={all.links} />
           </TabPanel>
-          <TabPanel p={0}>
-            <LinkList categorizedLinks={fragments} />
-          </TabPanel>
-          <TabPanel p={0}>
-            <LinkList categorizedLinks={notOk} />
-          </TabPanel>
+          {fragments.quantity && (
+            <TabPanel p={0}>
+              <LinkList categorizedLinks={fragments.links} />
+            </TabPanel>
+          )}
+          {notOk.quantity && (
+            <TabPanel p={0}>
+              <LinkList categorizedLinks={notOk.links} />
+            </TabPanel>
+          )}
+          {redirected.quantity && (
+            <TabPanel p={0}>
+              <LinkList categorizedLinks={redirected.links} />
+            </TabPanel>
+          )}
         </TabPanels>
       </Tabs>
     </React.Fragment>

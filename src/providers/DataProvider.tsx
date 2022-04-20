@@ -53,19 +53,20 @@ export const DataProvider = ({ children }: Children) => {
 
         const links = data.links.map((link) => {
           link.status =
-            result.find((status) => status.originUrl === link.href) ??
+            result.find(({ originUrl }) => originUrl === link.href) ??
             new LinkStatus(link.href)
-
           return link
         })
 
         if ('isDevEnv') {
-          const notOk = lp.filterNotOk(links)
-          const notOkQty = Object.keys(notOk).length
-          const invalid = lp.filterValidResponses(links)
-          const invalidQty = Object.keys(invalid).length
-          const resultQty = Object.keys(result).length
+          const invalid = links.filter((link) => !link.status.validResponse)
+          const notOk = lp.getNotOkLinks(links)
+          const notOkQty = lp.getCategorizedLinksQty(notOk)
+          const redirected = lp.getRedirectedLinks(links)
+          const invalidQty = invalid.length
+          const resultQty = result.length
 
+          console.log('Redirected -> ', redirected)
           console.log('After Status Fetch -> ', result, resultQty)
           console.log('Not ok -> ', notOk, notOkQty)
           console.log('Empty link status -> ', invalid, invalidQty)

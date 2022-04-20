@@ -1,4 +1,5 @@
 import { Response } from 'node-fetch'
+import Link from '../scripts/Link'
 
 class LinkStatus {
   /**
@@ -14,17 +15,17 @@ class LinkStatus {
   /**
    * The original url used to fetch. Important when links are redirected as the url returned from response is final destination.
    */
-  readonly originUrl: string
+  readonly originUrl: Link['href']
+
+  /**
+   * Indicates whether or not the response is the result of a redirect (that is, its URL list has more than one entry).
+   */
+  readonly redirected: boolean
 
   /**
    * The Headers object associated with the response.
    */
   readonly headers?: Record<string, string>
-
-  /**
-   * Indicates whether or not the response is the result of a redirect (that is, its URL list has more than one entry).
-   */
-  readonly redirected?: boolean
 
   /**
    *  The status code of the response. (This will be 200 for a success).
@@ -48,8 +49,9 @@ class LinkStatus {
 
   constructor(originUrl: string, response?: Response) {
     this.originUrl = originUrl
-    this.ok = false
+    this.ok = true
     this.validResponse = false
+    this.redirected = false
 
     if (response) {
       this.validResponse = true
