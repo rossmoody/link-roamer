@@ -2,7 +2,7 @@ import { TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useData } from '../../providers/DataProvider'
 import Link from '../../scripts/Link'
-import lp from '../../scripts/LinkProcessor'
+import LinkProcessor from '../../scripts/LinkProcessor'
 import LinkList from '../LinkList'
 import SearchFilter from './SearchFilter'
 import Tab from './Tab'
@@ -23,24 +23,26 @@ const CategoryTabs = () => {
     setLinks(filteredLinks)
   }, [filter])
 
+  const lp = new LinkProcessor(links)
+
   const all = {
-    links: lp.categorizeByDomain(links),
-    quantity: lp.getCategorizedLinksQty(lp.categorizeByDomain(links)),
+    links: LinkProcessor.categorizeByDomain(links),
+    quantity: links.length,
   }
 
   const fragments = {
-    links: lp.filterFragmentLinks(links),
-    quantity: lp.getCategorizedLinksQty(lp.filterFragmentLinks(links)),
+    links: LinkProcessor.categorizeByDomain(lp.fragmentLinks),
+    quantity: lp.fragmentLinks.length,
   }
 
   const notOk = {
-    links: lp.getNotOkLinks(links),
-    quantity: lp.getCategorizedLinksQty(lp.getNotOkLinks(links)),
+    links: LinkProcessor.categorizeByDomain(lp.notOkLinks),
+    quantity: lp.notOkLinks.length,
   }
 
   const redirected = {
-    links: lp.getRedirectedLinks(links),
-    quantity: lp.getCategorizedLinksQty(lp.getRedirectedLinks(links)),
+    links: LinkProcessor.categorizeByDomain(lp.redirectedLinks),
+    quantity: lp.redirectedLinks.length,
   }
 
   return (

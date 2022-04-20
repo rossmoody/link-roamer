@@ -3,7 +3,10 @@ import LinkStatus from '../api/LinkStatus'
 import c from '../scripts/Chrome'
 import { gatherHrefs } from '../scripts/execute-scripts'
 import Link from '../scripts/Link'
-import lp from '../scripts/LinkProcessor'
+import {
+  default as LinkProcessor,
+  default as lp,
+} from '../scripts/LinkProcessor'
 import { Children, LinkData } from '../types'
 
 interface DataContextProps {
@@ -59,16 +62,16 @@ export const DataProvider = ({ children }: Children) => {
         })
 
         if ('isDevEnv') {
+          const lp = new LinkProcessor(links)
           const invalid = links.filter((link) => !link.status.validResponse)
-          const notOk = lp.getNotOkLinks(links)
-          const notOkQty = lp.getCategorizedLinksQty(notOk)
-          const redirected = lp.getRedirectedLinks(links)
+          const notOk = lp.notOkLinks
+          const redirected = lp.redirectedLinks
           const invalidQty = invalid.length
           const resultQty = result.length
 
           console.log('Redirected -> ', redirected)
           console.log('After Status Fetch -> ', result, resultQty)
-          console.log('Not ok -> ', notOk, notOkQty)
+          console.log('Not ok -> ', notOk, notOk.length)
           console.log('Empty link status -> ', invalid, invalidQty)
           console.log('Links -> ', links)
         }

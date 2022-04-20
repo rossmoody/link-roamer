@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   IconButton,
   Menu,
@@ -7,10 +6,11 @@ import {
   MenuItem,
   MenuList,
 } from '@chakra-ui/react'
+import React from 'react'
+import { useCheckedItems } from '../../providers/CheckedItems'
+import LinkProcessor from '../../scripts/LinkProcessor'
 import { MoreIcon } from '../icons/MoreIcon'
 import BookmarkModal from './BookmarkModal'
-import { useCheckedItems } from '../../providers/CheckedItems'
-import lp from '../../scripts/LinkProcessor'
 
 const OverflowActions = () => {
   const { checkedItems } = useCheckedItems()
@@ -32,22 +32,36 @@ const OverflowActions = () => {
           <MenuDivider />
           <MenuItem
             fontSize="md"
-            onClick={() => lp.saveHrefsToJsonFile(checkedItems)}
+            onClick={() => {
+              LinkProcessor.copyToClipBoard('')
+            }}
           >
             Export as JSON
           </MenuItem>
           <MenuItem
             fontSize="md"
-            onClick={() => lp.saveHrefsToCsvFile(checkedItems)}
+            onClick={() => {
+              LinkProcessor.copyToClipBoard('')
+            }}
           >
             Export as CSV
           </MenuItem>
           <MenuDivider />
-          <MenuItem fontSize="md" onClick={() => lp.copyJson(checkedItems)}>
-            Copy as JSON
+          <MenuItem
+            fontSize="md"
+            onClick={() => {
+              LinkProcessor.copyToClipBoard('')
+            }}
+          >
+            Copy JSON
           </MenuItem>
-          <MenuItem fontSize="md" onClick={() => lp.copyCsv(checkedItems)}>
-            Copy as CSV
+          <MenuItem
+            fontSize="md"
+            onClick={() => {
+              LinkProcessor.copyToClipBoard('')
+            }}
+          >
+            Copy CSV
           </MenuItem>
         </MenuList>
       </Menu>

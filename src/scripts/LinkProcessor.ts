@@ -1,12 +1,13 @@
 import { CategorizedLinks } from '../types'
 import Link from './Link'
 
-export class LinkProcessor {
+class LinkProcessor {
+  constructor(public links: Link[]) {}
   /**
    * Creates a Record of Links categorized by available domain names. Returns
    * a Record of Links with keys as domains.
    */
-  categorizeByDomain(links: Link[]) {
+  static categorizeByDomain(links: Link[]) {
     return links.reduce((accum, link: Link) => {
       const { domain } = link
       if (!accum[domain]) accum[domain] = []
@@ -16,40 +17,16 @@ export class LinkProcessor {
   }
 
   /**
-   * Filter links to include only those with fragments
-   */
-  filterFragmentLinks(links: Link[]) {
-    const filtered = links.filter((link) => Boolean(link.href.includes('#')))
-    return this.categorizeByDomain(filtered)
-  }
-
-  /**
-   * Return all the links that aren't status ok as a categorized list
-   */
-  getNotOkLinks(links: Link[]) {
-    const filtered = links.filter((link) => !link.status.ok)
-    return this.categorizeByDomain(filtered)
-  }
-
-  /**
-   * Return all the links that aren't redirected as a categorized list
-   */
-  getRedirectedLinks(links: Link[]) {
-    const filtered = links.filter((link) => link.status.redirected)
-    return this.categorizeByDomain(filtered)
-  }
-
-  /**
    * Sorts a given set of links by length starting with the shortest first.
    */
-  sortByHrefLength(linkA: Link, linkB: Link) {
+  static sortByHrefLength(linkA: Link, linkB: Link) {
     return linkA.href.length > linkB.href.length ? 0 : -1
   }
 
   /**
    * Returns the amount of links in a given Record of categorized Links.
    */
-  getCategorizedLinksQty(categorizedLinks: CategorizedLinks) {
+  static categorizedLinksQty(categorizedLinks: CategorizedLinks) {
     let counter = 0
     for (const links of Object.values(categorizedLinks)) {
       counter += links.length
@@ -57,31 +34,70 @@ export class LinkProcessor {
     return counter
   }
 
-  getHttpLinkQty(links: Link[]) {
+  /**
+   * Filter links to include only those with fragments
+   */
+  get fragmentLinks() {
+    return this.links.filter((link) => Boolean(link.href.includes('#')))
+  }
+
+  /**
+   * Return all the links that aren't status ok as a categorized list
+   */
+  get notOkLinks() {
+    return this.links.filter((link) => !link.status.ok)
+  }
+
+  /**
+   * Return all the links that aren't redirected as a categorized list
+   */
+  get redirectedLinks() {
+    return this.links.filter((link) => link.status.redirected)
+  }
+
+  /**
+   * Return all number of links that contain the unsafe http protocol
+   */
+  get httpLinkQty() {
     let counter = 0
-    links.forEach((link) => (link.protocol === 'http:' ? counter++ : null))
+    this.links.forEach((link) => (link.protocol === 'http:' ? counter++ : null))
     return counter
   }
 
-  get404Qty(links: Link[]) {
+  /**
+   * Return the number of broken 404 links
+   */
+  get fourOhFourQty() {
     let counter = 0
-    links.forEach((link) => (link.status.status === 404 ? counter++ : null))
+    this.links.forEach((link) =>
+      link.status.status === 404 ? counter++ : null
+    )
     return counter
   }
 
-  getNotOkQty(links: Link[]) {
+  /**
+   * Return the number of links that didn't resolve to 200-299
+   */
+  get notOkQty() {
     let counter = 0
-    links.forEach((link) => (link.status.ok ? null : counter++))
+    this.links.forEach((link) => (link.status.ok ? null : counter++))
     return counter
   }
 
   /**
    * Returns a single string of hrefs separated by commas
    */
-  hrefsToCsvString(links: string[]) {
+  static hrefsToCsvString(links: string[]) {
     return links.reduce((prevValue, currValue) => {
       return prevValue + currValue + ','
     }, '')
+  }
+
+  /**
+   * Copy to clipboard helper function
+   */
+  static async copyToClipBoard(value: string) {
+    await navigator.clipboard.writeText(value).catch(console.error)
   }
 
   /**
@@ -95,7 +111,8 @@ export class LinkProcessor {
   }
 
   saveHrefsToCsvFile(links: string[]) {
-    const csv = 'data:text/csv;charset=utf-8,' + this.hrefsToCsvString(links)
+    const csv =
+      'data:text/csv;charset=utf-8,' + LinkProcessor.hrefsToCsvString(links)
     const encodedUri = encodeURI(csv)
     const link = document.createElement('a')
     link.setAttribute('href', encodedUri)
@@ -119,11 +136,6 @@ export class LinkProcessor {
     const value = this.hrefsToJsonString(links)
     await navigator.clipboard.writeText(value).catch(console.error)
   }
-
-  async copyCsv(links: string[]) {
-    const value = this.hrefsToCsvString(links)
-    await navigator.clipboard.writeText(value).catch(console.error)
-  }
 }
 
-export default new LinkProcessor()
+export default LinkProcessor

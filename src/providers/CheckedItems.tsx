@@ -1,18 +1,15 @@
 import React from 'react'
-import Link from '../scripts/Link'
 import { Children } from '../types'
 
-type Key = Pick<Link, 'href'>
-
 type CheckedItemsContextProps = {
-  checkedItems: Key[]
-  setCheckedItems: React.Dispatch<React.SetStateAction<Key[]>>
+  checkedItems: string[]
+  setCheckedItems: React.Dispatch<React.SetStateAction<string[]>>
 }
 
 const CheckedItemsContext = React.createContext({} as CheckedItemsContextProps)
 
 export const CheckedItemsProvider = ({ children }: Children) => {
-  const [checkedItems, setCheckedItems] = React.useState<Key[]>([])
+  const [checkedItems, setCheckedItems] = React.useState<string[]>([])
 
   const checkedMemo = React.useMemo(
     () => ({
