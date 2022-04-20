@@ -4,6 +4,7 @@ import { useData } from '../../providers/DataProvider'
 import c from '../../scripts/Chrome'
 import { getDomain } from '../../scripts/execute-scripts'
 import lp from '../../scripts/LinkProcessor'
+import Favicon from '../Favicon'
 import FetchLoader from './FetchLoader'
 import ThemeToggle from './ThemeToggle'
 
@@ -28,9 +29,12 @@ const Header = () => {
     <Box as="header" p={6} pos="relative">
       <Flex justifyContent="space-between">
         <Box>
-          <Heading size="lg" fontWeight="bold">
-            {domain}
-          </Heading>
+          <Flex alignItems="center" gap={2}>
+            <Favicon size={24} domain={domain} />
+            <Heading size="lg" fontWeight="bold">
+              {domain}
+            </Heading>
+          </Flex>
           <Text color="textMuted" fontSize="sm">
             Found {data.links.length} links across{' '}
             {Object.keys(lp.categorizeByDomain(data.links)).length} different

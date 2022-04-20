@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
+import LinkStatus from '../api/LinkStatus'
 import c from '../scripts/Chrome'
 import { gatherHrefs } from '../scripts/execute-scripts'
 import lp from '../scripts/LinkProcessor'
@@ -50,18 +51,29 @@ export const DataProvider = ({ children }: Children) => {
       if (data.links.length > 0) {
         const result = await c.fetchLinks(data.links)
 
-        result.forEach((link) => {
-          if (!link.ok) console.log(link)
-        })
-
         const links = data.links.map((link) => {
-          const status = result.find((status) => status.url === link.href)
-          if (status) link.status = status
+          link.status =
+            result.find((status) => status.originUrl === link.href) ??
+            new LinkStatus(link.href)
+
           return link
         })
 
         if ('isDevEnv') {
-          console.log('Not ok -> ', lp.filterNotOk(links))
+          const notOk = lp.filterNotOk(links)
+          const invalid = lp.filterValidResponses(links)
+
+          console.log(
+            'After Status Fetch -> ',
+            result,
+            Object.keys(result).length
+          )
+          console.log('Not ok -> ', notOk, Object.keys(notOk).length)
+          console.log(
+            'Empty link status -> ',
+            invalid,
+            Object.keys(invalid).length
+          )
           console.log('Links -> ', links)
         }
 

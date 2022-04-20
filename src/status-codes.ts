@@ -46,7 +46,8 @@ export default {
   },
   404: {
     title: 'Not found',
-    description: 'The server can not find the requested resource.',
+    description:
+      'Link Roamer requested this URL 5 times and could not get a response.',
   },
   405: {
     title: 'Method Not Allowed',

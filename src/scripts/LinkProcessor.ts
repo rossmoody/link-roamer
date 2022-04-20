@@ -61,6 +61,15 @@ export class LinkProcessor {
   }
 
   /**
+   * Filter links to include only those with a status code of 404
+   */
+  filterValidResponses(links?: Link[]) {
+    if (!links) return {}
+    const filtered = links.filter((link) => !link.status.validResponse)
+    return this.categorizeByDomain(filtered)
+  }
+
+  /**
    * Sorts a given set of links by length starting with the shortest first.
    */
   sortByHrefLength(linkA: Link, linkB: Link) {
@@ -87,6 +96,12 @@ export class LinkProcessor {
   get404Qty(links: Link[]) {
     let counter = 0
     links.forEach((link) => (link.status.status === 404 ? counter++ : null))
+    return counter
+  }
+
+  getNotOkQty(links: Link[]) {
+    let counter = 0
+    links.forEach((link) => (link.status.ok ? null : counter++))
     return counter
   }
 

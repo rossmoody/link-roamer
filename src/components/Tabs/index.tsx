@@ -37,7 +37,7 @@ const CategoryTabs = () => {
             linksQty={lp.getCategorizedLinksQty(fragments)}
             title="Fragments"
           />
-          <Tab linksQty={lp.getCategorizedLinksQty(notOk)} title="404" />
+          <Tab linksQty={lp.getCategorizedLinksQty(notOk)} title="Not Ok" />
         </TabList>
 
         <TabPanels pb={20}>

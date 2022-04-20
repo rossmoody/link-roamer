@@ -98,7 +98,7 @@ class Chrome {
    * to set request statuses on each.
    */
   async fetchLinks(links: Link[]): Promise<LinkStatus[]> {
-    const data = JSON.stringify(links.map((link) => link.href))
+    const data = JSON.stringify(links)
 
     const message: Message = {
       action: 'fetchLinks',

@@ -1,7 +1,7 @@
 import LinkStatus from '../api/LinkStatus'
 
 class Link extends URL {
-  private _status = {} as LinkStatus
+  private _status = new LinkStatus(this.href)
 
   constructor(href: string) {
     super(href)

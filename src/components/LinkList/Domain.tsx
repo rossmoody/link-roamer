@@ -8,14 +8,14 @@ import {
   Heading,
   HStack,
   List,
-  Stack
+  Stack,
 } from '@chakra-ui/react'
 import React from 'react'
 import { useCheckedItems } from '../../providers/CheckedItems'
 import Link from '../../scripts/Link'
 import lp from '../../scripts/LinkProcessor'
+import Favicon from '../Favicon'
 import QuantityTag from '../ResponseTag'
-import Favicon from './Favicon'
 import LinkItem from './LinkItem'
 
 type Props = {

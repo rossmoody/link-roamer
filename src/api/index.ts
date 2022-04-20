@@ -2,32 +2,37 @@ import { http } from '@google-cloud/functions-framework'
 import fetch from 'node-fetch'
 import LinkStatus from './LinkStatus'
 
-const getStatus = (url: string) => {
-  async function fetchStatus(retries: number) {
+const getStatus = (link: string) => {
+  async function fetchStatus(retries: number, method = 'HEAD') {
     const controller = new globalThis.AbortController()
 
     const timeout = setTimeout(() => {
       controller.abort()
-    }, 4000)
+    }, 12000)
 
     try {
-      const response = await fetch(url, {
+      const response = await fetch(link, {
         signal: controller.signal,
+        method,
       })
 
       clearTimeout(timeout)
 
-      if (response.status === 404 && retries >= 0) {
-        fetchStatus(retries - 1)
+      if (response.status === 405 && retries >= 0) {
+        fetchStatus(retries - 1, 'GET')
       }
 
-      return new LinkStatus(response)
+      if (response.status === 404 && retries >= 0) {
+        fetchStatus(retries - 1, method)
+      }
+
+      return new LinkStatus(link, response)
     } catch (error) {
       if (retries >= 0) {
-        fetchStatus(retries - 1)
+        fetchStatus(retries - 1, method)
       }
 
-      return {} as LinkStatus
+      return new LinkStatus(link)
     }
   }
 
@@ -40,14 +45,14 @@ const resolveSettledPromises = (promise: PromiseSettledResult<LinkStatus>) => {
       return promise.value
 
     case 'rejected':
-      return {}
+      return new LinkStatus('')
   }
 }
 
 http('fetchStatuses', async (request, response) => {
   const links: string[] = JSON.parse(request.body)
   const results = (await Promise.allSettled(links.map(getStatus))).map(
-    resolveSettledPromises,
+    resolveSettledPromises
   )
   response.send(JSON.stringify(results))
 })

@@ -3,14 +3,20 @@ import React from 'react'
 
 type Props = {
   domain: string
+  size?: number
+  faviconSize?: number
 }
 
-const Favicon = ({ domain }: Props) => {
+const Favicon = ({ domain, size = 24, faviconSize = 16 }: Props) => {
   const bg = useColorModeValue('gray.100', 'gray.700')
 
   return (
-    <Center height="24px" width="24px" borderRadius="md" bg={bg}>
-      <Image alt={faviconUrl(domain)} src={faviconUrl(domain)} boxSize="16px" />
+    <Center height={`${size}px`} width={`${size}px`} borderRadius="md" bg={bg}>
+      <Image
+        alt="Favicon"
+        src={domain && faviconUrl(domain)}
+        boxSize={`${faviconSize}px`}
+      />
     </Center>
   )
 }

@@ -2,54 +2,62 @@ import { Response } from 'node-fetch'
 
 class LinkStatus {
   /**
-   * The Headers object associated with the response.
+   * A boolean indicating whether the response was successful (status in the range 200–299) or not. Defaults to true in case links are timed out.
    */
-  readonly headers: Record<string, string>
+  ok = true
 
   /**
-   * A boolean indicating whether the response was successful (status in the range 200–299) or not.
+   * When an instance is created without a response, this defaults to false to check if the instance is valid.
    */
-  readonly ok: boolean
+  validResponse = false
+
+  /**
+   * The Headers object associated with the response.
+   */
+  readonly headers?: Record<string, string>
 
   /**
    * Indicates whether or not the response is the result of a redirect (that is, its URL list has more than one entry).
    */
-  readonly redirected: boolean
+  readonly redirected?: boolean
 
   /**
    *  The status code of the response. (This will be 200 for a success).
    */
-  readonly status: number
+  readonly status?: number
 
   /**
    * The status message corresponding to the status code. (e.g., OK for 200).
    */
-  readonly statusText: string
+  readonly statusText?: string
 
   /**
    * The type of the response (e.g., basic, cors).
    * */
-  readonly type: ResponseType
+  readonly type?: ResponseType
 
   /**
-   * The URL of the response.
+   * The final URL of the response after redirects.
    * */
-  readonly url: string
+  readonly url?: string
 
-  constructor(response: Response) {
-    this.ok = response.ok
-    this.redirected = response.redirected
-    this.status = response.status
-    this.statusText = response.statusText
-    this.type = response.type
-    this.url = response.url
-    this.headers = this.setHeaders(response)
+  constructor(public originUrl: string, response?: Response) {
+    if (response) {
+      this.validResponse = true
+      this.ok = response.ok
+      this.redirected = response.redirected
+      this.status = response.status
+      this.statusText = response.statusText
+      this.type = response.type
+      this.url = response.url
+      this.headers = this.setHeaders(response)
+    }
   }
 
-  setHeaders(response: Response) {
+  private setHeaders(response: Response) {
     const entries = Array.from(response.headers.entries())
     return entries.reduce((accumulator, [key, value]) => {
-      accumulator[key] = value
+      accumulator[key] = JSON.stringify(value)
       return accumulator
     }, {} as Record<string, string>)
   }
