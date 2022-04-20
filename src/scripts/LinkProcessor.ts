@@ -1,37 +1,7 @@
 import { CategorizedLinks } from '../types'
 import Link from './Link'
 
-const FILTER_URL = 'https://www.filterthisurlout-1-2-3-4-5.com'
-
 export class LinkProcessor {
-  /**
-   * Creates a Link object which extends the URL class.
-   * If it fails, it returns a fake url with the key 'filtermeout' for
-   * targeting later. URL creation fails pretty often. I don't know why.
-   * If you're reading this, please tell me why.
-   */
-  createLink(href: string) {
-    try {
-      return new Link(href)
-    } catch (error) {
-      return new Link(FILTER_URL)
-    }
-  }
-
-  /**
-   * Filters a list of givens links to only include ones with HTTP.
-   */
-  filterHttp(link: Link) {
-    return link.protocol.includes('http')
-  }
-
-  /**
-   * Filter the links with 'filtermeout' key. This is a factory filter helper for when Link creation fails.
-   */
-  filterKeyString(link: Link) {
-    return !link.href.includes(FILTER_URL)
-  }
-
   /**
    * Creates a Record of Links categorized by available domain names. Returns
    * a Record of Links with keys as domains.

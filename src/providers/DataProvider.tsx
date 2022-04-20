@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import LinkStatus from '../api/LinkStatus'
 import c from '../scripts/Chrome'
 import { gatherHrefs } from '../scripts/execute-scripts'
+import Link from '../scripts/Link'
 import lp from '../scripts/LinkProcessor'
 import { Children, LinkData } from '../types'
 
@@ -32,9 +33,8 @@ export const DataProvider = ({ children }: Children) => {
 
       if (id) {
         const links = (await c.executeScript<string[]>(id, gatherHrefs))
-          .map(lp.createLink)
-          .filter(lp.filterHttp)
-          .filter(lp.filterKeyString)
+          .map((link) => new Link(link))
+          .filter((link) => link.isHttp)
           .sort(lp.sortByHrefLength)
 
         links.length > 0

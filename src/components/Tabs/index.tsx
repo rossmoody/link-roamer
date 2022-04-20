@@ -50,7 +50,7 @@ const CategoryTabs = () => {
         <TabList px={3}>
           <Tab linksQty={all.quantity} title="All" />
           <Tab linksQty={fragments.quantity} title="Fragments" />
-          <Tab linksQty={notOk.quantity} title="Issues" />
+          <Tab linksQty={notOk.quantity} title="Problems" />
           <Tab linksQty={redirected.quantity} title="Redirects" />
         </TabList>
 

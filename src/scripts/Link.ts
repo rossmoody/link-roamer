@@ -1,10 +1,20 @@
 import LinkStatus from '../api/LinkStatus'
 
 class Link extends URL {
-  private _status = new LinkStatus(this.href)
+  /**
+   * The response status of a link's fetch result. Defaults to success scenario until proven otherwise.
+   */
+  status = new LinkStatus(this.href)
 
   constructor(href: string) {
     super(href)
+  }
+
+  /**
+   * Filters a list of givens links to only include ones with HTTP.
+   */
+  get isHttp() {
+    return this.protocol.includes('http')
   }
 
   /**
@@ -21,17 +31,6 @@ class Link extends URL {
     const href = this.domain + this.pathname + this.hash
     const lastCharacter = href.charAt(href.length - 1)
     return lastCharacter === '/' ? href.slice(0, -1) : href
-  }
-
-  /**
-   * Sets the response status specs
-   */
-  set status(status: LinkStatus) {
-    this._status = status
-  }
-
-  get status() {
-    return this._status
   }
 }
 
