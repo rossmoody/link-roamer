@@ -96,11 +96,3 @@ Please consider contributing with an idea, bug fix, or feature request.
 
 Feel free to submit a pull request if you've made an improvement of some kind.
 This is an open source project and any help is very appreciated.
-
-TODO
-
-- Save data for page somewhere to stop repeated fetches
-- Rate limiting help
-- Select all
-- Export detailed linkd data
-- Links in menus

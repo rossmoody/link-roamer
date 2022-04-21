@@ -6,6 +6,13 @@ import { Children } from '../types'
 const mode = c.getStorage('mode')
 
 const theme = extendTheme({
+  styles: {
+    global: {
+      body: {
+        fontSize: '100%',
+      },
+    },
+  },
   config: {
     initialColorMode: mode,
   },

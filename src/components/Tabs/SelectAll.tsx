@@ -24,7 +24,8 @@ const SelectAll = () => {
 
   return (
     <Checkbox
-      mr={3}
+      ml={1}
+      mr={2}
       isChecked={allChecked}
       isIndeterminate={isIndeterminate}
       onChange={handleChange}

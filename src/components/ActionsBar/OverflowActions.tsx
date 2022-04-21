@@ -9,6 +9,13 @@ import {
 import React from 'react'
 import { useCheckedItems } from '../../providers/CheckedItems'
 import LinkActions from '../../scripts/LinkActions'
+import {
+  BookmarkIcon,
+  CsvCopyIcon,
+  CsvFileIcon,
+  JsonCopyIcon,
+  JsonFileIcon,
+} from '../icons'
 import { MoreIcon } from '../icons/MoreIcon'
 import BookmarkModal from './BookmarkModal'
 
@@ -26,21 +33,24 @@ const OverflowActions = () => {
           icon={<MoreIcon />}
         />
         <MenuList>
-          <MenuItem fontSize="md" onClick={() => setShowBookmark(true)}>
+          <MenuItem
+            onClick={() => setShowBookmark(true)}
+            icon={<BookmarkIcon />}
+          >
             Bookmark links
           </MenuItem>
           <MenuDivider />
           <MenuItem
             onClick={() => LinkActions.jsonToFile(checkedItems)}
             value="export-json"
-            fontSize="md"
+            icon={<JsonFileIcon />}
           >
             Export as JSON
           </MenuItem>
           <MenuItem
             onClick={() => LinkActions.csvToFile(checkedItems)}
             value="export-csv"
-            fontSize="md"
+            icon={<CsvFileIcon />}
           >
             Export as CSV
           </MenuItem>
@@ -48,14 +58,14 @@ const OverflowActions = () => {
           <MenuItem
             onClick={() => LinkActions.jsonToClipboard(checkedItems)}
             value="copy-json"
-            fontSize="md"
+            icon={<JsonCopyIcon />}
           >
             Copy JSON
           </MenuItem>
           <MenuItem
             onClick={() => LinkActions.csvToClipboard(checkedItems)}
             value="copy-csv"
-            fontSize="md"
+            icon={<CsvCopyIcon />}
           >
             Copy CSV
           </MenuItem>
