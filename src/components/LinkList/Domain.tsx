@@ -39,8 +39,8 @@ const Domain = ({ domain, links }: Props) => {
 
   const lp = new LinksHandler(links)
 
-  const httpQty = lp.httpLinkQty
-  const brokenQty = lp.fourOhFourQty
+  const httpQty = lp.httpLinks.length
+  const brokenQty = lp.fourOhFourLinks.length
 
   return (
     <AccordionItem>

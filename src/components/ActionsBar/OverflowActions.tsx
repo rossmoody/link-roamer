@@ -8,7 +8,6 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 import { useCheckedItems } from '../../providers/CheckedItems'
-import LinksHandler from '../../scripts/LinksHandler'
 import { MoreIcon } from '../icons/MoreIcon'
 import BookmarkModal from './BookmarkModal'
 
@@ -16,6 +15,7 @@ const OverflowActions = () => {
   const { checkedItems } = useCheckedItems()
   const [showBookmark, setShowBookmark] = React.useState(false)
 
+  console.log(checkedItems)
   return (
     <React.Fragment>
       <Menu>
@@ -32,37 +32,16 @@ const OverflowActions = () => {
           <MenuDivider />
           <MenuItem
             fontSize="md"
-            onClick={() => {
-              LinksHandler.copyToClipBoard('')
+            onClick={(event) => {
+              console.log(event)
             }}
           >
             Export as JSON
           </MenuItem>
-          <MenuItem
-            fontSize="md"
-            onClick={() => {
-              LinksHandler.copyToClipBoard('')
-            }}
-          >
-            Export as CSV
-          </MenuItem>
+          <MenuItem fontSize="md">Export as CSV</MenuItem>
           <MenuDivider />
-          <MenuItem
-            fontSize="md"
-            onClick={() => {
-              LinksHandler.copyToClipBoard('')
-            }}
-          >
-            Copy JSON
-          </MenuItem>
-          <MenuItem
-            fontSize="md"
-            onClick={() => {
-              LinksHandler.copyToClipBoard('')
-            }}
-          >
-            Copy CSV
-          </MenuItem>
+          <MenuItem fontSize="md">Copy JSON</MenuItem>
+          <MenuItem fontSize="md">Copy CSV</MenuItem>
         </MenuList>
       </Menu>
       <BookmarkModal state={showBookmark} setState={setShowBookmark} />

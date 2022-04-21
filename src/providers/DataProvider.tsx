@@ -3,7 +3,7 @@ import LinkStatus from '../api/LinkStatus'
 import c from '../scripts/Chrome'
 import { gatherHrefs } from '../scripts/execute-scripts'
 import Link from '../scripts/Link'
-import { default as LinksHandler, default as lp } from '../scripts/LinksHandler'
+import { default as LinksHandler } from '../scripts/LinksHandler'
 import { Children, LinkData } from '../types'
 
 interface DataContextProps {
@@ -32,10 +32,11 @@ export const DataProvider = ({ children }: Children) => {
       const { id } = await c.getActiveTab()
 
       if (id) {
-        const links = (await c.executeScript<string[]>(id, gatherHrefs))
-          .map((link) => new Link(link))
-          .filter((link) => link.isHttp)
-          .sort(lp.sortByHrefLength)
+        const { links } = new LinksHandler(
+          (await c.executeScript<string[]>(id, gatherHrefs))
+            .map((link) => new Link(link))
+            .filter((link) => link.isHttp)
+        )
 
         links.length > 0
           ? setData({ links, loading: true })

@@ -15,7 +15,7 @@ const FetchLoader = () => {
 
   useEffect(() => {
     if (!data.loading) {
-      const brokenQty = new LinksHandler(data.links).fourOhFourQty
+      const brokenQty = new LinksHandler(data.links).fourOhFourLinks.length
 
       brokenQty
         ? setState({

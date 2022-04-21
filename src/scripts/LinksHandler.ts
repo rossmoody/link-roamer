@@ -2,7 +2,14 @@ import { CategorizedLinks } from '../types'
 import Link from './Link'
 
 class LinksHandler {
-  constructor(public links: Link[]) {}
+  public links: Link[]
+
+  constructor(links: Link[]) {
+    this.links = links.sort((linkA, linkB) =>
+      linkA.href.length > linkB.href.length ? 0 : -1
+    )
+  }
+
   /**
    * Creates a Record of Links categorized by available domain names. Returns
    * a Record of Links with keys as domains.
@@ -17,102 +24,75 @@ class LinksHandler {
   }
 
   /**
-   * Sorts a given set of links by length starting with the shortest first.
+   * Copy to clipboard helper function
    */
-  static sortByHrefLength(linkA: Link, linkB: Link) {
-    return linkA.href.length > linkB.href.length ? 0 : -1
+  private async copyToClipBoard(value: string) {
+    await navigator.clipboard.writeText(value).catch(console.error)
   }
 
   /**
-   * Returns the amount of links in a given Record of categorized Links.
+   * Creates a Record of class instance's hrefs categorized by available domain names.
    */
-  static categorizedLinksQty(categorizedLinks: CategorizedLinks) {
-    let counter = 0
-    for (const links of Object.values(categorizedLinks)) {
-      counter += links.length
-    }
-    return counter
+  get categorizedByDomain() {
+    return LinksHandler.categorizeByDomain(this.links)
   }
 
   /**
-   * Filter links to include only those with fragments
+   * Filter links to include only those with fragments as a Link[]
    */
   get fragmentLinks() {
     return this.links.filter((link) => Boolean(link.href.includes('#')))
   }
 
   /**
-   * Return all the links that aren't status ok as a categorized list
+   * Return all the links that aren't status ok as a Link[]
    */
   get notOkLinks() {
     return this.links.filter((link) => !link.status.ok)
   }
 
   /**
-   * Return all the links that aren't redirected as a categorized list
+   * Return all the links that aren't redirected as a Link[]
    */
   get redirectedLinks() {
     return this.links.filter((link) => link.status.redirected)
   }
 
   /**
-   * Return all number of links that contain the unsafe http protocol
+   * Return all the links that aren't redirected as a Link[]
    */
-  get httpLinkQty() {
-    let counter = 0
-    this.links.forEach((link) => (link.protocol === 'http:' ? counter++ : null))
-    return counter
+  get httpLinks() {
+    return this.links.filter((link) => link.protocol === 'http:')
   }
 
   /**
-   * Return the number of broken 404 links
+   * Return all the links that aren't redirected as a Link[]
    */
-  get fourOhFourQty() {
-    let counter = 0
-    this.links.forEach((link) =>
-      link.status.status === 404 ? counter++ : null
-    )
-    return counter
+  get fourOhFourLinks() {
+    return this.links.filter((link) => link.status.status === 404)
   }
 
   /**
-   * Return the number of links that didn't resolve to 200-299
+   * Transforms all link hrefs into a comma separated string
    */
-  get notOkQty() {
-    let counter = 0
-    this.links.forEach((link) => (link.status.ok ? null : counter++))
-    return counter
-  }
-
-  /**
-   * Returns a single string of hrefs separated by commas
-   */
-  static hrefsToCsvString(links: string[]) {
-    return links.reduce((prevValue, currValue) => {
+  get hrefsCsvString() {
+    return this.links.reduce((prevValue, currValue) => {
       return prevValue + currValue + ','
     }, '')
   }
 
   /**
-   * Copy to clipboard helper function
-   */
-  static async copyToClipBoard(value: string) {
-    await navigator.clipboard.writeText(value).catch(console.error)
-  }
-
-  /**
    * Returns a single string of hrefs separated by commas
    */
-  hrefsToJsonString(links: string[]) {
-    const jsonified = links.reduce((prevValue, currValue) => {
+  get hrefsToJsonString() {
+    const jsonified = this.links.reduce((prevValue, currValue) => {
       return `${prevValue}"${currValue}",`
     }, '')
     return `[${jsonified}]`
   }
 
-  saveHrefsToCsvFile(links: string[]) {
-    const csv =
-      'data:text/csv;charset=utf-8,' + LinksHandler.hrefsToCsvString(links)
+  saveHrefsToCsvFile() {
+    const csv = 'data:text/csv;charset=utf-8,' + this.hrefsCsvString
     const encodedUri = encodeURI(csv)
     const link = document.createElement('a')
     link.setAttribute('href', encodedUri)
@@ -121,9 +101,8 @@ class LinksHandler {
     link.click()
   }
 
-  saveHrefsToJsonFile(links: string[]) {
-    const json =
-      'data:application/json;charset=utf-8,' + this.hrefsToJsonString(links)
+  saveHrefsToJsonFile() {
+    const json = 'data:application/json;charset=utf-8,' + this.hrefsToJsonString
     const encodedUri = encodeURI(json)
     const link = document.createElement('a')
     link.setAttribute('href', encodedUri)
@@ -132,9 +111,14 @@ class LinksHandler {
     link.click()
   }
 
-  async copyJson(links: string[]) {
-    const value = this.hrefsToJsonString(links)
-    await navigator.clipboard.writeText(value).catch(console.error)
+  async copyJsonClipboard() {
+    const value = this.hrefsToJsonString
+    this.copyToClipBoard(value)
+  }
+
+  async copyCsvClipboard() {
+    const value = this.hrefsCsvString
+    this.copyToClipBoard(value)
   }
 }
 
