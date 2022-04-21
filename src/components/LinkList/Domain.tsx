@@ -38,7 +38,6 @@ const Domain = ({ domain, links }: Props) => {
   }
 
   const lp = new LinksHandler(links)
-
   const httpQty = lp.httpLinks.length
   const brokenQty = lp.fourOhFourLinks.length
 
