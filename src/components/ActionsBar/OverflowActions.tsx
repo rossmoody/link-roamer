@@ -15,8 +15,8 @@ import {
   CsvFileIcon,
   JsonCopyIcon,
   JsonFileIcon,
+  MoreIcon,
 } from '../icons'
-import { MoreIcon } from '../icons/MoreIcon'
 import BookmarkModal from './BookmarkModal'
 
 const OverflowActions = () => {
@@ -42,14 +42,12 @@ const OverflowActions = () => {
           <MenuDivider />
           <MenuItem
             onClick={() => LinkActions.jsonToFile(checkedItems)}
-            value="export-json"
             icon={<JsonFileIcon />}
           >
             Export as JSON
           </MenuItem>
           <MenuItem
             onClick={() => LinkActions.csvToFile(checkedItems)}
-            value="export-csv"
             icon={<CsvFileIcon />}
           >
             Export as CSV
@@ -57,14 +55,12 @@ const OverflowActions = () => {
           <MenuDivider />
           <MenuItem
             onClick={() => LinkActions.jsonToClipboard(checkedItems)}
-            value="copy-json"
             icon={<JsonCopyIcon />}
           >
             Copy JSON
           </MenuItem>
           <MenuItem
             onClick={() => LinkActions.csvToClipboard(checkedItems)}
-            value="copy-csv"
             icon={<CsvCopyIcon />}
           >
             Copy CSV
