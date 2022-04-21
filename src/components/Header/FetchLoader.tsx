@@ -1,7 +1,7 @@
 import { Fade, Spinner, Tag, TagLabel } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useData } from '../../providers/DataProvider'
-import LinkProcessor from '../../scripts/LinkProcessor'
+import LinkProcessor from '../../scripts/LinkHandler'
 
 const initialConfig = {
   label: 'Checking links',

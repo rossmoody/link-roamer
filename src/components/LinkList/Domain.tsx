@@ -13,7 +13,7 @@ import {
 import React from 'react'
 import { useCheckedItems } from '../../providers/CheckedItems'
 import Link from '../../scripts/Link'
-import LinkProcessor from '../../scripts/LinkProcessor'
+import LinkProcessor from '../../scripts/LinkHandler'
 import Favicon from '../Favicon'
 import QuantityTag from '../ResponseTag'
 import LinkItem from './LinkItem'
