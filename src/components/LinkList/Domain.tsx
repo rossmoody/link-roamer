@@ -13,7 +13,7 @@ import {
 import React from 'react'
 import { useCheckedItems } from '../../providers/CheckedItems'
 import Link from '../../scripts/Link'
-import LinkProcessor from '../../scripts/LinkHandler'
+import LinkHandler from '../../scripts/LinkHandler'
 import Favicon from '../Favicon'
 import QuantityTag from '../ResponseTag'
 import LinkItem from './LinkItem'
@@ -37,7 +37,7 @@ const Domain = ({ domain, links }: Props) => {
       : setCheckedItems((prev) => [...prev, ...hrefs])
   }
 
-  const lp = new LinkProcessor(links)
+  const lp = new LinkHandler(links)
 
   const httpQty = lp.httpLinkQty
   const brokenQty = lp.fourOhFourQty

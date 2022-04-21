@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 import { useCheckedItems } from '../../providers/CheckedItems'
-import LinkProcessor from '../../scripts/LinkHandler'
+import LinkHandler from '../../scripts/LinkHandler'
 import { MoreIcon } from '../icons/MoreIcon'
 import BookmarkModal from './BookmarkModal'
 
@@ -33,7 +33,7 @@ const OverflowActions = () => {
           <MenuItem
             fontSize="md"
             onClick={() => {
-              LinkProcessor.copyToClipBoard('')
+              LinkHandler.copyToClipBoard('')
             }}
           >
             Export as JSON
@@ -41,7 +41,7 @@ const OverflowActions = () => {
           <MenuItem
             fontSize="md"
             onClick={() => {
-              LinkProcessor.copyToClipBoard('')
+              LinkHandler.copyToClipBoard('')
             }}
           >
             Export as CSV
@@ -50,7 +50,7 @@ const OverflowActions = () => {
           <MenuItem
             fontSize="md"
             onClick={() => {
-              LinkProcessor.copyToClipBoard('')
+              LinkHandler.copyToClipBoard('')
             }}
           >
             Copy JSON
@@ -58,7 +58,7 @@ const OverflowActions = () => {
           <MenuItem
             fontSize="md"
             onClick={() => {
-              LinkProcessor.copyToClipBoard('')
+              LinkHandler.copyToClipBoard('')
             }}
           >
             Copy CSV
