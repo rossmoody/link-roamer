@@ -1,7 +1,7 @@
 import { Fade, Spinner, Tag, TagLabel } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useData } from '../../providers/DataProvider'
-import LinkHandler from '../../scripts/LinkHandler'
+import LinksHandler from '../../scripts/LinksHandler'
 
 const initialConfig = {
   label: 'Checking links',
@@ -15,7 +15,7 @@ const FetchLoader = () => {
 
   useEffect(() => {
     if (!data.loading) {
-      const brokenQty = new LinkHandler(data.links).fourOhFourQty
+      const brokenQty = new LinksHandler(data.links).fourOhFourQty
 
       brokenQty
         ? setState({

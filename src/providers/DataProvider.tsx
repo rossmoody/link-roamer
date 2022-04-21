@@ -3,7 +3,7 @@ import LinkStatus from '../api/LinkStatus'
 import c from '../scripts/Chrome'
 import { gatherHrefs } from '../scripts/execute-scripts'
 import Link from '../scripts/Link'
-import { default as LinkHandler, default as lp } from '../scripts/LinkHandler'
+import { default as LinksHandler, default as lp } from '../scripts/LinksHandler'
 import { Children, LinkData } from '../types'
 
 interface DataContextProps {
@@ -59,7 +59,7 @@ export const DataProvider = ({ children }: Children) => {
         })
 
         if ('isDevEnv') {
-          const lp = new LinkHandler(links)
+          const lp = new LinksHandler(links)
           const invalid = links.filter((link) => !link.status.validResponse)
           const notOk = lp.notOkLinks
           const redirected = lp.redirectedLinks

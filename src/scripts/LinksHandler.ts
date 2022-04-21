@@ -1,7 +1,7 @@
 import { CategorizedLinks } from '../types'
 import Link from './Link'
 
-class LinkHandler {
+class LinksHandler {
   constructor(public links: Link[]) {}
   /**
    * Creates a Record of Links categorized by available domain names. Returns
@@ -112,7 +112,7 @@ class LinkHandler {
 
   saveHrefsToCsvFile(links: string[]) {
     const csv =
-      'data:text/csv;charset=utf-8,' + LinkHandler.hrefsToCsvString(links)
+      'data:text/csv;charset=utf-8,' + LinksHandler.hrefsToCsvString(links)
     const encodedUri = encodeURI(csv)
     const link = document.createElement('a')
     link.setAttribute('href', encodedUri)
@@ -138,4 +138,4 @@ class LinkHandler {
   }
 }
 
-export default LinkHandler
+export default LinksHandler

@@ -2,7 +2,7 @@ import { TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useData } from '../../providers/DataProvider'
 import Link from '../../scripts/Link'
-import LinkHandler from '../../scripts/LinkHandler'
+import LinksHandler from '../../scripts/LinksHandler'
 import LinkList from '../LinkList'
 import SearchFilter from './SearchFilter'
 import Tab from './Tab'
@@ -23,25 +23,25 @@ const CategoryTabs = () => {
     setLinks(filteredLinks)
   }, [filter])
 
-  const lp = new LinkHandler(links)
+  const lp = new LinksHandler(links)
 
   const all = {
-    links: LinkHandler.categorizeByDomain(links),
+    links: LinksHandler.categorizeByDomain(links),
     quantity: links.length,
   }
 
   const fragments = {
-    links: LinkHandler.categorizeByDomain(lp.fragmentLinks),
+    links: LinksHandler.categorizeByDomain(lp.fragmentLinks),
     quantity: lp.fragmentLinks.length,
   }
 
   const notOk = {
-    links: LinkHandler.categorizeByDomain(lp.notOkLinks),
+    links: LinksHandler.categorizeByDomain(lp.notOkLinks),
     quantity: lp.notOkLinks.length,
   }
 
   const redirected = {
-    links: LinkHandler.categorizeByDomain(lp.redirectedLinks),
+    links: LinksHandler.categorizeByDomain(lp.redirectedLinks),
     quantity: lp.redirectedLinks.length,
   }
 
