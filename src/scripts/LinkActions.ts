@@ -13,9 +13,10 @@ class LinkActions {
    */
   static linksToJsonString(links: string[]) {
     const jsonified = links.reduce((prevValue, currValue) => {
-      return `${prevValue}"${currValue}", `
+      return `${prevValue} "${currValue}" , `
     }, '')
-    return `[${jsonified}]`
+
+    return '[' + jsonified + ']'
   }
 
   /**
@@ -32,11 +33,11 @@ class LinkActions {
   }
 
   static jsonToFile(links: string[]) {
+    const string = this.linksToJsonString(links)
     const json =
-      'data:application/json;charset=utf-8,' + this.linksToJsonString(links)
-    const encodedUri = encodeURI(json)
+      'data:application/json;charset=utf-8,' + encodeURIComponent(string)
     const link = document.createElement('a')
-    link.setAttribute('href', encodedUri)
+    link.setAttribute('href', json)
     link.setAttribute('download', 'link-roamer-data.json')
     document.body.appendChild(link)
     link.click()

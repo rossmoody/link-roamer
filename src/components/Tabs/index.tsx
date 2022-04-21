@@ -5,6 +5,7 @@ import Link from '../../scripts/Link'
 import LinksHandler from '../../scripts/LinksHandler'
 import LinkList from '../LinkList'
 import SearchFilter from './SearchFilter'
+import SelectAll from './SelectAll'
 import Tab from './Tab'
 
 const CategoryTabs = () => {
@@ -50,6 +51,7 @@ const CategoryTabs = () => {
       <SearchFilter setFilter={setFilter} />
       <Tabs isLazy>
         <TabList px={3}>
+          <SelectAll />
           <Tab linksQty={all.quantity} title="All" />
           <Tab linksQty={fragments.quantity} title="Fragments" />
           <Tab linksQty={notOk.quantity} title="Problems" />
