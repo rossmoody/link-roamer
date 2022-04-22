@@ -28,14 +28,5 @@
     "128": "public/icons/production/128.png",
     "256": "public/icons/production/256.png"
   },
-  "host_permissions": [
-    "https://fetch-fav-h57lsidp3a-uc.a.run.app/*",
-    "http://localhost:8080/*"
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": ["public/**/*.png"],
-      "matches": ["<all_urls>"]
-    }
-  ]
+  "host_permissions": ["https://fetch-fav-h57lsidp3a-uc.a.run.app/*"]
 }

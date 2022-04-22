@@ -34,7 +34,6 @@ const v2Manifest = {
   plugins: [
     replace({
       'process.env.NODE_ENV': NODE_ENV,
-      isDevEnv: isProduction ? '' : 'isDevEnv',
       isV3Manifest: '',
       preventAssignment: true,
     }),
@@ -50,7 +49,9 @@ const v2Manifest = {
 }
 
 const v3Manifest = {
-  input: 'src/v3-manifest.json',
+  input: isProduction
+    ? 'src/v3-manifest-prod.json'
+    : 'src/v3-manifest-dev.json',
   output: {
     dir: 'dist/v3-manifest',
     format: 'esm',
@@ -60,7 +61,6 @@ const v3Manifest = {
     replace({
       'process.env.NODE_ENV': NODE_ENV,
       isV3Manifest: 'true',
-      isDevEnv: isProduction ? '' : 'isDevEnv',
       preventAssignment: true,
     }),
     chromeExtension(),

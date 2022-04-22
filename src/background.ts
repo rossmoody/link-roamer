@@ -53,22 +53,3 @@ if ('isV3Manifest') {
     })
   })
 }
-
-/**
- * Set a different colored icon in the toolbar when in development environment.
- */
-chrome.management.getSelf((result) => {
-  if (result.installType === 'development') {
-    chrome.action.setIcon({
-      path: {
-        16: './public/icons/dev/16.png',
-        24: './public/icons/dev/24.png',
-        32: './public/icons/dev/32.png',
-        48: './public/icons/dev/48.png',
-        64: './public/icons/dev/64.png',
-        128: './public/icons/dev/128.png',
-        256: './public/icons/dev/256.png',
-      },
-    })
-  }
-})

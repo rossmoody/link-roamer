@@ -59,7 +59,7 @@ export const DataProvider = ({ children }: Children) => {
           return link
         })
 
-        if ('isDevEnv') {
+        if (process.env.NODE_ENV === 'development') {
           const lp = new LinksHandler(links)
           const invalid = links.filter((link) => !link.status.validResponse)
           const notOk = lp.notOkLinks
