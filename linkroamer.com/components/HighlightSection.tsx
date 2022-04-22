@@ -14,7 +14,7 @@ const data: HighlightData[] = [
       <React.Fragment>
         Highlight links that return a{' '}
         <Link color="blurple.300" href={Links.fourOhFour}>
-          324
+          404
         </Link>{' '}
         status or have a{' '}
         <Link color="blurple.300" href={Links.httpDangers}>
