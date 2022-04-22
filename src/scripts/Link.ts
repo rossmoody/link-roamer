@@ -32,6 +32,27 @@ class Link extends URL {
     const lastCharacter = href.charAt(href.length - 1)
     return lastCharacter === '/' ? href.slice(0, -1) : href
   }
+
+  clone() {
+    return {
+      ...this,
+      hash: this.hash,
+      host: this.host,
+      hostname: this.hostname,
+      href: this.href,
+      origin: this.origin,
+      password: this.password,
+      pathname: this.pathname,
+      port: this.port,
+      protocol: this.protocol,
+      search: this.search,
+      searchParams: this.searchParams,
+      username: this.username,
+      displayHref: this.displayHref,
+      domain: this.domain,
+      isHttp: this.isHttp,
+    }
+  }
 }
 
 export default Link

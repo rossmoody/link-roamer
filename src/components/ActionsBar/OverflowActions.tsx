@@ -8,11 +8,13 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 import { useCheckedItems } from '../../providers/CheckedItems'
+import { useData } from '../../providers/DataProvider'
 import LinkActions from '../../scripts/LinkActions'
 import {
   BookmarkIcon,
   CsvCopyIcon,
   CsvFileIcon,
+  ExportIcon,
   JsonCopyIcon,
   JsonFileIcon,
   MoreIcon,
@@ -21,6 +23,7 @@ import BookmarkModal from './BookmarkModal'
 
 const OverflowActions = () => {
   const [showBookmark, setShowBookmark] = React.useState(false)
+  const { data } = useData()
   const { checkedItems } = useCheckedItems()
 
   return (
@@ -32,6 +35,7 @@ const OverflowActions = () => {
           variant="solid"
           icon={<MoreIcon />}
         />
+
         <MenuList>
           <MenuItem
             onClick={() => setShowBookmark(true)}
@@ -64,6 +68,13 @@ const OverflowActions = () => {
             icon={<CsvCopyIcon />}
           >
             Copy CSV
+          </MenuItem>
+          <MenuDivider />
+          <MenuItem
+            onClick={() => LinkActions.exportAllData(data.links, checkedItems)}
+            icon={<ExportIcon />}
+          >
+            Detailed export
           </MenuItem>
         </MenuList>
       </Menu>

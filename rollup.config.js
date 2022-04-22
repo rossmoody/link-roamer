@@ -1,4 +1,5 @@
 import commonjs from '@rollup/plugin-commonjs'
+import json from '@rollup/plugin-json'
 import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import typescript from '@rollup/plugin-typescript'
@@ -39,6 +40,7 @@ const v2Manifest = {
     }),
     chromeExtension(),
     simpleReloader(),
+    json(),
     resolve(),
     commonjs(),
     typescript(),
@@ -63,6 +65,7 @@ const v3Manifest = {
     }),
     chromeExtension(),
     simpleReloader(),
+    json(),
     resolve(),
     commonjs(),
     typescript(),

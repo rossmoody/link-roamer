@@ -9,10 +9,7 @@
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "strict": true,
-    "target": "es2018",
-    "paths": {
-      "broken-link-checker-timeout":["./node_modules/@types/broken-link-checker"]
-    }
+    "target": "es2018"
   },
   "exclude": ["linkroamer.com"]
 }

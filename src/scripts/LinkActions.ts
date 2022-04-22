@@ -1,3 +1,5 @@
+import Link from './Link'
+
 class LinkActions {
   /**
    * Transforms all link hrefs into a comma separated string
@@ -13,10 +15,27 @@ class LinkActions {
    */
   static linksToJsonString(links: string[]) {
     const jsonified = links.reduce((prevValue, currValue) => {
-      return `${prevValue} "${currValue}" , `
+      return `${prevValue} "${currValue}",`
     }, '')
 
     return '[' + jsonified + ']'
+  }
+
+  static exportAllData(data: Link[], checkedItems: string[]) {
+    const links = JSON.stringify(
+      data
+        .filter((item) => checkedItems.some((href) => href === item.href))
+        .map((item) => item.clone())
+    )
+
+    const json =
+      'data:application/json;charset=utf-8,' + encodeURIComponent(links)
+
+    const link = document.createElement('a')
+    link.setAttribute('href', json)
+    link.setAttribute('download', 'detailed-roamer-data.json')
+    document.body.appendChild(link)
+    link.click()
   }
 
   /**

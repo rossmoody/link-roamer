@@ -13,7 +13,7 @@ const Favicon = ({ domain, size = 24, faviconSize = 16 }: Props) => {
   return (
     <Center height={`${size}px`} width={`${size}px`} borderRadius="md" bg={bg}>
       <Image
-        alt="Favicon"
+        alt={domain && domain}
         src={domain && faviconUrl(domain)}
         boxSize={`${faviconSize}px`}
       />
