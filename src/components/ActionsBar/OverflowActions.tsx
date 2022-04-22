@@ -74,7 +74,7 @@ const OverflowActions = () => {
             onClick={() => LinkActions.exportAllData(data.links, checkedItems)}
             icon={<ExportIcon />}
           >
-            Detailed export
+            Export detailed JSON
           </MenuItem>
         </MenuList>
       </Menu>

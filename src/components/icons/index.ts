@@ -1,4 +1,5 @@
 export * from './AlertIcon'
+export * from './ArrowRightIcon'
 export * from './BookmarkIcon'
 export * from './BrokenLinkIcon'
 export * from './CsvCopyIcon'

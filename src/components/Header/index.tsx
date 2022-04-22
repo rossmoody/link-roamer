@@ -22,11 +22,11 @@ const Header = () => {
       }
     }
 
-    fetchData().catch(console.error)
+    fetchData().catch(() => setDomain('Website'))
   }, [data])
 
   return (
-    <Box as="header" p={6} pos="relative">
+    <Box as="header" pt={6} px={4} pb={2} pos="relative">
       <Flex justifyContent="space-between">
         <Box>
           <Flex alignItems="center" gap={2}>

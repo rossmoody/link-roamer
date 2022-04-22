@@ -54,7 +54,7 @@ const CategoryTabs = () => {
           <SelectAll />
           <Tab linksQty={all.quantity} title="All" />
           <Tab linksQty={fragments.quantity} title="Fragments" />
-          <Tab linksQty={notOk.quantity} title="Problems" />
+          <Tab linksQty={notOk.quantity} title="Not 200" />
           <Tab linksQty={redirected.quantity} title="Redirects" />
         </TabList>
 

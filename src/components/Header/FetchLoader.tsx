@@ -19,11 +19,11 @@ const FetchLoader = () => {
 
       brokenQty
         ? setState({
-            label: `Found ${brokenQty} 404 link${brokenQty < 2 ? '' : 's'}`,
+            label: `${brokenQty} 404 link${brokenQty < 2 ? '' : 's'}`,
             colorScheme: 'red',
           })
         : setState({
-            label: 'All good',
+            label: 'No 404s',
             colorScheme: 'green',
           })
 

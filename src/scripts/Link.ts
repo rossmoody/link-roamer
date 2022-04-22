@@ -33,6 +33,9 @@ class Link extends URL {
     return lastCharacter === '/' ? href.slice(0, -1) : href
   }
 
+  /**
+   * The URL class this is extending has a custom toJSON method that only returns the href of the object. This is a hack to clone the object for serializing it.
+   */
   clone() {
     return {
       ...this,

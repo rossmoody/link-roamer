@@ -28,7 +28,7 @@ chrome.runtime.onMessage.addListener(
     }
 
     return true
-  },
+  }
 )
 
 /**
@@ -37,17 +37,38 @@ chrome.runtime.onMessage.addListener(
  */
 if ('isV3Manifest') {
   chrome.runtime.onInstalled.addListener(() => {
-    chrome.declarativeContent.onPageChanged.removeRules()
     chrome.action.disable()
-    chrome.declarativeContent.onPageChanged.addRules([
-      {
-        conditions: [
-          new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: { schemes: ['https', 'http'] },
-          }),
-        ],
-        actions: [new chrome.declarativeContent.ShowAction()],
-      },
-    ])
+
+    const ruleOne = {
+      conditions: [
+        new chrome.declarativeContent.PageStateMatcher({
+          pageUrl: { schemes: ['https', 'http'] },
+        }),
+      ],
+      actions: [new chrome.declarativeContent.ShowAction()],
+    }
+
+    chrome.declarativeContent.onPageChanged.removeRules(undefined, () => {
+      chrome.declarativeContent.onPageChanged.addRules([ruleOne])
+    })
   })
 }
+
+/**
+ * Set a different colored icon in the toolbar when in development environment.
+ */
+chrome.management.getSelf((result) => {
+  if (result.installType === 'development') {
+    chrome.action.setIcon({
+      path: {
+        16: './public/icons/dev/16.png',
+        24: './public/icons/dev/24.png',
+        32: './public/icons/dev/32.png',
+        48: './public/icons/dev/48.png',
+        64: './public/icons/dev/64.png',
+        128: './public/icons/dev/128.png',
+        256: './public/icons/dev/256.png',
+      },
+    })
+  }
+})

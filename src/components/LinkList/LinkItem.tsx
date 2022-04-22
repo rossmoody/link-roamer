@@ -7,6 +7,7 @@ import {
   Link as ChakraLink,
   ListItem,
   Tag,
+  TagRightIcon,
   Text,
   Tooltip,
 } from '@chakra-ui/react'
@@ -15,7 +16,7 @@ import { useCheckedItems } from '../../providers/CheckedItems'
 import c from '../../scripts/Chrome'
 import Link from '../../scripts/Link'
 import statusCodes from '../../status-codes'
-import { ExternalLinkIcon } from '../icons'
+import { ArrowRight, ExternalLinkIcon } from '../icons'
 
 type Props = {
   link: Link
@@ -36,6 +37,7 @@ const LinkItem = ({ link }: Props) => {
         )
   }
 
+  const isRedirected = link.status.redirected
   const isHttp = link.protocol === 'http:'
   const isNotOk = !link.status.ok
   const statusCode = link.status.status as keyof typeof statusCodes
@@ -56,11 +58,29 @@ const LinkItem = ({ link }: Props) => {
             isChecked={checkedItems.includes(link.href)}
             onChange={handleChange}
           />
-          <ChakraLink href={link.href} wordBreak="break-word" target="_blank">
-            <Text as="span" fontSize="14px">
-              {link.href}
-            </Text>
-          </ChakraLink>
+          <Flex direction="column" gap={1}>
+            <ChakraLink href={link.href} wordBreak="break-word" target="_blank">
+              <Text as="span" fontSize="14px">
+                {link.href}
+              </Text>
+            </ChakraLink>
+            {isRedirected && (
+              <Flex alignItems="center">
+                <Tag size="sm" mr={1}>
+                  Redirects to <TagRightIcon boxSize="12px" as={ArrowRight} />
+                </Tag>
+                <ChakraLink
+                  href={link.status.url}
+                  wordBreak="break-word"
+                  target="_blank"
+                >
+                  <Text as="span" fontSize="14px">
+                    {link.href}
+                  </Text>
+                </ChakraLink>
+              </Flex>
+            )}
+          </Flex>
         </Flex>
         <HStack spacing={1}>
           <Fade in={hover}>

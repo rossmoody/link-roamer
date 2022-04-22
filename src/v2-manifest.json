@@ -15,16 +15,16 @@
   },
   "browser_action": {
     "default_icon": {
-      "16": "public/icons/16.png",
-      "24": "public/icons/24.png",
-      "32": "public/icons/32.png"
+      "16": "public/icons/production/16.png",
+      "24": "public/icons/production/24.png",
+      "32": "public/icons/production/32.png"
     },
     "default_popup": "public/index.html"
   },
   "icons": {
-    "48": "public/icons/48.png",
-    "64": "public/icons/64.png",
-    "128": "public/icons/128.png",
-    "256": "public/icons/256.png"
+    "48": "public/icons/production/48.png",
+    "64": "public/icons/production/64.png",
+    "128": "public/icons/production/128.png",
+    "256": "public/icons/production/256.png"
   }
 }

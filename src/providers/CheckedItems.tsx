@@ -11,13 +11,14 @@ const CheckedItemsContext = React.createContext({} as CheckedItemsContextProps)
 export const CheckedItemsProvider = ({ children }: Children) => {
   const [checkedItems, setCheckedItems] = React.useState<string[]>([])
 
-  const checkedMemo = React.useMemo(
-    () => ({
-      checkedItems,
+  const checkedMemo = React.useMemo(() => {
+    const sorted = checkedItems.sort()
+
+    return {
+      checkedItems: sorted,
       setCheckedItems,
-    }),
-    [checkedItems]
-  )
+    }
+  }, [checkedItems])
 
   return (
     <CheckedItemsContext.Provider value={checkedMemo}>

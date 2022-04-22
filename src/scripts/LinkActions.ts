@@ -6,7 +6,7 @@ class LinkActions {
    */
   static linksToCsvString(links: string[]) {
     return links.reduce((prevValue, currValue) => {
-      return prevValue + currValue + ','
+      return prevValue.concat(currValue, ',')
     }, '')
   }
 
@@ -15,7 +15,7 @@ class LinkActions {
    */
   static linksToJsonString(links: string[]) {
     const jsonified = links.reduce((prevValue, currValue) => {
-      return `${prevValue} "${currValue}",`
+      return prevValue.concat('"', currValue, '"', ',')
     }, '')
 
     return '[' + jsonified + ']'

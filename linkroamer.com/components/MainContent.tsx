@@ -27,7 +27,7 @@ const MainContent = () => (
     <Heading fontWeight="bold" fontSize={['5xl', '6xl']} lineHeight={1.1}>
       Quickly{' '}
       <Text as="span" {...gradientText}>
-        handle all the links
+        manage all the links
       </Text>{' '}
       on a web page
     </Heading>
