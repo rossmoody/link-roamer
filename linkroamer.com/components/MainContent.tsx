@@ -11,6 +11,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import ChromeIcon from './icons/Chrome'
+import EdgeIcon from './icons/Chrome copy'
 import FirefoxIcon from './icons/Firefox'
 import StarIcon from './icons/Star'
 import { Links } from './types'
@@ -66,7 +67,7 @@ const MainContent = () => (
           href={Links.edgeMarketplace}
           variant="ghost"
           aria-label="Navigate to Microsoft Edge addon"
-          icon={<FirefoxIcon />}
+          icon={<EdgeIcon />}
         />
       </ButtonGroup>
     </Stack>
