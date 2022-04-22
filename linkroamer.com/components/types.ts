@@ -20,6 +20,7 @@ export enum Links {
   chromeWebstore = 'https://chrome.google.com/webstore/detail/link-roamer/lgcgflalbmeodapiohjepkjlgipmhofe',
   firefoxMarketplace = 'https://addons.mozilla.org/en-US/firefox/addon/link-roamer/',
   safariAppStore = '',
+  edgeMarketplace = 'https://microsoftedge.microsoft.com/addons/detail/link-roamer/bigambbapbnineapeagbdpdpkaildjdd',
   svgGobbler = 'https://www.svggobbler.com',
   twitter = 'https://www.twitter.com/_rossmoody',
   githubRepo = 'https://www.github.com/rossmoody/link-roamer',

@@ -61,6 +61,13 @@ const MainContent = () => (
           aria-label="Navigate to Firefox extension"
           icon={<FirefoxIcon />}
         />
+        <IconButton
+          as="a"
+          href={Links.edgeMarketplace}
+          variant="ghost"
+          aria-label="Navigate to Microsoft Edge addon"
+          icon={<FirefoxIcon />}
+        />
       </ButtonGroup>
     </Stack>
     <HStack spacing={2} mt={10} height="20px" display={['none', 'flex']}>
