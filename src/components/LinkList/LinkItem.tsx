@@ -7,7 +7,6 @@ import {
   Link as ChakraLink,
   ListItem,
   Tag,
-  TagRightIcon,
   Text,
   Tooltip,
 } from '@chakra-ui/react'
@@ -16,7 +15,7 @@ import { useCheckedItems } from '../../providers/CheckedItems'
 import c from '../../scripts/Chrome'
 import Link from '../../scripts/Link'
 import statusCodes from '../../status-codes'
-import { ArrowRight, ExternalLinkIcon } from '../icons'
+import { ExternalLinkIcon } from '../icons'
 
 type Props = {
   link: Link
@@ -58,24 +57,30 @@ const LinkItem = ({ link }: Props) => {
             isChecked={checkedItems.includes(link.href)}
             onChange={handleChange}
           />
-          <Flex direction="column" gap={1}>
-            <ChakraLink href={link.href} wordBreak="break-word" target="_blank">
+          <Flex direction="column" gap={2}>
+            <ChakraLink
+              href={link.href}
+              wordBreak="break-word"
+              target="_blank"
+              lineHeight={1}
+            >
               <Text as="span" fontSize="14px">
                 {link.href}
               </Text>
             </ChakraLink>
             {isRedirected && (
               <Flex alignItems="center">
-                <Tag size="sm" mr={1}>
-                  Redirects to <TagRightIcon boxSize="12px" as={ArrowRight} />
+                <Tag size="sm" mr={1} minWidth="max-content">
+                  Redirects to:
                 </Tag>
                 <ChakraLink
+                  lineHeight={1}
                   href={link.status.url}
                   wordBreak="break-word"
                   target="_blank"
                 >
                   <Text as="span" fontSize="14px">
-                    {link.href}
+                    {link.status.url}
                   </Text>
                 </ChakraLink>
               </Flex>
@@ -84,12 +89,19 @@ const LinkItem = ({ link }: Props) => {
         </Flex>
         <HStack spacing={1}>
           <Fade in={hover}>
-            <IconButton
-              aria-label="Open Tab in background"
-              size="xs"
-              icon={<ExternalLinkIcon height="12px" />}
-              onClick={() => c.createBackgroundTab(link.href)}
-            />
+            <Tooltip
+              hasArrow
+              fontSize="12px"
+              placement="left"
+              label="Open the link in a background tab without leaving the window"
+            >
+              <IconButton
+                aria-label="Open Tab in background"
+                size="xs"
+                icon={<ExternalLinkIcon height="12px" />}
+                onClick={() => c.createBackgroundTab(link.href)}
+              />
+            </Tooltip>
           </Fade>
           {isHttp && (
             <Tag size="sm" colorScheme="yellow">

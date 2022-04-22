@@ -41,7 +41,9 @@ class LinksHandler {
    * Return all the links that aren't status ok as a Link[]
    */
   get notOkLinks() {
-    return this.links.filter((link) => !link.status.ok)
+    return this.links.filter(
+      (link) => !link.status.ok && link.status.status !== 999
+    )
   }
 
   /**

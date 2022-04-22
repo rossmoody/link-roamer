@@ -4,11 +4,13 @@
 
 ---
 
-> 🚀 Download this extension on the
-> [Chrome Web store](https://chrome.google.com/webstore/detail/link-roamer/lgcgflalbmeodapiohjepkjlgipmhofe)
-> or the
-> [Firefox Addon Marketplace](https://addons.mozilla.org/en-US/firefox/addon/link-roamer/).
-> 🚀
+## 🚀 Where to install
+
+This extension is available on:
+
+- [Chrome Web store](https://chrome.google.com/webstore/detail/link-roamer/lgcgflalbmeodapiohjepkjlgipmhofe)
+- [Firefox Addon Marketplace](https://addons.mozilla.org/en-US/firefox/addon/link-roamer/)
+- [Microsoft Edge Add-ons Marketplace](https://microsoftedge.microsoft.com/addons/detail/link-roamer/bigambbapbnineapeagbdpdpkaildjdd)
 
 ---
 
@@ -16,24 +18,27 @@ A browser extension for gathering, organizing, and inspecting all the links on a
 web page. It's also pretty good at finding broken links (404). This extension
 allows you to:
 
-## Inspect links
+### Inspect links
 
 - Highlight broken links on a page (i.e. 404)
-- Highlight unsecure links on a page (i.e. http)
+- Highlight non-secure links on a page (i.e. http)
 - Quickly find, view, organize, and navigate links on a page
+- See the status and reasoning for requests that don't succed
+- View links and where they redirect to before navigating
 
-## Organize links
+### Organize links
 
 - Group links by their primary domain name
 - Create a tab group from a set of selected links (_\*Chrome only_)
 - Save a set of selected links as bookmarks
 
-## Interact with links
+### Interact with links
 
 - Copy links to clipboard
 - Open links in a new window or tab
 - Open individual links in a background tab
 - Export links as `json`, `text`, or `csv`
+- Export detailed URL and fetch request data
 
 ---
 

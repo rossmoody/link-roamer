@@ -6,6 +6,7 @@ export const ExportIcon = createIcon({
     width: '16px',
     height: '16px',
     fill: 'currentcolor',
+    'aria-hidden': true,
   },
   viewBox: '0 0 24 24',
   path: (

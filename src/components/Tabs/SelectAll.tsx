@@ -1,21 +1,25 @@
 import { Checkbox } from '@chakra-ui/react'
 import React from 'react'
 import { useCheckedItems } from '../../providers/CheckedItems'
-import { useData } from '../../providers/DataProvider'
+import Link from '../../scripts/Link'
 
-const SelectAll = () => {
-  const { data } = useData()
+type Props = {
+  filteredLinks: Link[]
+}
+
+const SelectAll = ({ filteredLinks }: Props) => {
   const { checkedItems, setCheckedItems } = useCheckedItems()
 
-  const allChecked = data.links.every((link) =>
-    checkedItems.includes(link.href)
-  )
+  const allChecked =
+    filteredLinks.every((link) => checkedItems.includes(link.href)) &&
+    filteredLinks.length > 0
 
   const isIndeterminate =
-    data.links.some((link) => checkedItems.includes(link.href)) && !allChecked
+    filteredLinks.some((link) => checkedItems.includes(link.href)) &&
+    !allChecked
 
   const handleChange = () => {
-    const hrefs = data.links.map((link) => link.href)
+    const hrefs = filteredLinks.map((link) => link.href)
 
     allChecked
       ? setCheckedItems((prev) => prev.filter((item) => !hrefs.includes(item)))

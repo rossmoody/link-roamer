@@ -4,12 +4,14 @@ import React from 'react'
 type CustomTabProps = {
   linksQty: number
   title: string
+  alwaysShow?: boolean
 }
 
 const CustomTab = React.forwardRef<HTMLButtonElement, CustomTabProps>(
   (props, ref) => {
     const border = useColorModeValue('blurple.500', 'blurple.400')
-    if (props.linksQty < 1) return null
+
+    if (props.linksQty < 1 && !props.alwaysShow) return null
 
     return (
       <Tab
@@ -24,7 +26,7 @@ const CustomTab = React.forwardRef<HTMLButtonElement, CustomTabProps>(
         {props.title} <Badge>{props.linksQty}</Badge>
       </Tab>
     )
-  },
+  }
 )
 
 export default CustomTab

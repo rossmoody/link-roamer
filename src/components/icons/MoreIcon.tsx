@@ -1,5 +1,5 @@
-import React from 'react'
 import { createIcon } from '@chakra-ui/react'
+import React from 'react'
 
 export const MoreIcon = createIcon({
   defaultProps: {
@@ -10,6 +10,7 @@ export const MoreIcon = createIcon({
     strokeLinecap: 'round',
     strokeLinejoin: 'round',
     fill: 'none',
+    'aria-hidden': true,
   },
   viewBox: '0 0 24 24',
   path: (

@@ -26,5 +26,13 @@
     "128": "public/icons/dev/128.png",
     "256": "public/icons/dev/256.png"
   },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+U",
+        "mac": "Command+U"
+      }
+    }
+  },
   "host_permissions": ["http://localhost:8080/*"]
 }
