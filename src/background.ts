@@ -5,6 +5,8 @@ const url =
     ? 'https://fetch-fav-h57lsidp3a-uc.a.run.app'
     : 'http://localhost:8080'
 
+// const url = 'https://fetch-fav-h57lsidp3a-uc.a.run.app'
+
 /**
  * Listens for a message from the extension to fetch HEAD information
  * about each given link to check if it returns a 404 or not.
@@ -19,11 +21,11 @@ chrome.runtime.onMessage.addListener(
       }
 
       try {
-        fetch(url, init).then((result) => {
-          result.json().then(sendResponse)
-        })
+        fetch(url, init)
+          .then((result) => result.json())
+          .then(sendResponse)
       } catch (error) {
-        sendResponse([{}])
+        sendResponse([])
       }
     }
 
@@ -39,7 +41,7 @@ if ('isV3Manifest') {
   chrome.runtime.onInstalled.addListener(() => {
     chrome.action.disable()
 
-    const ruleOne = {
+    const enableOnHttpPages = {
       conditions: [
         new chrome.declarativeContent.PageStateMatcher({
           pageUrl: { schemes: ['https', 'http'] },
@@ -48,8 +50,6 @@ if ('isV3Manifest') {
       actions: [new chrome.declarativeContent.ShowAction()],
     }
 
-    chrome.declarativeContent.onPageChanged.removeRules(undefined, () => {
-      chrome.declarativeContent.onPageChanged.addRules([ruleOne])
-    })
+    chrome.declarativeContent.onPageChanged.addRules([enableOnHttpPages])
   })
 }

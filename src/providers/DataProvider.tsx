@@ -52,7 +52,6 @@ export const DataProvider = ({ children }: Children) => {
     const fetchData = async () => {
       if (data.links.length > 0) {
         const result = await c.fetchLinks(data.links)
-        c.setStorage('link-roamer-cache', JSON.stringify(result))
 
         const links = data.links.map((link) => {
           link.status =

@@ -58,5 +58,7 @@ http('fetchStatuses', async (request, response) => {
   const results = (await Promise.allSettled(links.map(getStatus))).map(
     resolveSettledPromises
   )
+
+  console.log('results finished', results)
   response.send(JSON.stringify(results))
 })
