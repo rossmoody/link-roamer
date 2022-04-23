@@ -1,4 +1,4 @@
-import { Checkbox } from '@chakra-ui/react'
+import { Checkbox, FormLabel, VisuallyHidden } from '@chakra-ui/react'
 import React from 'react'
 import { useCheckedItems } from '../../providers/CheckedItems'
 import Link from '../../scripts/Link'
@@ -27,13 +27,21 @@ const SelectAll = ({ filteredLinks }: Props) => {
   }
 
   return (
-    <Checkbox
-      ml={1}
-      mr={2}
-      isChecked={allChecked}
-      isIndeterminate={isIndeterminate}
-      onChange={handleChange}
-    />
+    <React.Fragment>
+      <VisuallyHidden>
+        <FormLabel htmlFor="select-all">
+          Select all the available links
+        </FormLabel>
+      </VisuallyHidden>
+      <Checkbox
+        id="select-all"
+        ml={1}
+        mr={2}
+        isChecked={allChecked}
+        isIndeterminate={isIndeterminate}
+        onChange={handleChange}
+      />
+    </React.Fragment>
   )
 }
 

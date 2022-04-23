@@ -22,7 +22,12 @@ const Highlight = (props: HighlightData) => {
       >
         {props.subtitle}
       </Text>
-      <Heading fontWeight="bold" fontSize={['2xl', '4xl']} lineHeight={1.1}>
+      <Heading
+        fontWeight="bold"
+        fontSize={['2xl', '4xl']}
+        lineHeight={1.1}
+        as="h1"
+      >
         {props.title}
       </Heading>
       <Text mt={6} fontSize={['md', 'lg']}>

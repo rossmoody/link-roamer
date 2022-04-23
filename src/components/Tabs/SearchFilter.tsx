@@ -1,4 +1,4 @@
-import { Box, Input } from '@chakra-ui/react'
+import { Box, FormLabel, Input, VisuallyHidden } from '@chakra-ui/react'
 import React from 'react'
 
 type Props = {
@@ -12,6 +12,11 @@ const SearchFilter = ({ setFilter }: Props) => {
 
   return (
     <Box px={4}>
+      <VisuallyHidden>
+        <FormLabel htmlFor="filter-input">
+          Filter links by typing in a keyword
+        </FormLabel>
+      </VisuallyHidden>
       <Input
         onChange={handleChange}
         size="sm"
@@ -19,6 +24,7 @@ const SearchFilter = ({ setFilter }: Props) => {
         type="text"
         variant="filled"
         placeholder="Filter by keyword"
+        id="filter-input"
       />
     </Box>
   )
