@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import LinkStatus from '../api/LinkStatus'
 import c from '../scripts/Chrome'
+import dataDebugger from '../scripts/data-debugger'
 import { gatherHrefs } from '../scripts/execute-scripts'
 import Link from '../scripts/Link'
 import { default as LinksHandler } from '../scripts/LinksHandler'
@@ -51,6 +52,7 @@ export const DataProvider = ({ children }: Children) => {
     const fetchData = async () => {
       if (data.links.length > 0) {
         const result = await c.fetchLinks(data.links)
+        c.setStorage('link-roamer-cache', JSON.stringify(result))
 
         const links = data.links.map((link) => {
           link.status =
@@ -60,18 +62,7 @@ export const DataProvider = ({ children }: Children) => {
         })
 
         if (process.env.NODE_ENV === 'development') {
-          const lp = new LinksHandler(links)
-          const invalid = links.filter((link) => !link.status.validResponse)
-          const notOk = lp.notOkLinks
-          const redirected = lp.redirectedLinks
-          const invalidQty = invalid.length
-          const resultQty = result.length
-
-          console.log('Redirected -> ', redirected)
-          console.log('After Status Fetch -> ', result, resultQty)
-          console.log('Not ok -> ', notOk, notOk.length)
-          console.log('Empty link status -> ', invalid, invalidQty)
-          console.log('Links -> ', links)
+          dataDebugger(links)
         }
 
         setData({ links, loading: false })

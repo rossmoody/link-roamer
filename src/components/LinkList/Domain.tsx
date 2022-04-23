@@ -5,12 +5,10 @@ import {
   AccordionPanel,
   Badge,
   Checkbox,
-  FormLabel,
   Heading,
   HStack,
   List,
   Stack,
-  VisuallyHidden,
 } from '@chakra-ui/react'
 import React from 'react'
 import { useCheckedItems } from '../../providers/CheckedItems'
@@ -48,12 +46,8 @@ const Domain = ({ domain, links }: Props) => {
       <h2>
         <AccordionButton py={3}>
           <Stack direction="row" spacing={2} alignItems="center" mr="auto">
-            <VisuallyHidden>
-              <FormLabel htmlFor={domain}>
-                Select all the links that belong to {domain}
-              </FormLabel>
-            </VisuallyHidden>
             <Checkbox
+              aria-label={`Select all the links that belong to ${domain}`}
               id={domain}
               onChange={handleChange}
               isChecked={allChecked}

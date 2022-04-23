@@ -110,12 +110,13 @@ class Chrome {
     })
   }
 
-  async getStorage(key: string) {
-    return await chrome.storage.sync.get(key)
+  async getStorage<Type>(key: string): Promise<Type> {
+    const result = await chrome.storage.local.get(key)
+    return result[key]
   }
 
-  async setStorage(key: string, value: string) {
-    return await chrome.storage.sync.set({ items: { [key]: value } })
+  setStorage(key: string, value: unknown) {
+    chrome.storage.local.set({ [key]: value })
   }
 }
 

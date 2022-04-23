@@ -2,7 +2,6 @@ import {
   Checkbox,
   Fade,
   Flex,
-  FormLabel,
   HStack,
   IconButton,
   Link as ChakraLink,
@@ -10,7 +9,6 @@ import {
   Tag,
   Text,
   Tooltip,
-  VisuallyHidden,
 } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useCheckedItems } from '../../providers/CheckedItems'
@@ -53,12 +51,8 @@ const LinkItem = ({ link }: Props) => {
     >
       <Flex justifyContent="space-between" alignItems="center">
         <Flex flex={1}>
-          <VisuallyHidden>
-            <FormLabel htmlFor={link.href}>
-              Select the link check for {link.href}
-            </FormLabel>
-          </VisuallyHidden>
           <Checkbox
+            aria-label={`Select the link check for ${link.href}`}
             mr={3}
             id={link.href}
             value={link.href}
@@ -79,7 +73,7 @@ const LinkItem = ({ link }: Props) => {
             {isRedirected && (
               <Flex alignItems="center">
                 <Tag size="sm" mr={1} minWidth="max-content">
-                  Redirects to:
+                  Redirects
                 </Tag>
                 <ChakraLink
                   lineHeight={1}

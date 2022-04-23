@@ -1,9 +1,7 @@
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+import { ChakraProvider, ColorMode, extendTheme } from '@chakra-ui/react'
 import React from 'react'
 import c from '../scripts/Chrome'
 import { Children } from '../types'
-
-const mode = c.getStorage('mode')
 
 const theme = extendTheme({
   styles: {
@@ -14,7 +12,7 @@ const theme = extendTheme({
     },
   },
   config: {
-    initialColorMode: mode,
+    initialColorMode: async () => await c.getStorage<ColorMode>('mode'),
   },
   semanticTokens: {
     colors: {

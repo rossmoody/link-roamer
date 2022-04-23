@@ -16,3 +16,8 @@ export type LinkData = {
 export type Children = {
   children: React.ReactNode
 }
+
+export type LinkStorage = {
+  timestamp: Date
+  data: Link[]
+}
