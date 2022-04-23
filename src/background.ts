@@ -1,11 +1,11 @@
 import { Message } from './types'
 
-const url =
-  process.env.NODE_ENV === 'production'
-    ? 'https://fetch-fav-h57lsidp3a-uc.a.run.app'
-    : 'http://localhost:8080'
+// const url =
+//   process.env.NODE_ENV === 'production'
+//     ? 'https://fetch-fav-h57lsidp3a-uc.a.run.app'
+//     : 'http://localhost:8080'
 
-// const url = 'https://fetch-fav-h57lsidp3a-uc.a.run.app'
+const url = 'https://fetch-fav-h57lsidp3a-uc.a.run.app'
 
 /**
  * Listens for a message from the extension to fetch HEAD information
