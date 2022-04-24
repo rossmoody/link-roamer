@@ -34,6 +34,12 @@
       }
     }
   },
+  "web_accessible_resources": [
+    {
+      "resources": ["public/onboarding.html"],
+      "matches": ["*://*/*"]
+    }
+  ],
   "host_permissions": [
     "https://fetch-fav-h57lsidp3a-uc.a.run.app/*",
     "http://localhost:8080/*"

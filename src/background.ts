@@ -51,3 +51,9 @@ if ('isV3Manifest') {
     chrome.declarativeContent.onPageChanged.addRules([enableOnHttpPages])
   })
 }
+
+chrome.runtime.onInstalled.addListener((details) => {
+  if (details.reason === 'install') {
+    chrome.tabs.create({ url: 'public/onboarding.html' })
+  }
+})

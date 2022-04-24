@@ -21,7 +21,7 @@ const apiConfig = {
     format: 'esm',
   },
   plugins: [typescript()],
-  external: ['node-fetch', '@google-cloud/functions-framework'],
+  external: ['node-fetch', '@google-cloud/functions-framework', 'user-agents'],
 }
 
 const v2Manifest = {

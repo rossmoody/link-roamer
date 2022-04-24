@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOMClient from 'react-dom/client'
 import { CategoryTabs, Header, Layout } from '../components'
 import ActionsBar from '../components/ActionsBar'
 import { CheckedItemsProvider } from '../providers/CheckedItems'
@@ -21,4 +22,5 @@ const App = () => {
   )
 }
 
-export default App
+const root = document.getElementById('root')!
+ReactDOMClient.createRoot(root).render(<App />)

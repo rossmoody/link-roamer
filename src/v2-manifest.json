@@ -21,6 +21,20 @@
     },
     "default_popup": "public/index.html"
   },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+U",
+        "mac": "Command+U"
+      }
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["public/onboarding.html"],
+      "matches": ["*://*/*"]
+    }
+  ],
   "icons": {
     "48": "public/icons/production/48.png",
     "64": "public/icons/production/64.png",

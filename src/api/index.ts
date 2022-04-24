@@ -1,9 +1,11 @@
 import { http } from '@google-cloud/functions-framework'
 import fetch, { AbortError, RequestInit } from 'node-fetch'
+import UserAgent from 'user-agents'
 import LinkStatus from './LinkStatus'
 
 const getStatus = (link: string) => {
   async function fetchStatus(retries: number, method = 'HEAD') {
+    const userAgent = new UserAgent()
     const controller = new globalThis.AbortController()
 
     const timeout = setTimeout(() => {
@@ -11,6 +13,7 @@ const getStatus = (link: string) => {
     }, 12000)
 
     const options: RequestInit = {
+      headers: { 'User-Agent': userAgent.toString() },
       method,
       signal: controller.signal,
       size: 0,

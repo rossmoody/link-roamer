@@ -28,5 +28,19 @@
     "128": "public/icons/production/128.png",
     "256": "public/icons/production/256.png"
   },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+U",
+        "mac": "Command+U"
+      }
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["public/onboarding.html"],
+      "matches": ["*://*/*"]
+    }
+  ],
   "host_permissions": ["https://fetch-fav-h57lsidp3a-uc.a.run.app/*"]
 }

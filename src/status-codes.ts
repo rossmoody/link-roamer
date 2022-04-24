@@ -47,12 +47,12 @@ export default {
   404: {
     title: 'Not found',
     description:
-      'Link Roamer requested this URL 5 times and could not get a response.',
+      'This URL may be broken. Link Roamer sent 5 requess and could not get a response. It is best to double check, as sometimes valid sites block requests.',
   },
   405: {
     title: 'Method Not Allowed',
     description:
-      'The request method is known by the server but is not supported by the target resource.',
+      'This is a valid URL but the request method used is not supported.',
   },
   406: {
     title: 'Not Acceptable',
