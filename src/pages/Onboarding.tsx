@@ -24,8 +24,8 @@ const Onboarding = () => (
         px={{ base: '6', lg: '8' }}
         py={{ base: '16', sm: '20' }}
       >
-        <Center flex={1}>
-          <LinkRoamerLogo size={48} />
+        <Center flex={1} mb={12}>
+          <LinkRoamerLogo size={72} />
         </Center>
         <Heading
           my="4"
@@ -50,19 +50,26 @@ const Onboarding = () => (
           </ListItem>
           <ListItem pb={4}>
             The default keyboard shortcut to open Link Roamer is{' '}
-            <Kbd fontSize="16px">Cmd + U</Kbd>. Sometimes that shortcut is taken
-            already and you will need to pick a new one. Keyboard shortcuts can
-            be set by pasting <Kbd>chrome://extensions/shortcuts</Kbd> in your
-            address bar.
+            <Kbd>Cmd + U</Kbd>. Sometimes that shortcut is taken by another
+            extension and you will need to pick a new one on the{' '}
+            <Kbd>chrome://extensions/shortcuts</Kbd> settings page.
           </ListItem>
           <ListItem>
-            This extension is open source and open to your feedback. Say{' '}
+            This extension is open-source. If you encounter an issue, please{' '}
             <Link
               href="https://github.com/rossmoody/link-roamer"
               target="_blank"
               color="blurple.400"
             >
-              hello or submit bugs on GitHub.
+              submit an issue on GitHub
+            </Link>{' '}
+            or{' '}
+            <Link
+              href="https://www.twitter.com/_rossmoody"
+              target="_blank"
+              color="blurple.400"
+            >
+              send me a message on Twitter
             </Link>
             .
           </ListItem>

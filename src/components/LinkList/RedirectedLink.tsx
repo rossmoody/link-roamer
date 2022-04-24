@@ -12,7 +12,7 @@ const RedirectedLink = ({ link }: Props) => {
   return (
     <Flex alignItems="center">
       <Tag size="sm" mr={1} minWidth="max-content">
-        Redirects
+        Redirect
       </Tag>
       <ChakraLink
         lineHeight={1}
