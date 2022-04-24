@@ -1,16 +1,10 @@
-import {
-  Fade,
-  HStack,
-  IconButton,
-  Tag,
-  TagLeftIcon,
-  Tooltip,
-} from '@chakra-ui/react'
+import { Fade, HStack, IconButton, Tag, TagLeftIcon } from '@chakra-ui/react'
 import React from 'react'
 import c from '../../scripts/Chrome'
 import Link from '../../scripts/Link'
 import statusCodes from '../../status-codes'
 import { ExternalLinkIcon, InfoIcon } from '../icons'
+import Tooltip from '../Tooltip'
 
 type Props = {
   link: Link
@@ -26,14 +20,8 @@ const LinkSuffix = ({ link, hover }: Props) => {
     <HStack spacing={1}>
       <Fade in={hover}>
         <Tooltip
-          hasArrow
-          fontSize="12px"
-          placement="left"
-          borderRadius="lg"
-          textAlign="center"
           label="Open the link in a background tab without leaving the window"
           maxWidth="200px"
-          p={2}
         >
           <IconButton
             aria-label="Open Tab in background"
