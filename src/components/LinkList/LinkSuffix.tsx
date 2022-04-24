@@ -29,7 +29,11 @@ const LinkSuffix = ({ link, hover }: Props) => {
           hasArrow
           fontSize="12px"
           placement="left"
+          borderRadius="lg"
+          textAlign="center"
           label="Open the link in a background tab without leaving the window"
+          maxWidth="200px"
+          p={2}
         >
           <IconButton
             aria-label="Open Tab in background"

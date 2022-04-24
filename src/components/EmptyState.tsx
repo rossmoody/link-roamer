@@ -7,7 +7,7 @@ const EmptyState = () => (
       <EmptyStateGraphic />
     </Box>
     <Box textAlign="center" maxW="375px">
-      <Heading fontSize="xl" mb={2}>
+      <Heading fontSize="large" mb={2}>
         No links to show
       </Heading>
       <Text>
@@ -21,8 +21,8 @@ const EmptyState = () => (
 
 const EmptyStateGraphic = () => (
   <svg
-    width="40"
-    height="40"
+    width="60"
+    height="60"
     viewBox="0 0 108 108"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

@@ -3,13 +3,13 @@ import {
   Flex,
   Link as ChakraLink,
   ListItem,
-  Tag,
   Text,
 } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useCheckedItems } from '../../providers/CheckedItems'
 import Link from '../../scripts/Link'
 import LinkSuffix from './LinkSuffix'
+import RedirectedLink from './RedirectedLink'
 
 type Props = {
   link: Link
@@ -29,8 +29,6 @@ const LinkItem = ({ link }: Props) => {
           prevChecked.filter((href) => href !== value)
         )
   }
-
-  const isRedirected = link.status.redirected
 
   return (
     <ListItem
@@ -61,23 +59,7 @@ const LinkItem = ({ link }: Props) => {
                 {link.href}
               </Text>
             </ChakraLink>
-            {isRedirected && (
-              <Flex alignItems="center">
-                <Tag size="sm" mr={1} minWidth="max-content">
-                  Redirects
-                </Tag>
-                <ChakraLink
-                  lineHeight={1}
-                  href={link.status.url}
-                  wordBreak="break-word"
-                  target="_blank"
-                >
-                  <Text as="span" fontSize="14px">
-                    {link.status.url}
-                  </Text>
-                </ChakraLink>
-              </Flex>
-            )}
+            <RedirectedLink link={link} />
           </Flex>
         </Flex>
         <LinkSuffix link={link} hover={hover} />
