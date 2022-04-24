@@ -53,6 +53,9 @@ export const DataProvider = ({ children }: Children) => {
       if (data.links.length > 0) {
         const result = await c.fetchLinks(data.links)
 
+        if (result.length < 1)
+          return setData((prevData) => ({ ...prevData, loading: false }))
+
         const links = data.links.map((link) => {
           link.status =
             result.find(({ originUrl }) => originUrl === link.href) ??

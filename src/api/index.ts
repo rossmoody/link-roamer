@@ -1,5 +1,5 @@
 import { http } from '@google-cloud/functions-framework'
-import fetch, { AbortError } from 'node-fetch'
+import fetch, { AbortError, RequestInit } from 'node-fetch'
 import LinkStatus from './LinkStatus'
 
 const getStatus = (link: string) => {
@@ -10,11 +10,14 @@ const getStatus = (link: string) => {
       controller.abort()
     }, 12000)
 
+    const options: RequestInit = {
+      method,
+      signal: controller.signal,
+      size: 0,
+    }
+
     try {
-      const response = await fetch(link, {
-        signal: controller.signal,
-        method,
-      })
+      const response = await fetch(link, options)
 
       clearTimeout(timeout)
 
@@ -58,7 +61,5 @@ http('fetchStatuses', async (request, response) => {
   const results = (await Promise.allSettled(links.map(getStatus))).map(
     resolveSettledPromises
   )
-
-  console.log('results finished', results)
   response.send(JSON.stringify(results))
 })

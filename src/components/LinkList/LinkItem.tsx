@@ -7,6 +7,7 @@ import {
   Link as ChakraLink,
   ListItem,
   Tag,
+  TagLeftIcon,
   Text,
   Tooltip,
 } from '@chakra-ui/react'
@@ -15,7 +16,7 @@ import { useCheckedItems } from '../../providers/CheckedItems'
 import c from '../../scripts/Chrome'
 import Link from '../../scripts/Link'
 import statusCodes from '../../status-codes'
-import { ExternalLinkIcon } from '../icons'
+import { AlertIcon, ExternalLinkIcon } from '../icons'
 
 type Props = {
   link: Link
@@ -118,7 +119,8 @@ const LinkItem = ({ link }: Props) => {
               placement="left"
               label={statusCodes[statusCode]?.description}
             >
-              <Tag size="sm" colorScheme="red">
+              <Tag size="sm">
+                <TagLeftIcon boxSize="12px" marginRight="4px" as={AlertIcon} />
                 {statusCode}
               </Tag>
             </Tooltip>

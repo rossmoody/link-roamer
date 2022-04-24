@@ -95,7 +95,7 @@ class Chrome {
 
   /**
    * Sends a message to the background script to process all the given hrefs
-   * to set request statuses on each.
+   * and return the response status objects for each.
    */
   async fetchLinks(links: Link[]): Promise<LinkStatus[]> {
     const data = JSON.stringify(links)
