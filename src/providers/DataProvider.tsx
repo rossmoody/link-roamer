@@ -53,6 +53,9 @@ export const DataProvider = ({ children }: Children) => {
       if (data.links.length > 0) {
         const result = await c.fetchLinks(data.links)
 
+        /**
+         * A completely failed attempt returns an empty Array.
+         */
         if (result.length < 1)
           return setData((prevData) => ({ ...prevData, loading: false }))
 

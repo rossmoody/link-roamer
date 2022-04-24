@@ -16,7 +16,7 @@ import { useCheckedItems } from '../../providers/CheckedItems'
 import c from '../../scripts/Chrome'
 import Link from '../../scripts/Link'
 import statusCodes from '../../status-codes'
-import { AlertIcon, ExternalLinkIcon } from '../icons'
+import { ExternalLinkIcon, InfoIcon } from '../icons'
 
 type Props = {
   link: Link
@@ -120,7 +120,7 @@ const LinkItem = ({ link }: Props) => {
               label={statusCodes[statusCode]?.description}
             >
               <Tag size="sm">
-                <TagLeftIcon boxSize="12px" marginRight="4px" as={AlertIcon} />
+                <TagLeftIcon boxSize="12px" marginRight="4px" as={InfoIcon} />
                 {statusCode}
               </Tag>
             </Tooltip>
