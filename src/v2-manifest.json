@@ -29,12 +29,7 @@
       }
     }
   },
-  "web_accessible_resources": [
-    {
-      "resources": ["public/onboarding.html"],
-      "matches": ["*://*/*"]
-    }
-  ],
+  "web_accessible_resources": ["public/onboarding.html"],
   "icons": {
     "48": "public/icons/production/48.png",
     "64": "public/icons/production/64.png",
