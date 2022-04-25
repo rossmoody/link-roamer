@@ -75,7 +75,7 @@ yarn
 
 For development with automatic reloading:
 
-```bazaar
+```bash
 yarn start
 ```
 
@@ -85,6 +85,17 @@ Dashboard, enable "Developer mode", click "Load unpacked", and choose the
 
 When you make changes in src the background script and any content script will
 reload automatically.
+
+#### 4. Start the server
+
+You'll need to start up the server to make fetch calls and check statuses. To build content from the `src/api` folder, run:
+
+```bash
+yarn watch
+```
+
+This will startup the server and restart it any time a change is recompiled from rollup.
+
 
 ---
 
