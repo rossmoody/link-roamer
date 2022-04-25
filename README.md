@@ -65,7 +65,7 @@ cd link-roamer
 
 ### 2. Install dependencies
 
-SVG Gobbler uses yarn to build the necessary dependencies.
+Link Roamer uses yarn to build the necessary dependencies.
 
 ```shell
 yarn
