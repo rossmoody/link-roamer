@@ -96,6 +96,11 @@ yarn watch
 
 This will startup the server and restart it any time a change is recompiled from rollup.
 
+---
+
+## More apps by me
+
+I like making things. [Check out what I'm up to lately](https://rossmoody.com).
 
 ---
 
