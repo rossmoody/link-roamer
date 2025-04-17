@@ -22,7 +22,7 @@
     "default_popup": "public/index.html"
   },
   "commands": {
-    "_execute_action": {
+    "_execute_browser_action": {
       "suggested_key": {
         "default": "Ctrl+U",
         "mac": "Command+U"
